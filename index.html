@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYKORÁ — Протоколы приёма</title>
+<style>
+  :root {
+    --deep-forest: #3E3A17;
+    --deep-forest-dark: #2C2910;
+    --vivid-orange: #FF7F00;
+    --soft-ivory: #F8EFCB;
+    --earthy-olive: #A3A58C;
+    --misty-silver: #C8D2D5;
+    --white: #FFFFFF;
+    --bg-light: #FAF8F0;
+    --border-light: #E8E2C8;
+    --text-dark: #2C2910;
+    --text-body: #4A4530;
+    --green-accent: #5A7A3A;
+    --red-warn: #C4573A;
+    --blue-info: #3A6A8A;
+    --font-display: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+    --font-body: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: #F0ECE0;
+    color: var(--text-dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Navigation ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--deep-forest);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    color: var(--soft-ivory);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    margin-right: 8px;
+  }
+  .nav-btn {
+    background: transparent;
+    border: 1px solid var(--earthy-olive);
+    color: var(--soft-ivory);
+    font-family: var(--font-body);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--vivid-orange);
+    border-color: var(--vivid-orange);
+    color: var(--white);
+  }
+
+  /* ── Flyer Container ── */
+  .flyer-wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .flyer {
+    display: none;
+    background: var(--white);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(60, 58, 23, 0.12);
+  }
+  .flyer.active { display: block; }
+
+  /* ── Header ── */
+  .flyer-header {
+    background: var(--deep-forest);
+    padding: 32px 28px 28px;
+    text-align: center;
+  }
+  .flyer-brand {
+    font-family: var(--font-display);
+    color: var(--soft-ivory);
+    font-size: 13px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+  .flyer-title {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .flyer-subtitle {
+    font-family: var(--font-body);
+    color: var(--vivid-orange);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .flyer-desc {
+    color: var(--earthy-olive);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+
+  /* ── Protocol Schedule ── */
+  .schedule-section {
+    padding: 24px 20px;
+  }
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--deep-forest);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::before {
+    content: '';
+    width: 4px;
+    height: 18px;
+    background: var(--vivid-orange);
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ── Timeline Grid ── */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--border-light);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .time-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: var(--deep-forest);
+  }
+  .time-header-cell {
+    padding: 10px 8px;
+    text-align: center;
+    color: var(--soft-ivory);
+    font-size: 11px;
+    font-weight: 500;
+    border-right: 1px solid rgba(163, 165, 140, 0.2);
+  }
+  .time-header-cell:last-child { border-right: none; }
+  .time-header-cell .time-icon {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .time-header-cell .time-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--earthy-olive);
+  }
+
+  .product-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: var(--white);
+  }
+  .product-row:nth-child(odd) {
+    background: var(--bg-light);
+  }
+  .product-cell {
+    padding: 10px 6px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-body);
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+  .product-cell:last-child { border-right: none; }
+  .product-name {
+    font-weight: 600;
+    color: var(--deep-forest);
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .dose-pill {
+    display: inline-block;
+    background: rgba(255, 127, 0, 0.12);
+    color: var(--vivid-orange);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 10px;
+    line-height: 1.2;
+  }
+  .dose-pill.green {
+    background: rgba(90, 122, 58, 0.12);
+    color: var(--green-accent);
+  }
+  .dose-empty {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-light);
+  }
+
+  /* ── Detailed Product Cards ── */
+  .product-cards {
+    padding: 0 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .p-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .p-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .p-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--deep-forest);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .p-card-name {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--deep-forest);
+  }
+  .p-card-form {
+    font-size: 11px;
+    color: var(--earthy-olive);
+  }
+  .p-card-details {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-body);
+  }
+  .p-card-details strong {
+    color: var(--deep-forest);
+  }
+  .detail-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+  .detail-label {
+    color: var(--earthy-olive);
+    font-size: 11px;
+    min-width: 70px;
+    flex-shrink: 0;
+  }
+  .detail-value {
+    color: var(--text-dark);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* ── Notes / Warnings ── */
+  .notes-section {
+    padding: 0 20px 24px;
+  }
+  .note-card {
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .note-card.warning {
+    background: rgba(196, 87, 58, 0.08);
+    border: 1px solid rgba(196, 87, 58, 0.2);
+  }
+  .note-card.info {
+    background: rgba(58, 106, 138, 0.08);
+    border: 1px solid rgba(58, 106, 138, 0.2);
+  }
+  .note-card.success {
+    background: rgba(90, 122, 58, 0.08);
+    border: 1px solid rgba(90, 122, 58, 0.2);
+  }
+  .note-title {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .note-card.warning .note-title { color: var(--red-warn); }
+  .note-card.info .note-title { color: var(--blue-info); }
+  .note-card.success .note-title { color: var(--green-accent); }
+  .note-text {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text-body);
+  }
+
+  /* ── Synergy Section ── */
+  .synergy-section {
+    padding: 0 20px 24px;
+  }
+  .synergy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .synergy-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+  }
+  .synergy-arrow {
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .synergy-text {
+    font-size: 12px;
+    color: var(--text-body);
+    line-height: 1.5;
+  }
+  .synergy-text strong {
+    color: var(--deep-forest);
+  }
+
+  /* ── Course Info ── */
+  .course-section {
+    background: var(--deep-forest);
+    padding: 24px 20px;
+    margin: 0 20px 20px;
+    border-radius: 16px;
+  }
+  .course-title {
+    font-family: var(--font-display);
+    color: var(--soft-ivory);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .course-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .course-item {
+    background: rgba(248, 239, 203, 0.08);
+    border: 1px solid rgba(163, 165, 140, 0.25);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+  .course-num {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--vivid-orange);
+  }
+  .course-label {
+    font-size: 11px;
+    color: var(--earthy-olive);
+    margin-top: 2px;
+  }
+
+  /* ── Footer CTA ── */
+  .flyer-footer {
+    background: var(--vivid-orange);
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .footer-text {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .footer-sub {
+    color: rgba(255,255,255,0.8);
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  /* ── Cross-sell ── */
+  .crosssell {
+    padding: 20px;
+    text-align: center;
+  }
+  .crosssell-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep-forest);
+    margin-bottom: 12px;
+  }
+  .crosssell-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .crosssell-btn {
+    display: block;
+    padding: 12px 16px;
+    border: 1.5px solid var(--deep-forest);
+    border-radius: 28px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--deep-forest);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+  }
+  .crosssell-btn:hover {
+    background: var(--deep-forest);
+    color: var(--soft-ivory);
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--border-light);
+    margin: 0 20px;
+  }
+
+  /* ── Print Styles ── */
+  @media print {
+    .nav { display: none; }
+    .flyer { display: block !important; page-break-after: always; }
+    .flyer-wrapper { max-width: 100%; padding: 0; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-logo">MYKORÁ</div>
+  <button class="nav-btn active" onclick="showFlyer(0)">Базовый грибной</button>
+  <button class="nav-btn" onclick="showFlyer(1)">Иммунитет</button>
+  <button class="nav-btn" onclick="showFlyer(2)">Антистресс и сон</button>
+  <button class="nav-btn" onclick="showFlyer(3)">Ясный разум</button>
+  <button class="nav-btn" onclick="showFlyer(4)">Долголетие</button>
+</nav>
+
+<div class="flyer-wrapper">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ПРОТОКОЛ 1: БАЗОВЫЙ ГРИБНОЙ КОМПЛЕКС                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="flyer active" id="flyer-0">
+  <div class="flyer-header">
+    <div class="flyer-brand">MYKORÁ</div>
+    <div class="flyer-title">ПРОТОКОЛ ПРИЁМА<br>«БАЗОВЫЙ ГРИБНОЙ<br>КОМПЛЕКС»</div>
+    <div class="flyer-subtitle">Basic Mushroom Protocol</div>
+    <div class="flyer-desc">Вход в систему MYKORÁ. Три ключевых грибных экстракта для фокуса, спокойствия и энергии — работают как единая система.</div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">График приёма</div>
+    <div class="timeline">
+      <div class="time-header">
+        <div class="time-header-cell"><span class="time-icon">🌅</span>Утро<div class="time-label">7:00–9:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">☀️</span>День<div class="time-label">12:00–14:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌇</span>Вечер<div class="time-label">17:00–18:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌙</span>Ночь<div class="time-label">20:00–21:00</div></div>
+      </div>
+      <!-- Ежовик -->
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Ежовик</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <!-- Кордицепс -->
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Кордицепс</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <!-- Рейши -->
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Рейши</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><span class="dose-pill green">2 кап</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Details -->
+  <div class="schedule-section">
+    <div class="section-label">Детали по каждому продукту</div>
+  </div>
+  <div class="product-cards">
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🧠</div>
+        <div>
+          <div class="p-card-name">ЕЖОВИК (HERICIUM)</div>
+          <div class="p-card-form">90 капсул • экстракт 10:1</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула 2 раза в день</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро + обед, с едой</span></div>
+        <div class="detail-row"><span class="detail-label">Почему утро:</span><span class="detail-value">Стимулирует NGF и когнитивную активность — эффективнее в первой половине дня</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">45 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">⚡</div>
+        <div>
+          <div class="p-card-name">КОРДИЦЕПС</div>
+          <div class="p-card-form">120 капсул • экстракт 10:1</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула 2 раза в день</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро + обед, с едой</span></div>
+        <div class="detail-row"><span class="detail-label">Почему утро:</span><span class="detail-value">Повышает выработку АТФ и кислородный обмен — нужен днём для энергии и выносливости</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🍄</div>
+        <div>
+          <div class="p-card-name">РЕЙШИ (GANODERMA)</div>
+          <div class="p-card-form">120 капсул • экстракт 10:1</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">2 капсулы вечером</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">За 1–2 часа до сна, с едой</span></div>
+        <div class="detail-row"><span class="detail-label">Почему вечер:</span><span class="detail-value">Адаптогенный и ГАМК-ергический эффект — снижает кортизол, готовит к глубокому сну</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Synergy -->
+  <div class="synergy-section">
+    <div class="section-label">Как компоненты усиливают друг друга</div>
+    <div class="synergy-grid">
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Ежовик + Кордицепс:</strong> нейрогенез (NGF) + энергия мозга (АТФ) = острый фокус без истощения</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Кордицепс → Рейши:</strong> дневная энергия плавно переходит в вечернее расслабление без «обрыва»</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Рейши + Ежовик:</strong> противовоспалительная поддержка нейронов + стимуляция их роста</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course -->
+  <div class="course-section">
+    <div class="course-title">Параметры курса</div>
+    <div class="course-grid">
+      <div class="course-item"><div class="course-num">45–60</div><div class="course-label">дней курс</div></div>
+      <div class="course-item"><div class="course-num">14–21</div><div class="course-label">день до эффекта</div></div>
+      <div class="course-item"><div class="course-num">2–3</div><div class="course-label">курса в год</div></div>
+      <div class="course-item"><div class="course-num">30</div><div class="course-label">дней перерыв</div></div>
+    </div>
+  </div>
+
+  <!-- Warnings -->
+  <div class="notes-section">
+    <div class="section-label">Важно знать</div>
+    <div class="note-card warning">
+      <div class="note-title">⚠️ Не сочетать</div>
+      <div class="note-text">
+        • Кордицепс — с кофеином свыше 400 мг/день (перестимуляция ЦНС)<br>
+        • Рейши — с антикоагулянтами (варфарин, гепарин) без консультации врача<br>
+        • Рейши — с иммуносупрессорами (может нивелировать их эффект)
+      </div>
+    </div>
+    <div class="note-card info">
+      <div class="note-title">💡 Рекомендации</div>
+      <div class="note-text">
+        • Все грибные экстракты принимать с едой для лучшего усвоения полисахаридов<br>
+        • При первом приёме начинать с половинной дозы 3–5 дней<br>
+        • Не принимать Кордицепс после 16:00 — может мешать засыпанию
+      </div>
+    </div>
+    <div class="note-card success">
+      <div class="note-title">✅ Хорошо сочетается</div>
+      <div class="note-text">
+        • С витамином D3 + K2 (усиливает иммуномодуляцию рейши)<br>
+        • С Omega-3 (усиливает нейропротекцию ежовика)<br>
+        • С Magnesium + B6 (потенцирует расслабляющий эффект рейши)
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Cross-sell -->
+  <div class="crosssell">
+    <div class="crosssell-title">Что прокачаем дальше?</div>
+    <div class="crosssell-btns">
+      <a class="crosssell-btn" onclick="showFlyer(1)">«Иммунитет и защита»</a>
+      <a class="crosssell-btn" onclick="showFlyer(2)">«Антистресс и сон»</a>
+      <a class="crosssell-btn" onclick="showFlyer(3)">«Ясный разум и концентрация»</a>
+    </div>
+  </div>
+
+  <div class="flyer-footer">
+    <div class="footer-text">Узнай больше на mykora.ru</div>
+    <div class="footer-sub">Перед приёмом проконсультируйтесь со специалистом</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ПРОТОКОЛ 2: ИММУНИТЕТ И ЗАЩИТА                            -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="flyer" id="flyer-1">
+  <div class="flyer-header">
+    <div class="flyer-brand">MYKORÁ</div>
+    <div class="flyer-title">ПРОТОКОЛ ПРИЁМА<br>«ИММУНИТЕТ<br>И ЗАЩИТА»</div>
+    <div class="flyer-subtitle">Immune Shield Protocol</div>
+    <div class="flyer-desc">Системная поддержка защитных функций организма. Четыре компонента, которые укрепляют иммунитет на всех уровнях: от барьерной защиты до адаптивного иммунитета.</div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">График приёма</div>
+    <div class="timeline">
+      <div class="time-header">
+        <div class="time-header-cell"><span class="time-icon">🌅</span>Утро<div class="time-label">7:00–9:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">☀️</span>День<div class="time-label">12:00–14:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌇</span>Вечер<div class="time-label">17:00–18:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌙</span>Ночь<div class="time-label">20:00–21:00</div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">D3 + K2</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Цинк</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><span class="dose-pill">1 таб</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Витамин C</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Рейши</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><span class="dose-pill green">2 кап</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">Детали по каждому продукту</div>
+  </div>
+  <div class="product-cards">
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">☀️</div>
+        <div>
+          <div class="p-card-name">VITAMIN D3 + K2</div>
+          <div class="p-card-form">60 капсул • холекальциферол + менахинон-7</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро, с жиросодержащей пищей</span></div>
+        <div class="detail-row"><span class="detail-label">Почему утро:</span><span class="detail-value">D3 — жирорастворимый, лучше всего усваивается с завтраком. K2 направляет кальций в кости, а не в сосуды</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🛡️</div>
+        <div>
+          <div class="p-card-name">ЦИНК ПИКОЛИНАТ</div>
+          <div class="p-card-form">90 таблеток • 25 мг элементарного цинка</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 таблетка в обед</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Обед, с едой (обязательно!)</span></div>
+        <div class="detail-row"><span class="detail-label">Почему обед:</span><span class="detail-value">Разносим с D3 и C по времени: цинк конкурирует с медью и железом за всасывание. Пиколинатная форма — максимальная биодоступность</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">90 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🍋</div>
+        <div>
+          <div class="p-card-name">ВИТАМИН C ЛИПОСОМАЛЬНЫЙ</div>
+          <div class="p-card-form">60 капсул • 1000 мг в липосомальной оболочке</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро, натощак или с лёгкой пищей</span></div>
+        <div class="detail-row"><span class="detail-label">Почему утро:</span><span class="detail-value">Липосомальная форма не раздражает ЖКТ. Утренний приём обеспечивает антиоксидантную защиту на весь день</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🍄</div>
+        <div>
+          <div class="p-card-name">РЕЙШИ (GANODERMA)</div>
+          <div class="p-card-form">120 капсул • экстракт 10:1</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">2 капсулы вечером</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Вечер, за 1–2 часа до сна, с едой</span></div>
+        <div class="detail-row"><span class="detail-label">Почему вечер:</span><span class="detail-value">Иммуномодуляция активнее ночью (пик активности NK-клеток). Рейши также улучшает качество сна — двойная польза</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="synergy-section">
+    <div class="section-label">Как компоненты усиливают друг друга</div>
+    <div class="synergy-grid">
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>D3 + Рейши:</strong> D3 активирует Т-клетки, рейши модулирует NK-клетки — врождённый + адаптивный иммунитет</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Витамин C + Цинк:</strong> классическая пара для барьерной защиты. C усиливает миграцию фагоцитов, цинк — их созревание</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Витамин C + D3:</strong> C поддерживает коллагеновый барьер (кожа, слизистые), D3 — системный иммунный ответ</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>K2 → кальций:</strong> K2 направляет кальций в кости, а не в сосуды — защита от кальцификации при приёме D3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-section">
+    <div class="course-title">Параметры курса</div>
+    <div class="course-grid">
+      <div class="course-item"><div class="course-num">60</div><div class="course-label">дней курс</div></div>
+      <div class="course-item"><div class="course-num">7–14</div><div class="course-label">дней до эффекта</div></div>
+      <div class="course-item"><div class="course-num">2–3</div><div class="course-label">курса в год</div></div>
+      <div class="course-item"><div class="course-num">30</div><div class="course-label">дней перерыв</div></div>
+    </div>
+  </div>
+
+  <div class="notes-section">
+    <div class="section-label">Важно знать</div>
+    <div class="note-card warning">
+      <div class="note-title">⚠️ Не сочетать</div>
+      <div class="note-text">
+        • Цинк — с препаратами железа (принимать с разницей минимум 2 часа)<br>
+        • Цинк — с антибиотиками тетрациклинового ряда (снижает их абсорбцию)<br>
+        • D3 — с тиазидными диуретиками без контроля кальция в крови<br>
+        • Рейши — с антикоагулянтами и иммуносупрессорами
+      </div>
+    </div>
+    <div class="note-card info">
+      <div class="note-title">💡 Рекомендации</div>
+      <div class="note-text">
+        • D3 + K2 обязательно с жирами — без них усвоение D3 падает на 50%<br>
+        • Цинк натощак часто вызывает тошноту — всегда с едой<br>
+        • Идеально начинать курс за 2–4 недели до сезона простуд (осень, весна)<br>
+        • При первых симптомах ОРВИ можно удвоить дозу C на 3–5 дней
+      </div>
+    </div>
+    <div class="note-card success">
+      <div class="note-title">✅ Хорошо сочетается</div>
+      <div class="note-text">
+        • С Omega-3 (противовоспалительная поддержка + усвоение D3)<br>
+        • С пробиотиками (70% иммунитета — в кишечнике)<br>
+        • С набором «Антистресс и сон» (стресс подавляет иммунитет)
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="crosssell">
+    <div class="crosssell-title">Что прокачаем дальше?</div>
+    <div class="crosssell-btns">
+      <a class="crosssell-btn" onclick="showFlyer(2)">«Антистресс и сон»</a>
+      <a class="crosssell-btn" onclick="showFlyer(3)">«Ясный разум и концентрация»</a>
+      <a class="crosssell-btn" onclick="showFlyer(4)">«Активное долголетие и красота»</a>
+    </div>
+  </div>
+  <div class="flyer-footer">
+    <div class="footer-text">Узнай больше на mykora.ru</div>
+    <div class="footer-sub">Перед приёмом проконсультируйтесь со специалистом</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ПРОТОКОЛ 3: АНТИСТРЕСС И СОН                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="flyer" id="flyer-2">
+  <div class="flyer-header">
+    <div class="flyer-brand">MYKORÁ</div>
+    <div class="flyer-title">ПРОТОКОЛ ПРИЁМА<br>«АНТИСТРЕСС<br>И СОН»</div>
+    <div class="flyer-subtitle">Calm & Sleep Protocol</div>
+    <div class="flyer-desc">Снижение кортизола, глубокий восстановительный сон и стабильная нервная система. Четыре компонента для тех, кто работает на пределе, но хочет засыпать за 15 минут.</div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">График приёма</div>
+    <div class="timeline">
+      <div class="time-header">
+        <div class="time-header-cell"><span class="time-icon">🌅</span>Утро<div class="time-label">7:00–9:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">☀️</span>День<div class="time-label">12:00–14:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌇</span>Вечер<div class="time-label">17:00–18:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌙</span>Ночь<div class="time-label">20:00–21:00</div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Mg + B6</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><span class="dose-pill green">2 кап</span></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">D3 + K2</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Omega-3</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Рейши</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><span class="dose-pill green">2 кап</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">Детали по каждому продукту</div>
+  </div>
+  <div class="product-cards">
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">😌</div>
+        <div>
+          <div class="p-card-name">MAGNESIUM + B6</div>
+          <div class="p-card-form">60 капсул • магний бисглицинат + пиридоксин</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">2 капсулы вечером</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">За 1–2 часа до сна, с едой</span></div>
+        <div class="detail-row"><span class="detail-label">Почему вечер:</span><span class="detail-value">Магний расслабляет мышцы и снижает возбудимость ЦНС. Бисглицинатная форма — мягкая для ЖКТ. B6 усиливает транспорт магния в клетки</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">30 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">☀️</div>
+        <div>
+          <div class="p-card-name">VITAMIN D3 + K2</div>
+          <div class="p-card-form">60 капсул • холекальциферол + менахинон-7</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро, с жиросодержащей пищей</span></div>
+        <div class="detail-row"><span class="detail-label">Почему утро:</span><span class="detail-value">D3 участвует в синтезе серотонина (предшественник мелатонина). Утренний приём запускает правильный цикл серотонин → мелатонин</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🐟</div>
+        <div>
+          <div class="p-card-name">OMEGA-3 90%</div>
+          <div class="p-card-form">60 капсул • высокоочищенный рыбий жир, 90% ПНЖК</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром + 1 капсула в обед</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">С жиросодержащей пищей</span></div>
+        <div class="detail-row"><span class="detail-label">Почему 2р/день:</span><span class="detail-value">EPA снижает нейровоспаление (причина тревоги), DHA поддерживает текучесть мембран нейронов. Деление дозы — стабильный уровень в крови</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">30 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🍄</div>
+        <div>
+          <div class="p-card-name">РЕЙШИ (GANODERMA)</div>
+          <div class="p-card-form">120 капсул • экстракт 10:1</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">2 капсулы вечером</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Вместе с магнием, за 1–2 часа до сна</span></div>
+        <div class="detail-row"><span class="detail-label">Почему вечер:</span><span class="detail-value">Тритерпеноиды рейши снижают кортизол, бета-глюканы модулируют иммунитет. Совместный приём с магнием усиливает ГАМК-ергический эффект</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="synergy-section">
+    <div class="section-label">Как компоненты усиливают друг друга</div>
+    <div class="synergy-grid">
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Mg + B6 + Рейши:</strong> тройная вечерняя связка — магний расслабляет мышцы, B6 помогает транспорту, рейши снижает кортизол</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>D3 → серотонин → мелатонин:</strong> утренний D3 запускает каскад, который к ночи превращается в мелатонин</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Omega-3 + Mg:</strong> EPA снижает нейровоспаление, магний — возбудимость нейронов. Вместе = спокойная нервная система</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-section">
+    <div class="course-title">Параметры курса</div>
+    <div class="course-grid">
+      <div class="course-item"><div class="course-num">30–60</div><div class="course-label">дней курс</div></div>
+      <div class="course-item"><div class="course-num">5–10</div><div class="course-label">дней до эффекта</div></div>
+      <div class="course-item"><div class="course-num">3–4</div><div class="course-label">курса в год</div></div>
+      <div class="course-item"><div class="course-num">14</div><div class="course-label">дней перерыв</div></div>
+    </div>
+  </div>
+
+  <div class="notes-section">
+    <div class="section-label">Важно знать</div>
+    <div class="note-card warning">
+      <div class="note-title">⚠️ Не сочетать</div>
+      <div class="note-text">
+        • Магний — с бисфосфонатами, левотироксином (разнос минимум 4 часа)<br>
+        • Omega-3 — с антикоагулянтами в дозах выше 3 г/день без контроля врача<br>
+        • Рейши — с седативными препаратами (суммация эффектов)<br>
+        • Магний — c антибиотиками фторхинолонового ряда (снижает абсорбцию)
+      </div>
+    </div>
+    <div class="note-card info">
+      <div class="note-title">💡 Рекомендации</div>
+      <div class="note-text">
+        • Магний + рейши принимать одновременно — усиливают друг друга<br>
+        • Omega-3 хранить в холодильнике после вскрытия<br>
+        • При сильной тревоге первую неделю можно добавить 1 кап магния днём<br>
+        • Не пить кофе после 14:00 для максимального эффекта протокола
+      </div>
+    </div>
+    <div class="note-card success">
+      <div class="note-title">✅ Хорошо сочетается</div>
+      <div class="note-text">
+        • С Ежовиком (снижает тревогу через нейрогенез)<br>
+        • С L-теанином (потенцирует расслабление без сонливости днём)<br>
+        • С набором «Ясный разум» (фокус днём + расслабление вечером)
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="crosssell">
+    <div class="crosssell-title">Что прокачаем дальше?</div>
+    <div class="crosssell-btns">
+      <a class="crosssell-btn" onclick="showFlyer(0)">«Базовый грибной комплекс»</a>
+      <a class="crosssell-btn" onclick="showFlyer(3)">«Ясный разум и концентрация»</a>
+      <a class="crosssell-btn" onclick="showFlyer(4)">«Активное долголетие и красота»</a>
+    </div>
+  </div>
+  <div class="flyer-footer">
+    <div class="footer-text">Узнай больше на mykora.ru</div>
+    <div class="footer-sub">Перед приёмом проконсультируйтесь со специалистом</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ПРОТОКОЛ 4: ЯСНЫЙ РАЗУМ И КОНЦЕНТРАЦИЯ                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="flyer" id="flyer-3">
+  <div class="flyer-header">
+    <div class="flyer-brand">MYKORÁ</div>
+    <div class="flyer-title">ПРОТОКОЛ ПРИЁМА<br>«ЯСНЫЙ РАЗУМ<br>И КОНЦЕНТРАЦИЯ»</div>
+    <div class="flyer-subtitle">Focus & Clarity Protocol</div>
+    <div class="flyer-desc">Нейрогенез, энергия мозга и острота мышления. Четыре компонента для устойчивого фокуса без стимуляторов, кофеиновых откатов и мозгового тумана.</div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">График приёма</div>
+    <div class="timeline">
+      <div class="time-header">
+        <div class="time-header-cell"><span class="time-icon">🌅</span>Утро<div class="time-label">7:00–9:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">☀️</span>День<div class="time-label">12:00–14:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌇</span>Вечер<div class="time-label">17:00–18:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌙</span>Ночь<div class="time-label">20:00–21:00</div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Omega-3</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">CoQ10</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">D3 + K2</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Ежовик</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">Детали по каждому продукту</div>
+  </div>
+  <div class="product-cards">
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🐟</div>
+        <div>
+          <div class="p-card-name">OMEGA-3 90%</div>
+          <div class="p-card-form">60 капсул • EPA + DHA, 90% ПНЖК</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром + 1 капсула в обед</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">С жиросодержащей пищей</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">DHA — основной структурный жир мембран нейронов (до 20% серого вещества). Без достаточного DHA сигналы между нейронами замедляются</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">30 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🔋</div>
+        <div>
+          <div class="p-card-name">CoQ10 УБИХИНОЛ</div>
+          <div class="p-card-form">60 капсул • активная восстановленная форма</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро, с жиросодержащей пищей</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">Убихинол — «топливо» для митохондрий. Мозг потребляет 20% всей энергии тела; CoQ10 обеспечивает стабильную выработку АТФ без стимуляторов</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">☀️</div>
+        <div>
+          <div class="p-card-name">VITAMIN D3 + K2</div>
+          <div class="p-card-form">60 капсул • холекальциферол + менахинон-7</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро, с жирами</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">D3 модулирует экспрессию генов нейротрофинов (BDNF, GDNF). Низкий уровень D3 ассоциирован с когнитивным снижением</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🧠</div>
+        <div>
+          <div class="p-card-name">ЕЖОВИК (HERICIUM)</div>
+          <div class="p-card-form">90 капсул • экстракт 10:1</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром + 1 капсула в обед</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">С едой, в первой половине дня</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">Гериценоны и эринацины стимулируют синтез NGF — фактора роста нервов. Это единственный натуральный нутриент с доказанным нейрогенетическим действием</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">45 дней (1 банка)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="synergy-section">
+    <div class="section-label">Как компоненты усиливают друг друга</div>
+    <div class="synergy-grid">
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Ежовик + DHA:</strong> Ежовик растит новые нейроны (NGF), DHA строит для них мембраны. Без жиров новые нейроны не выживают</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>CoQ10 + Omega-3:</strong> CoQ10 даёт энергию митохондриям, Omega-3 защищает их от окислительного повреждения</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>D3 + Ежовик:</strong> D3 стимулирует BDNF, ежовик — NGF. Два разных нейротрофина для комплексной нейропротекции</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-section">
+    <div class="course-title">Параметры курса</div>
+    <div class="course-grid">
+      <div class="course-item"><div class="course-num">45–60</div><div class="course-label">дней курс</div></div>
+      <div class="course-item"><div class="course-num">14–21</div><div class="course-label">день до эффекта</div></div>
+      <div class="course-item"><div class="course-num">3</div><div class="course-label">курса в год</div></div>
+      <div class="course-item"><div class="course-num">30</div><div class="course-label">дней перерыв</div></div>
+    </div>
+  </div>
+
+  <div class="notes-section">
+    <div class="section-label">Важно знать</div>
+    <div class="note-card warning">
+      <div class="note-title">⚠️ Не сочетать</div>
+      <div class="note-text">
+        • CoQ10 — со статинами без согласования (статины снижают эндогенный CoQ10, но дозу нужно подбирать с врачом)<br>
+        • Omega-3 — с антикоагулянтами в высоких дозах<br>
+        • Ежовик — с СИОЗС без консультации (теоретический риск серотонинового синдрома при высоких дозах)
+      </div>
+    </div>
+    <div class="note-card info">
+      <div class="note-title">💡 Рекомендации</div>
+      <div class="note-text">
+        • Утренний «блок фокуса» — все 4 компонента вместе с жирным завтраком<br>
+        • CoQ10, D3, Omega-3 — все жирорастворимые, поэтому идеальны в одном приёме<br>
+        • Ежовик работает кумулятивно: первые результаты через 2–3 недели<br>
+        • Для усиления — добавить чашку матча или зелёного чая (L-теанин + кофеин)
+      </div>
+    </div>
+    <div class="note-card success">
+      <div class="note-title">✅ Хорошо сочетается</div>
+      <div class="note-text">
+        • С набором «Антистресс и сон» (фокус днём + восстановление ночью)<br>
+        • С Кордицепсом (дополнительная энергия для тренировок)<br>
+        • С креатином (поддержка когнитивной производительности)
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="crosssell">
+    <div class="crosssell-title">Что прокачаем дальше?</div>
+    <div class="crosssell-btns">
+      <a class="crosssell-btn" onclick="showFlyer(2)">«Антистресс и сон»</a>
+      <a class="crosssell-btn" onclick="showFlyer(4)">«Активное долголетие и красота»</a>
+      <a class="crosssell-btn" onclick="showFlyer(0)">«Базовый грибной комплекс»</a>
+    </div>
+  </div>
+  <div class="flyer-footer">
+    <div class="footer-text">Узнай больше на mykora.ru</div>
+    <div class="footer-sub">Перед приёмом проконсультируйтесь со специалистом</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ПРОТОКОЛ 5: АКТИВНОЕ ДОЛГОЛЕТИЕ И КРАСОТА                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="flyer" id="flyer-4">
+  <div class="flyer-header">
+    <div class="flyer-brand">MYKORÁ</div>
+    <div class="flyer-title">ПРОТОКОЛ ПРИЁМА<br>«АКТИВНОЕ ДОЛГОЛЕТИЕ<br>И КРАСОТА»</div>
+    <div class="flyer-subtitle">Longevity & Beauty Protocol</div>
+    <div class="flyer-desc">Митохондриальная энергия, антиоксидантная защита и клеточное восстановление. Четыре компонента для тех, кому за 35 и кто хочет стареть медленнее.</div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">График приёма</div>
+    <div class="timeline">
+      <div class="time-header">
+        <div class="time-header-cell"><span class="time-icon">🌅</span>Утро<div class="time-label">7:00–9:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">☀️</span>День<div class="time-label">12:00–14:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌇</span>Вечер<div class="time-label">17:00–18:00</div></div>
+        <div class="time-header-cell"><span class="time-icon">🌙</span>Ночь<div class="time-label">20:00–21:00</div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">CoQ10</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Omega-3</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Цинк</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+        <div class="product-cell"><span class="dose-pill">1 таб</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+      <div class="product-row">
+        <div class="product-cell"><span class="product-name">Кордицепс</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><span class="dose-pill">1 кап</span></div>
+        <div class="product-cell"><div class="dose-empty"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">Детали по каждому продукту</div>
+  </div>
+  <div class="product-cards">
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🔋</div>
+        <div>
+          <div class="p-card-name">CoQ10 УБИХИНОЛ</div>
+          <div class="p-card-form">60 капсул • активная восстановленная форма</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Утро, с жиросодержащей пищей</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">После 35 лет эндогенный синтез CoQ10 падает на 25–50%. Убихинол восстанавливает митохондриальную функцию и защищает клетки от окислительного старения</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🐟</div>
+        <div>
+          <div class="p-card-name">OMEGA-3 90%</div>
+          <div class="p-card-form">60 капсул • EPA + DHA, 90% ПНЖК</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром + 1 капсула в обед</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">С едой, содержащей жиры</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">EPA снижает хроническое воспаление (inflammaging — главный механизм старения). DHA поддерживает кожу, суставы и сосуды</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">30 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">🛡️</div>
+        <div>
+          <div class="p-card-name">ЦИНК ПИКОЛИНАТ</div>
+          <div class="p-card-form">90 таблеток • 25 мг элементарного цинка</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 таблетка в обед</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">Обед, с едой</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">Цинк — кофактор 300+ ферментов. Ключевой для синтеза коллагена, заживления, иммунитета. Пиколинатная форма — усвоение до 60% выше оксида</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">90 дней (1 банка)</span></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-card-header">
+        <div class="p-card-icon">⚡</div>
+        <div>
+          <div class="p-card-name">КОРДИЦЕПС</div>
+          <div class="p-card-form">120 капсул • экстракт 10:1</div>
+        </div>
+      </div>
+      <div class="p-card-details">
+        <div class="detail-row"><span class="detail-label">Дозировка:</span><span class="detail-value">1 капсула утром + 1 капсула в обед</span></div>
+        <div class="detail-row"><span class="detail-label">Когда:</span><span class="detail-value">С едой, в первой половине дня</span></div>
+        <div class="detail-row"><span class="detail-label">Зачем:</span><span class="detail-value">Кордицепин стимулирует AMPK — ключевой сигнальный путь клеточного омоложения. Повышает VO₂max и выносливость, ускоряет восстановление после нагрузок</span></div>
+        <div class="detail-row"><span class="detail-label">Курс:</span><span class="detail-value">60 дней (1 банка)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="synergy-section">
+    <div class="section-label">Как компоненты усиливают друг друга</div>
+    <div class="synergy-grid">
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>CoQ10 + Кордицепс:</strong> двойной удар по митохондриям — CoQ10 обеспечивает электрон-транспортную цепь, кордицепс стимулирует биогенез новых митохондрий</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Omega-3 + CoQ10:</strong> Omega-3 защищает мембраны от перекисного окисления, CoQ10 нейтрализует свободные радикалы внутри митохондрий</span>
+      </div>
+      <div class="synergy-item">
+        <span class="synergy-arrow">🔗</span>
+        <span class="synergy-text"><strong>Цинк + Кордицепс:</strong> цинк — кофактор SOD (супероксиддисмутазы), кордицепс стимулирует каталазу. Вместе = мощная антиоксидантная защита</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course-section">
+    <div class="course-title">Параметры курса</div>
+    <div class="course-grid">
+      <div class="course-item"><div class="course-num">60–90</div><div class="course-label">дней курс</div></div>
+      <div class="course-item"><div class="course-num">14–28</div><div class="course-label">дней до эффекта</div></div>
+      <div class="course-item"><div class="course-num">2–3</div><div class="course-label">курса в год</div></div>
+      <div class="course-item"><div class="course-num">30</div><div class="course-label">дней перерыв</div></div>
+    </div>
+  </div>
+
+  <div class="notes-section">
+    <div class="section-label">Важно знать</div>
+    <div class="note-card warning">
+      <div class="note-title">⚠️ Не сочетать</div>
+      <div class="note-text">
+        • Цинк — с препаратами железа и кальция одновременно (конкуренция за транспортёры)<br>
+        • CoQ10 — осторожно с варфарином (может снижать МНО)<br>
+        • Кордицепс — с кофеином свыше 400 мг/день<br>
+        • Omega-3 — за 7 дней до плановых операций (снижает свёртываемость)
+      </div>
+    </div>
+    <div class="note-card info">
+      <div class="note-title">💡 Рекомендации</div>
+      <div class="note-text">
+        • Утренний «блок энергии»: CoQ10 + Omega-3 + Кордицепс с жирным завтраком<br>
+        • Цинк — отдельно в обед для максимальной абсорбции<br>
+        • Не принимать Кордицепс после 16:00<br>
+        • При активных тренировках можно увеличить кордицепс до 3 кап/день (утро, обед, 16:00)
+      </div>
+    </div>
+    <div class="note-card success">
+      <div class="note-title">✅ Хорошо сочетается</div>
+      <div class="note-text">
+        • С витамином D3 + K2 (кости + иммунитет + гормональная поддержка)<br>
+        • С витамином C (усиливает синтез коллагена + антиоксидантную защиту)<br>
+        • С набором «Ясный разум» (добавляет Ежовик для когнитивной защиты)
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="crosssell">
+    <div class="crosssell-title">Что прокачаем дальше?</div>
+    <div class="crosssell-btns">
+      <a class="crosssell-btn" onclick="showFlyer(1)">«Иммунитет и защита»</a>
+      <a class="crosssell-btn" onclick="showFlyer(2)">«Антистресс и сон»</a>
+      <a class="crosssell-btn" onclick="showFlyer(3)">«Ясный разум и концентрация»</a>
+    </div>
+  </div>
+  <div class="flyer-footer">
+    <div class="footer-text">Узнай больше на mykora.ru</div>
+    <div class="footer-sub">Перед приёмом проконсультируйтесь со специалистом</div>
+  </div>
+</div>
+
+</div><!-- /flyer-wrapper -->
+
+<script>
+function showFlyer(index) {
+  document.querySelectorAll('.flyer').forEach(f => f.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('flyer-' + index).classList.add('active');
+  document.querySelectorAll('.nav-btn')[index].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
