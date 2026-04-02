@@ -81,7 +81,7 @@
 
   /* ── Flyer Container ── */
   .flyer-wrapper {
-    width: min(100%, 1180px);
+    width: min(100%, 1040px);
     margin: 0 auto;
     padding: 20px;
   }
@@ -681,49 +681,104 @@
         linear-gradient(180deg, #f4f0e4 0%, #ece5d2 100%);
     }
     .flyer-wrapper {
-      padding: 36px 32px 56px;
+      width: min(100%, 980px);
+      padding: 36px 28px 56px;
     }
-    .flyer.active {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-      align-items: start;
+    .nav {
+      gap: 12px;
+    }
+    .nav-btn {
+      padding: 9px 15px;
+    }
+    .flyer {
+      border-radius: 34px;
+      box-shadow: 0 18px 60px rgba(60, 58, 23, 0.12);
     }
     .flyer-header {
-      grid-column: 1 / -1;
+      padding: 46px 52px 38px;
     }
-    .schedule-section:first-of-type,
+    .flyer-title {
+      font-size: 30px;
+      line-height: 1.28;
+    }
+    .flyer-desc {
+      max-width: 760px;
+      font-size: 15px;
+    }
+    .schedule-section,
     .product-cards,
+    .notes-section,
     .synergy-section,
-    .course-section,
-    .divider,
-    .crosssell,
-    .flyer-footer {
-      grid-column: 1;
+    .crosssell {
+      padding-left: 36px;
+      padding-right: 36px;
     }
-    .schedule-section:nth-of-type(2),
-    .notes-section {
-      grid-column: 2;
+    .schedule-section {
+      padding-top: 28px;
+      padding-bottom: 28px;
     }
-    .product-cards,
-    .notes-section {
-      align-self: start;
+    .time-header-cell,
+    .product-cell {
+      min-height: 54px;
     }
     .product-cards {
-      grid-template-columns: 1fr;
-      padding-top: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .p-card {
+      padding: 18px;
+      border-radius: 18px;
+    }
+    .p-card-details {
+      font-size: 13px;
     }
     .notes-section {
-      grid-template-columns: 1fr;
-      padding-top: 0;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
     .notes-section .section-label {
-      margin-bottom: 10px;
+      grid-column: 1 / -1;
+      margin-bottom: 2px;
+    }
+    .note-card {
+      border-radius: 18px;
+      padding: 18px;
     }
     .synergy-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .synergy-item {
+      min-height: 100%;
+      padding: 14px 16px;
+    }
+    .course-section {
+      margin: 0 36px 28px;
+      padding: 30px 28px;
+      border-radius: 20px;
     }
     .course-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .course-item {
+      padding: 16px 14px;
+    }
+    .crosssell-btns {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .crosssell-btn {
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .divider {
+      margin: 0 36px;
+    }
+    .flyer-footer {
+      padding: 24px 36px;
     }
   }
 
