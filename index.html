@@ -34,10 +34,45 @@
     text-rendering: optimizeLegibility;
   }
 
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: rgba(44, 41, 16, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(248, 239, 203, 0.12);
+  }
+  .site-nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 126px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(163, 165, 140, 0.32);
+    color: var(--soft-ivory);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+  }
+  .site-nav-link:hover,
+  .site-nav-link.active {
+    background: var(--vivid-orange);
+    border-color: var(--vivid-orange);
+    color: var(--white);
+  }
+
   /* ── Navigation ── */
   .nav {
     position: sticky;
-    top: 0;
+    top: 61px;
     z-index: 100;
     background: var(--deep-forest);
     padding: 16px 24px;
@@ -84,6 +119,125 @@
     width: min(100%, 1040px);
     margin: 0 auto;
     padding: 20px;
+  }
+
+  .entry-card {
+    background: linear-gradient(145deg, rgba(62, 58, 23, 0.98), rgba(44, 41, 16, 0.98));
+    border-radius: 28px;
+    padding: 28px 24px;
+    color: var(--soft-ivory);
+    box-shadow: 0 10px 40px rgba(60, 58, 23, 0.14);
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+  .entry-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top right, rgba(255, 127, 0, 0.22), transparent 34%),
+      radial-gradient(circle at bottom left, rgba(163, 165, 140, 0.18), transparent 28%);
+    pointer-events: none;
+  }
+  .entry-card > * {
+    position: relative;
+    z-index: 1;
+  }
+  .entry-kicker {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(248, 239, 203, 0.74);
+    margin-bottom: 12px;
+  }
+  .entry-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    max-width: 680px;
+  }
+  .entry-desc {
+    max-width: 700px;
+    color: rgba(248, 239, 203, 0.82);
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .entry-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .entry-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(248, 239, 203, 0.22);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+  .entry-link.primary {
+    background: var(--vivid-orange);
+    border-color: var(--vivid-orange);
+  }
+  .entry-link:hover {
+    transform: translateY(-1px);
+    border-color: var(--soft-ivory);
+  }
+  .platform-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .platform-card {
+    display: block;
+    text-decoration: none;
+    background: rgba(248, 239, 203, 0.08);
+    border: 1px solid rgba(248, 239, 203, 0.12);
+    border-radius: 20px;
+    padding: 18px 16px;
+    transition: all 0.25s ease;
+  }
+  .platform-card:hover {
+    background: rgba(248, 239, 203, 0.12);
+    border-color: rgba(255, 127, 0, 0.55);
+    transform: translateY(-2px);
+  }
+  .platform-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .platform-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: rgba(255, 127, 0, 0.18);
+  }
+  .platform-name {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .platform-desc {
+    color: rgba(248, 239, 203, 0.72);
+    font-size: 12px;
+    line-height: 1.55;
   }
 
   .flyer {
@@ -472,7 +626,20 @@
   }
 
   @media (max-width: 389px) {
+    .site-nav {
+      top: 0;
+      padding: 10px 12px;
+      gap: 8px;
+    }
+    .site-nav-link {
+      min-width: 0;
+      flex: 1;
+      padding: 9px 12px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
     .nav {
+      top: 51px;
       padding: 12px 14px;
       gap: 10px;
     }
@@ -490,6 +657,13 @@
     }
     .flyer {
       border-radius: 18px;
+    }
+    .entry-card {
+      border-radius: 20px;
+      padding: 22px 16px;
+    }
+    .entry-title {
+      font-size: 22px;
     }
     .flyer-header {
       padding: 24px 18px 22px;
@@ -578,8 +752,17 @@
   }
 
   @media (min-width: 390px) and (max-width: 767px) {
+    .site-nav {
+      top: 0;
+    }
     .flyer-wrapper {
       padding: 14px;
+    }
+    .nav {
+      top: 61px;
+    }
+    .entry-title {
+      font-size: 24px;
     }
     .flyer-title {
       font-size: clamp(18px, 4.9vw, 22px);
@@ -602,12 +785,23 @@
   }
 
   @media (min-width: 768px) {
+    .site-nav {
+      padding: 16px 24px;
+    }
     .flyer-wrapper {
       padding: 28px;
     }
     .nav {
+      top: 65px;
       padding: 18px 28px;
       justify-content: center;
+    }
+    .entry-card {
+      padding: 34px 34px 30px;
+      margin-bottom: 28px;
+    }
+    .platform-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
     .flyer {
       border-radius: 30px;
@@ -683,6 +877,12 @@
     .flyer-wrapper {
       width: min(100%, 980px);
       padding: 36px 28px 56px;
+    }
+    .entry-card {
+      padding: 38px 38px 34px;
+    }
+    .entry-title {
+      font-size: 34px;
     }
     .nav {
       gap: 12px;
@@ -791,6 +991,7 @@
 
   /* ── Print Styles ── */
   @media print {
+    .site-nav,
     .nav { display: none; }
     .flyer { display: block !important; page-break-after: always; }
     .flyer-wrapper { max-width: 100%; padding: 0; }
@@ -799,6 +1000,11 @@
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <a class="site-nav-link active" href="./index.html">Воронка</a>
+  <a class="site-nav-link" href="./content.html">Контент</a>
+</nav>
 
 <!-- Navigation -->
 <nav class="nav">
@@ -812,6 +1018,53 @@
 </nav>
 
 <div class="flyer-wrapper">
+
+<section class="entry-card">
+  <div class="entry-kicker">MYKORA Content System</div>
+  <h1 class="entry-title">Воронка и контент теперь живут как единая система</h1>
+  <p class="entry-desc">Текущая страница остается входом в продуктовую логику и протоколы. Отсюда можно сразу перейти в нужный контент-канал и развивать уже не отдельную акцию, а основу будущего корпоративного сайта MYKORA.</p>
+  <div class="entry-actions">
+    <a class="entry-link primary" href="./content.html">Открыть весь контент</a>
+    <a class="entry-link" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">mykora.ru</a>
+  </div>
+  <div class="platform-grid">
+    <a class="platform-card" href="./content.html#youtube-shorts">
+      <div class="platform-top">
+        <div class="platform-icon">▶</div>
+        <div class="platform-name">YouTube Shorts</div>
+      </div>
+      <div class="platform-desc">Короткие ролики для быстрого охвата, захвата внимания и входа в экосистему MYKORA.</div>
+    </a>
+    <a class="platform-card" href="./content.html#dzen">
+      <div class="platform-top">
+        <div class="platform-icon">✦</div>
+        <div class="platform-name">Яндекс.Дзен</div>
+      </div>
+      <div class="platform-desc">Лонгриды, объясняющий контент и поисковый трафик вокруг протоколов, грибов и wellness.</div>
+    </a>
+    <a class="platform-card" href="./content.html#vk-clips">
+      <div class="platform-top">
+        <div class="platform-icon">VK</div>
+        <div class="platform-name">ВК-клип</div>
+      </div>
+      <div class="platform-desc">Социальные короткие видео с быстрыми тезисами, комментариями и вовлечением сообщества.</div>
+    </a>
+    <a class="platform-card" href="./content.html#podcast">
+      <div class="platform-top">
+        <div class="platform-icon">⌁</div>
+        <div class="platform-name">Подкаст</div>
+      </div>
+      <div class="platform-desc">Длинные разговоры про биохакинг, протоколы, науку и философию здоровья для доверия к бренду.</div>
+    </a>
+    <a class="platform-card" href="./content.html#instagram-reels">
+      <div class="platform-top">
+        <div class="platform-icon">◎</div>
+        <div class="platform-name">Instagram Reels</div>
+      </div>
+      <div class="platform-desc">Визуальные короткие ролики с премиальной подачей, нарративом и lifestyle-образом MYKORA.</div>
+    </a>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!-- ПРОТОКОЛ 1: БАЗОВЫЙ ГРИБНОЙ КОМПЛЕКС                      -->
