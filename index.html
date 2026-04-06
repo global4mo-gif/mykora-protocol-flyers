@@ -33,6 +33,190 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+  body.gate-locked {
+    overflow: hidden;
+  }
+
+  .site-shell {
+    transition: filter 0.35s ease, opacity 0.35s ease;
+  }
+  body.gate-locked .site-shell {
+    filter: blur(14px);
+    opacity: 0.18;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .lead-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(44, 41, 16, 0.72);
+    backdrop-filter: blur(18px);
+  }
+  .lead-gate.hidden {
+    display: none;
+  }
+  .lead-card {
+    width: min(100%, 560px);
+    max-height: min(100vh - 40px, 920px);
+    overflow-y: auto;
+    background: var(--white);
+    border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(44, 41, 16, 0.32);
+    padding: 28px 22px 22px;
+  }
+  .lead-brand {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: var(--deep-forest);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .lead-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.15;
+    color: var(--deep-forest);
+    margin-bottom: 10px;
+  }
+  .lead-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-body);
+    margin-bottom: 18px;
+  }
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .lead-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lead-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--deep-forest);
+  }
+  .lead-input,
+  .lead-select,
+  .lead-textarea {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 13px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--bg-light);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .lead-input:focus,
+  .lead-select:focus,
+  .lead-textarea:focus {
+    outline: none;
+    border-color: var(--vivid-orange);
+    box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.12);
+  }
+  .lead-textarea {
+    min-height: 84px;
+    resize: vertical;
+  }
+  .lead-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+  }
+  .lead-check input {
+    margin-top: 2px;
+    accent-color: var(--vivid-orange);
+  }
+  .lead-check-text {
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--text-body);
+  }
+  .lead-check-text a {
+    color: var(--deep-forest);
+  }
+  .lead-policy {
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    background: var(--bg-light);
+    padding: 14px;
+  }
+  .lead-policy summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--deep-forest);
+  }
+  .lead-policy summary::-webkit-details-marker {
+    display: none;
+  }
+  .lead-policy-body {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--text-body);
+    margin-top: 10px;
+  }
+  .lead-policy-body p + p {
+    margin-top: 8px;
+  }
+  .lead-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .lead-submit {
+    border: none;
+    border-radius: 16px;
+    padding: 14px 18px;
+    background: var(--vivid-orange);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .lead-submit:hover {
+    transform: translateY(-1px);
+  }
+  .lead-submit:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+  .lead-note {
+    font-size: 11px;
+    line-height: 1.55;
+    color: var(--earthy-olive);
+  }
+  .lead-error {
+    display: none;
+    font-size: 12px;
+    color: var(--red-warn);
+    background: rgba(196, 87, 58, 0.08);
+    border: 1px solid rgba(196, 87, 58, 0.16);
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+  .lead-error.visible {
+    display: block;
+  }
 
   /* ── Navigation ── */
   .nav {
@@ -472,6 +656,13 @@
   }
 
   @media (max-width: 389px) {
+    .lead-card {
+      border-radius: 18px;
+      padding: 22px 16px 18px;
+    }
+    .lead-title {
+      font-size: 22px;
+    }
     .nav {
       padding: 12px 14px;
       gap: 10px;
@@ -578,6 +769,9 @@
   }
 
   @media (min-width: 390px) and (max-width: 767px) {
+    .lead-title {
+      font-size: 24px;
+    }
     .flyer-wrapper {
       padding: 14px;
     }
@@ -799,6 +993,63 @@
 </style>
 </head>
 <body>
+
+<div class="lead-gate" id="leadGate" role="dialog" aria-modal="true" aria-labelledby="leadGateTitle">
+  <div class="lead-card">
+    <div class="lead-brand">MYKORA</div>
+    <h1 class="lead-title" id="leadGateTitle">Получите доступ к протоколам после короткой заявки</h1>
+    <p class="lead-text">Оставьте контакт, чтобы открыть страницу с протоколами MYKORA. После отправки вы сразу увидите содержимое страницы.</p>
+    <form class="lead-form" id="leadForm">
+      <div class="lead-row">
+        <label class="lead-label" for="leadName">Как к вам обращаться</label>
+        <input class="lead-input" id="leadName" name="name" type="text" placeholder="Имя" autocomplete="name" required>
+      </div>
+      <div class="lead-row">
+        <label class="lead-label" for="leadContact">Телефон, Telegram или email</label>
+        <input class="lead-input" id="leadContact" name="contact" type="text" placeholder="+7..., @telegram или email" autocomplete="email" required>
+      </div>
+      <div class="lead-row">
+        <label class="lead-label" for="leadGoal">Что для вас сейчас актуально</label>
+        <select class="lead-select" id="leadGoal" name="goal" required>
+          <option value="">Выберите цель</option>
+          <option>Энергия и выносливость</option>
+          <option>Сон и антистресс</option>
+          <option>Фокус и ясный разум</option>
+          <option>Иммунитет и защита</option>
+          <option>Долголетие и восстановление</option>
+          <option>Хочу подобрать базовый протокол</option>
+        </select>
+      </div>
+      <div class="lead-row">
+        <label class="lead-label" for="leadComment">Комментарий</label>
+        <textarea class="lead-textarea" id="leadComment" name="comment" placeholder="Если хотите, кратко опишите задачу или симптомы"></textarea>
+      </div>
+
+      <details class="lead-policy" id="privacyRules">
+        <summary>Правила обработки персональных данных</summary>
+        <div class="lead-policy-body">
+          <p>Отправляя форму, вы предоставляете имя и контактные данные для обратной связи по продуктам и протоколам MYKORA.</p>
+          <p>Данные используются для связи с вами, ответа на запрос, подбора подходящего решения и дальнейшей коммуникации по вашему обращению.</p>
+          <p>Нажимая кнопку отправки, вы подтверждаете согласие на обработку предоставленной информации и подтверждаете, что ознакомлены с правилами обработки персональных данных.</p>
+        </div>
+      </details>
+
+      <label class="lead-check">
+        <input id="leadConsent" name="consent" type="checkbox" required>
+        <span class="lead-check-text">Я согласен(на) на обработку предоставленной информации и подтверждаю, что ознакомлен(а) с <a href="#privacyRules">правилами обработки персональных данных</a>.</span>
+      </label>
+
+      <div class="lead-error" id="leadError">Не получилось отправить форму. Проверьте поля и попробуйте еще раз.</div>
+
+      <div class="lead-actions">
+        <button class="lead-submit" id="leadSubmit" type="submit">Открыть протоколы</button>
+        <div class="lead-note">Сейчас форма открывает страницу после заполнения и сохраняет заявку в браузере. Для реального приема лидов можно подключить CRM, Telegram-бота, email-сервис или webhook.</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="site-shell" id="siteShell">
 
 <!-- Navigation -->
 <nav class="nav">
@@ -1744,8 +1995,86 @@
 </div>
 
 </div><!-- /flyer-wrapper -->
+</div><!-- /site-shell -->
 
 <script>
+const LEAD_GATE_KEY = 'mykoraLeadGateUnlocked';
+const LEAD_DATA_KEY = 'mykoraLeadGateEntries';
+const LEAD_ENDPOINT = '';
+
+const leadGate = document.getElementById('leadGate');
+const leadForm = document.getElementById('leadForm');
+const leadError = document.getElementById('leadError');
+const leadSubmit = document.getElementById('leadSubmit');
+
+function unlockContent() {
+  document.body.classList.remove('gate-locked');
+  leadGate.classList.add('hidden');
+}
+
+async function sendLead(payload) {
+  if (!LEAD_ENDPOINT) {
+    return;
+  }
+
+  const response = await fetch(LEAD_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    throw new Error('Lead submission failed');
+  }
+}
+
+function storeLead(payload) {
+  const currentEntries = JSON.parse(localStorage.getItem(LEAD_DATA_KEY) || '[]');
+  currentEntries.push(payload);
+  localStorage.setItem(LEAD_DATA_KEY, JSON.stringify(currentEntries));
+}
+
+if (localStorage.getItem(LEAD_GATE_KEY) === 'true') {
+  unlockContent();
+} else {
+  document.body.classList.add('gate-locked');
+}
+
+leadForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  leadError.classList.remove('visible');
+
+  if (!leadForm.reportValidity()) {
+    return;
+  }
+
+  leadSubmit.disabled = true;
+
+  const formData = new FormData(leadForm);
+  const payload = {
+    name: formData.get('name'),
+    contact: formData.get('contact'),
+    goal: formData.get('goal'),
+    comment: formData.get('comment'),
+    consent: formData.get('consent') === 'on',
+    submittedAt: new Date().toISOString()
+  };
+
+  try {
+    await sendLead(payload);
+    storeLead(payload);
+    localStorage.setItem(LEAD_GATE_KEY, 'true');
+    unlockContent();
+  } catch (error) {
+    leadError.classList.add('visible');
+    console.error(error);
+  } finally {
+    leadSubmit.disabled = false;
+  }
+});
+
 function showFlyer(index) {
   document.querySelectorAll('.flyer').forEach(f => f.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
