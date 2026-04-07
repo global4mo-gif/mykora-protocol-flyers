@@ -72,6 +72,81 @@ body {
   backdrop-filter: blur(12px);
 }
 
+.utility-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.utility-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--deep-forest);
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+  font-size: 14px;
+}
+
+.resource-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.resource-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(62, 58, 23, 0.12);
+  color: var(--deep-forest);
+  background: rgba(255,255,255,0.84);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.resource-switch a.primary {
+  color: var(--vivid-orange);
+  border-color: rgba(255, 127, 0, 0.2);
+  background: rgba(255, 127, 0, 0.08);
+}
+
+.site-banner {
+  display: block;
+  margin-top: 18px;
+  text-decoration: none;
+  background: var(--vivid-orange);
+  border-radius: 0 0 34px 34px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 16px 30px rgba(255,127,0,0.18);
+}
+
+.site-banner-title {
+  margin-bottom: 6px;
+  color: #fff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.15rem;
+}
+
+.site-banner-sub {
+  color: rgba(255,255,255,0.84);
+  font-size: 0.9rem;
+}
+
+.accent {
+  color: var(--vivid-orange);
+}
+
 .brand {
   font-family: 'Unbounded', sans-serif;
   font-size: 1.1rem;
@@ -274,21 +349,44 @@ body {
   <div class="shell">
     <div class="topbar">
       <div>
-        <div class="kicker">MYKORA REFERENCE</div>
-        <div class="brand">БАЗА ДАННЫХ</div>
+        <div class="kicker">СИСТЕМА МИКОРА · БАЗА ДАННЫХ</div>
+        <div class="brand">Живой корпоративный ресурс MYKORA</div>
       </div>
+    </div>
+
+    <div class="utility-nav">
+      <a class="utility-link" href="https://t.me/mykora_official" target="_blank" rel="noopener noreferrer">Telegram</a>
+      <a class="utility-link" href="https://max.ru/id9702076543_biz" target="_blank" rel="noopener noreferrer">MAX</a>
+      <a class="utility-link" href="https://vk.com/mykoraofficial?act=s&id=234545966#section=short_videos" target="_blank" rel="noopener noreferrer">VK</a>
+      <a class="utility-link" href="https://dzen.ru/mykoraofficial" target="_blank" rel="noopener noreferrer">Дзен</a>
+    </div>
+
+    <a class="site-banner" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">
+      <div class="site-banner-title">Узнай больше на mykora.ru</div>
+      <div class="site-banner-sub">Перед приёмом проконсультируйтесь со специалистом</div>
+    </a>
+
+    <div class="resource-switch">
+      <a href="index.html">Стартовая страница</a>
+      <a class="primary" href="protocols.html">Протоколы</a>
     </div>
 
     <section class="hero">
       <div class="kicker">Каталог материалов</div>
-      <h1>Визуальные материалы и инфографики в фирменной системе MYKORA</h1>
+      <h1>СИСТЕМА МИКОРА · БАЗА ДАННЫХ</h1>
       <p>
-        Эта страница собирает отдельные материалы в одном месте. Сейчас здесь размещена актуальная инфографика о когнитивном возрасте в фирменной системе MYKORA, а переключение между светлой и темной версиями находится уже внутри самой страницы.
+        Здесь собраны протоколы здоровья для людей, которые играют в жизнь <span class="accent">на максимальной сложности</span>. Это живая база знаний о <span class="accent">высокоэффективных</span> БАДах, грибах и нутриентах, которые помогают держать высокую нагрузку без выгорания.
+      </p>
+      <p>
+        Каждый материал привязан к конкретным целям: энергия, фокус, стресс-менеджмент, восстановление и долгосрочное здоровье. Статьи, инфографики и визуальные схемы показывают, как и зачем применять добавки в составе протоколов, а не «по одной баночке».
+      </p>
+      <p>
+        Страница будет регулярно пополняться новыми визуальными картами, чек-листами и разбором исследований, чтобы у тебя всегда были под рукой понятные маршруты для жизни на максималках.
       </p>
     </section>
 
     <section class="grid">
-      <a class="tile" href="/cognitive-age-infographic-mykora.html">
+      <a class="tile" href="cognitive-age-infographic-mykora.html">
         <div class="tile-preview">
           <div class="tile-chip">Актуальная версия</div>
           <div class="tile-title">Когнитивный возраст в фирменном светлом стиле</div>
