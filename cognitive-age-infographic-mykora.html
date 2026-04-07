@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Когнитивный возраст vs Хронологический: Инфографика Mykora</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face {
+font-family: 'Libertinus Sans';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src:
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2') format('woff2'),
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+font-family: 'Libertinus Sans';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src:
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2') format('woff2'),
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2') format('woff2');
+}
+
+:root {
+--deep-forest: #3E3A17;
+--soft-ivory: #F8EFCB;
+--vivid-orange: #FF7F00;
+--misty-silver: #C8D2D5;
+--earthy-olive: #A3A58C;
+--page-bg: #FFFDF7;
+--page-accent: #FFF4D9;
+--card-bg: rgba(255, 255, 255, 0.82);
+--card-border: rgba(62, 58, 23, 0.10);
+--text-main: #3E3A17;
+--text-soft: rgba(62, 58, 23, 0.74);
+--text-muted: rgba(62, 58, 23, 0.56);
+}
+
+body {
+font-family: 'Libertinus Sans', sans-serif;
+background:
+linear-gradient(rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+radial-gradient(circle at top right, rgba(255, 127, 0, 0.10), transparent 24%),
+radial-gradient(circle at left bottom, rgba(163, 165, 140, 0.18), transparent 20%),
+linear-gradient(180deg, var(--page-bg) 0%, #F7F0DD 100%);
+background-size: 48px 48px, 48px 48px, auto, auto, auto;
+background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+color: var(--text-main);
+}
+
+h1, h2, h3, h4, .font-brand {
+font-family: 'Unbounded', sans-serif;
+}
+
+.chart-container {
+position: relative;
+width: 100%;
+max-width: 600px;
+margin-left: auto;
+margin-right: auto;
+height: 350px;
+max-height: 400px;
+}
+
+@media (min-width: 768px) {
+.chart-container {
+height: 400px;
+}
+}
+
+.glass-card {
+background: var(--card-bg);
+backdrop-filter: blur(12px);
+border: 1px solid var(--card-border);
+box-shadow: 0 24px 50px rgba(62, 58, 23, 0.08);
+}
+
+.hero-chip {
+background: rgba(255, 127, 0, 0.10);
+border: 1px solid rgba(255, 127, 0, 0.16);
+color: var(--vivid-orange);
+}
+
+.section-blob-orange {
+background: #FFD9B0;
+}
+
+.section-blob-silver {
+background: #DCE3E6;
+}
+
+.accent-card {
+background: rgba(248, 239, 203, 0.66);
+border-left: 4px solid var(--vivid-orange);
+}
+
+.soft-panel {
+background: rgba(248, 239, 203, 0.42);
+border: 1px solid rgba(62, 58, 23, 0.08);
+}
+
+.kicker-text {
+color: var(--text-soft);
+}
+
+.muted-copy {
+color: var(--text-soft);
+}
+
+.muted-fine {
+color: var(--text-muted);
+}
+
+.big-number {
+color: var(--vivid-orange);
+text-shadow: 0 10px 25px rgba(255, 127, 0, 0.16);
+}
+</style>
+</head>
+<body class="antialiased selection:bg-orange-500 selection:text-white">
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="flex justify-center gap-2 mb-5">
+<a class="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-bold tracking-[0.08em] uppercase border border-[rgba(62,58,23,0.12)] text-[var(--text-soft)] bg-white/60 no-underline" href="/cognitive-age-infographic.html">Темная версия</a>
+<a class="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-bold tracking-[0.08em] uppercase border border-[rgba(255,127,0,0.28)] text-[var(--vivid-orange)] bg-[rgba(255,127,0,0.08)] no-underline" href="/cognitive-age-infographic-mykora.html">Светлая версия</a>
+</div>
+<header class="text-center mb-20">
+<div class="inline-block px-4 py-1 rounded-full hero-chip text-sm font-semibold tracking-wider uppercase mb-6">
+Система Mykora
+</div>
+<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-[var(--text-main)]">
+Когнитивный возраст <span class="text-[var(--earthy-olive)] font-normal mx-2">vs</span> Хронологический
+</h1>
+<p class="mt-4 max-w-3xl mx-auto text-xl muted-copy">
+В паспорте может быть 40, но в синапсах — уже 55. Узнайте, как L-треонат магния обходит «таможню» мозга и возвращает нейронным связям 9 лет молодости.
+</p>
+</header>
+
+<section class="glass-card rounded-3xl p-8 md:p-12 mb-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 section-blob-orange rounded-full blur-[120px] opacity-40"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+<div>
+<h2 class="text-3xl font-bold mb-6 flex items-center gap-3 text-[var(--text-main)]">
+<span class="text-4xl">&#128682;</span> Мозг — закрытый клуб
+</h2>
+<p class="muted-copy text-lg mb-6">
+Современный мир требует выносливости уровня элитных атлетов. Мы оперируем массивами данных и живем в «фоновом шуме». В этой гонке первым сдается мозг из-за снижения синаптической пластичности.
+</p>
+<p class="muted-copy text-lg mb-6">
+Магний критически важен для защиты нейронов от стресса (эксайтотоксичности). Но <strong class="text-[var(--text-main)]">Гематоэнцефалический барьер (ГЭБ)</strong> работает как строгая таможня. Обычные формы (оксид, цитрат) туда не пускают. Вы можете забить систему магнием до проблем с ЖКТ, но мозг его не получит.
+</p>
+<div class="accent-card p-5 rounded-r-lg">
+<p class="text-[var(--text-main)] font-medium">L-треонат использует метаболит витамина С как VIP-пропуск, проходя через транспортеры GLUT1 напрямую в спинномозговую жидкость.</p>
+</div>
+</div>
+<div class="w-full">
+<h3 class="text-center text-sm font-semibold kicker-text uppercase tracking-widest mb-4">Увеличение уровня магния в мозге (СМЖ)</h3>
+<div class="chart-container">
+<canvas id="csfChart"></canvas>
+</div>
+<p class="text-center text-xs muted-fine mt-4">*Относительные показатели проникновения через ГЭБ</p>
+</div>
+</div>
+</section>
+
+<section class="glass-card rounded-3xl p-8 md:p-12 mb-12 relative overflow-hidden">
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 section-blob-silver rounded-full blur-[140px] opacity-50"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+<div class="lg:col-span-5 text-center lg:text-left flex flex-col justify-center">
+<div class="text-8xl md:text-9xl font-black mb-2 big-number">-9</div>
+<div class="text-3xl font-bold mb-6 text-[var(--text-main)] uppercase tracking-wider">Лет Когнитивного Старения</div>
+<p class="muted-copy text-lg">
+В 2016 году исследование MIT доказало: 12 недель приема L-треоната магния стимулируют экспрессию рецепторов NR2B. Нейронные связи снова начинают «слышать» друг друга, откатывая возраст мозга на десятилетие назад.
+</p>
+</div>
+<div class="lg:col-span-7 w-full">
+<h3 class="text-center text-sm font-semibold kicker-text uppercase tracking-widest mb-4">Восстановление когнитивных доменов</h3>
+<div class="chart-container">
+<canvas id="radarChart"></canvas>
+</div>
+</div>
+</div>
+</section>
+
+<section class="glass-card rounded-3xl p-8 md:p-12 mb-12">
+<h2 class="text-3xl font-bold mb-8 text-center flex justify-center items-center gap-3 text-[var(--text-main)]">
+<span class="text-4xl">&#9876;</span> Выбирайте инструмент под задачу
+</h2>
+<p class="muted-copy text-lg text-center max-w-4xl mx-auto mb-10">
+Для профессионального управления своим состоянием важно понимать специализацию каждой формы. «Просто магний» — это миф. Выбор формы определяет, какой орган получит ресурс.
+</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="w-full order-2 lg:order-1">
+<div class="chart-container">
+<canvas id="formsChart"></canvas>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-6">
+<div class="soft-panel p-6 rounded-xl border" style="border-color: rgba(255, 127, 0, 0.24);">
+<h4 class="text-xl font-bold text-[var(--vivid-orange)] mb-2">L-Треонат</h4>
+<p class="muted-copy text-sm">Максимальный доступ к мозгу. Нейропластичность, память, интеллектуальная выносливость. Единственная форма для когнитивного апгрейда.</p>
+</div>
+<div class="soft-panel p-6 rounded-xl border" style="border-color: rgba(163, 165, 140, 0.22);">
+<h4 class="text-xl font-bold text-[var(--deep-forest)] mb-2">Глицинат</h4>
+<p class="muted-copy text-sm">Средний доступ. Работает как релаксант за счет аминокислоты глицина. Идеален для снятия телесного напряжения и подготовки ко сну.</p>
+</div>
+<div class="soft-panel p-6 rounded-xl border" style="border-color: rgba(200, 210, 213, 0.55);">
+<h4 class="text-xl font-bold text-[var(--earthy-olive)] mb-2">Цитрат & Малат</h4>
+<p class="muted-copy text-sm">Низкий доступ к ЦНС. Цитрат решает системные дефициты и проблемы с ЖКТ. Малат поддерживает цикл Кребса (энергию) в мышцах на периферии.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="mb-12">
+<h2 class="text-3xl font-bold mb-8 text-center text-[var(--text-main)]">Протокол Mykora: Избыточный Ресурс</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="soft-panel rounded-2xl p-8 border-t-4 shadow-lg" style="border-top-color: var(--vivid-orange); box-shadow: 0 18px 35px rgba(62, 58, 23, 0.06);">
+<div class="text-4xl mb-4">&#9728;</div>
+<h3 class="text-xl font-bold text-[var(--text-main)] mb-2">Утро (1000 мг)</h3>
+<p class="muted-fine text-sm">
+Прием первой половины дозы (содержит ~72 мг элементарного Mg). Поддерживает синаптическую пластичность в течение интенсивного рабочего дня. Фокус становится естественным состоянием.
+</p>
+</div>
+<div class="soft-panel rounded-2xl p-8 border-t-4 shadow-lg" style="border-top-color: var(--earthy-olive); box-shadow: 0 18px 35px rgba(62, 58, 23, 0.06);">
+<div class="text-4xl mb-4">&#127769;</div>
+<h3 class="text-xl font-bold text-[var(--text-main)] mb-2">Вечер (1000 мг)</h3>
+<p class="muted-fine text-sm">
+Прием второй половины. Снижает «шум» в нейронах, готовит систему к глубокой фазе сна и обеспечивает качественную ночную консолидацию памяти.
+</p>
+</div>
+<div class="soft-panel rounded-2xl p-8 border-t-4 shadow-lg" style="border-top-color: var(--misty-silver); box-shadow: 0 18px 35px rgba(62, 58, 23, 0.06);">
+<div class="text-4xl mb-4">&#129416; + &#127812;</div>
+<h3 class="text-xl font-bold text-[var(--text-main)] mb-2">Синергия</h3>
+<p class="muted-fine text-sm">
+Комбинация с Ежовиком гребенчатым (Lion's Mane). Ежовик стимулирует фактор роста нервов (NGF), а L-треонат дает строительный материал и энергию для новых связей.
+</p>
+</div>
+</div>
+</section>
+
+<footer class="text-center muted-fine text-sm border-t pt-8" style="border-color: rgba(62, 58, 23, 0.10);">
+<p class="mb-2">Материал носит ознакомительный характер. Перед применением любых добавок проконсультируйтесь с врачом.</p>
+<p class="font-bold tracking-widest uppercase mt-4 text-[var(--earthy-olive)]">MYKORA &copy; 2026</p>
+</footer>
+</div>
+
+<script>
+const splitLabel = (label) => {
+if (label.length <= 16) return label;
+const words = label.split(' ');
+const lines = [];
+let currentLine = '';
+for (let i = 0; i < words.length; i++) {
+if ((currentLine + words[i]).length > 16) {
+if (currentLine !== '') {
+lines.push(currentLine.trim());
+currentLine = '';
+}
+}
+currentLine += words[i] + ' ';
+}
+if (currentLine.trim() !== '') {
+lines.push(currentLine.trim());
+}
+return lines;
+};
+
+const commonTooltip = {
+callbacks: {
+title: function(tooltipItems) {
+const item = tooltipItems[0];
+let label = item.chart.data.labels[item.dataIndex];
+if (Array.isArray(label)) {
+return label.join(' ');
+}
+return label;
+}
+}
+};
+
+const commonOptions = {
+responsive: true,
+maintainAspectRatio: false,
+plugins: {
+legend: {
+labels: {
+color: '#3E3A17',
+font: { family: "'Libertinus Sans', sans-serif" }
+}
+},
+tooltip: commonTooltip
+}
+};
+
+const ctxCsf = document.getElementById('csfChart').getContext('2d');
+new Chart(ctxCsf, {
+type: 'bar',
+data: {
+labels: [
+splitLabel('L-Треонат (MgT)'),
+splitLabel('Глицинат Магния'),
+splitLabel('Цитрат Магния'),
+splitLabel('Оксид Магния')
+],
+datasets: [{
+label: 'Рост концентрации в СМЖ (%)',
+data: [15, 2, 1, 0.5],
+backgroundColor: [
+'rgba(255, 127, 0, 0.80)',
+'rgba(163, 165, 140, 0.55)',
+'rgba(200, 210, 213, 0.75)',
+'rgba(62, 58, 23, 0.18)'
+],
+borderColor: [
+'#FF7F00',
+'#A3A58C',
+'#C8D2D5',
+'#3E3A17'
+],
+borderWidth: 2,
+borderRadius: 6
+}]
+},
+options: {
+...commonOptions,
+scales: {
+y: {
+beginAtZero: true,
+grid: { color: 'rgba(62, 58, 23, 0.10)' },
+ticks: { color: '#6B664A' }
+},
+x: {
+grid: { display: false },
+ticks: { color: '#3E3A17' }
+}
+}
+}
+});
+
+const ctxRadar = document.getElementById('radarChart').getContext('2d');
+new Chart(ctxRadar, {
+type: 'radar',
+data: {
+labels: [
+splitLabel('Рабочая память'),
+splitLabel('Эпизодическая память'),
+splitLabel('Исполнительная функция'),
+splitLabel('Концентрация внимания'),
+splitLabel('Скорость реакции')
+],
+datasets: [{
+label: 'До приема (Пожилой возраст)',
+data: [40, 35, 45, 50, 40],
+backgroundColor: 'rgba(200, 210, 213, 0.28)',
+borderColor: '#A3A58C',
+pointBackgroundColor: '#A3A58C',
+borderWidth: 2
+}, {
+label: 'После 12 недель L-Треоната',
+data: [85, 90, 88, 85, 80],
+backgroundColor: 'rgba(255, 127, 0, 0.24)',
+borderColor: '#FF7F00',
+pointBackgroundColor: '#FF7F00',
+pointBorderColor: '#fff',
+pointHoverBackgroundColor: '#fff',
+pointHoverBorderColor: '#FF7F00',
+borderWidth: 3
+}]
+},
+options: {
+...commonOptions,
+scales: {
+r: {
+angleLines: { color: 'rgba(62, 58, 23, 0.10)' },
+grid: { color: 'rgba(62, 58, 23, 0.10)' },
+pointLabels: {
+color: '#3E3A17',
+font: { size: 12, family: "'Libertinus Sans', sans-serif" }
+},
+ticks: { display: false, min: 0, max: 100 }
+}
+}
+}
+});
+
+const ctxForms = document.getElementById('formsChart').getContext('2d');
+new Chart(ctxForms, {
+type: 'bar',
+data: {
+labels: [
+splitLabel('L-Треонат'),
+splitLabel('Глицинат'),
+splitLabel('Малат'),
+splitLabel('Цитрат')
+],
+datasets: [{
+label: 'Индекс проницаемости в мозг',
+data: [100, 30, 20, 15],
+backgroundColor: 'rgba(255, 127, 0, 0.74)',
+borderColor: '#FF7F00',
+borderWidth: 1,
+borderRadius: 4
+}, {
+label: 'Периферическое усвоение (Мышцы/ЖКТ)',
+data: [40, 85, 90, 95],
+backgroundColor: 'rgba(163, 165, 140, 0.48)',
+borderColor: '#A3A58C',
+borderWidth: 1,
+borderRadius: 4
+}]
+},
+options: {
+...commonOptions,
+indexAxis: 'y',
+scales: {
+x: {
+stacked: true,
+grid: { color: 'rgba(62, 58, 23, 0.10)' },
+ticks: { color: '#6B664A' }
+},
+y: {
+stacked: true,
+grid: { display: false },
+ticks: { color: '#3E3A17' }
+}
+}
+}
+});
+</script>
+</body>
+</html>

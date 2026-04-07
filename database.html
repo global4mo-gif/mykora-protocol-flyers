@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYKORA — БАЗА ДАННЫХ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Libertinus Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libertinus Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2') format('woff2');
+}
+
+:root {
+  --deep-forest: #3E3A17;
+  --soft-ivory: #F8EFCB;
+  --vivid-orange: #FF7F00;
+  --misty-silver: #C8D2D5;
+  --earthy-olive: #A3A58C;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Libertinus Sans', 'Segoe UI', sans-serif;
+  color: var(--deep-forest);
+  background:
+    linear-gradient(rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 0% 0%, rgba(255, 127, 0, 0.1), transparent 22%),
+    linear-gradient(180deg, #fffdf6 0%, #f7efd9 100%);
+  background-size: 48px 48px, 48px 48px, auto, auto;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+}
+
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.1rem;
+}
+
+.kicker {
+  color: var(--vivid-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.hero {
+  margin-top: 22px;
+  padding: 34px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+  box-shadow: 0 18px 40px rgba(62, 58, 23, 0.06);
+}
+
+.hero h1 {
+  margin: 0 0 14px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.hero p {
+  max-width: 760px;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: rgba(62, 58, 23, 0.82);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.tile {
+  text-decoration: none;
+  color: inherit;
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+  box-shadow: 0 18px 40px rgba(62, 58, 23, 0.06);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 127, 0, 0.3);
+  box-shadow: 0 24px 48px rgba(62, 58, 23, 0.1);
+}
+
+.tile-preview {
+  position: relative;
+  min-height: 260px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 127, 0, 0.16), transparent 24%),
+    linear-gradient(180deg, #fffaf0 0%, #f8efcb 100%);
+}
+
+.tile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 127, 0, 0.1);
+  color: var(--vivid-orange);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tile-title {
+  margin: 18px 0 10px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.9rem;
+  line-height: 1.08;
+}
+
+.tile-subtitle {
+  max-width: 420px;
+  color: rgba(62, 58, 23, 0.76);
+  line-height: 1.55;
+}
+
+.mini-card {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: 180px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+}
+
+.mini-value {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: var(--vivid-orange);
+}
+
+.bars {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(62, 58, 23, 0.08);
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--vivid-orange), #ffb15e);
+}
+
+.tile-body {
+  padding: 22px 24px 24px;
+}
+
+.tile-body h2 {
+  margin: 0 0 10px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.3rem;
+}
+
+.tile-body p {
+  margin: 0 0 18px;
+  color: rgba(62, 58, 23, 0.78);
+  line-height: 1.6;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(255, 127, 0, 0.1);
+  color: var(--vivid-orange);
+  font-weight: 700;
+}
+
+.muted-tile .tile-preview {
+  background:
+    radial-gradient(circle at top right, rgba(200, 210, 213, 0.32), transparent 26%),
+    linear-gradient(180deg, #fff 0%, #f2f0ea 100%);
+}
+
+.muted-tile .mini-value,
+.muted-tile .tile-chip,
+.muted-tile .cta {
+  color: var(--deep-forest);
+}
+
+.muted-tile .tile-chip,
+.muted-tile .cta {
+  background: rgba(62, 58, 23, 0.08);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 24px;
+  }
+
+  .tile-preview {
+    min-height: 300px;
+  }
+
+  .mini-card {
+    position: static;
+    margin-top: 18px;
+    width: auto;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div>
+        <div class="kicker">MYKORA REFERENCE</div>
+        <div class="brand">БАЗА ДАННЫХ</div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="kicker">Каталог материалов</div>
+      <h1>Визуальные материалы и инфографики в фирменной системе MYKORA</h1>
+      <p>
+        Эта страница собирает отдельные материалы в одном месте. Сейчас здесь размещена актуальная инфографика о когнитивном возрасте в фирменной системе MYKORA, а переключение между светлой и темной версиями находится уже внутри самой страницы.
+      </p>
+    </section>
+
+    <section class="grid">
+      <a class="tile" href="/cognitive-age-infographic-mykora.html">
+        <div class="tile-preview">
+          <div class="tile-chip">Актуальная версия</div>
+          <div class="tile-title">Когнитивный возраст в фирменном светлом стиле</div>
+          <div class="tile-subtitle">Точный дубль по структуре, текстам и графикам с встроенным переключением между светлой и темной версиями в палитре MYKORA.</div>
+          <div class="mini-card">
+            <div class="mini-value">-9</div>
+            <div>тот же главный тезис, что и в темной версии</div>
+            <div class="bars">
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="bar"><span style="width: 85%"></span></div>
+              <div class="bar"><span style="width: 90%"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="tile-body">
+          <h2>Открыть обновленную светлую версию</h2>
+          <p>Внутри можно сразу переключаться между светлой и темной версией без возврата в каталог.</p>
+          <span class="cta">Смотреть страницу</span>
+        </div>
+      </a>
+    </section>
+  </div>
+</body>
+</html>
