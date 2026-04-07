@@ -277,7 +277,19 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+  }
+  .resource-utility {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   .resource-pill {
     display: inline-flex;
@@ -314,6 +326,11 @@
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 6px;
+  }
+  .resource-pill.social {
+    background: rgba(255,255,255,0.76);
+    color: var(--deep-forest);
+    border-color: rgba(62, 58, 23, 0.12);
   }
   .site-banner-sub {
     color: rgba(255, 255, 255, 0.78);
@@ -1120,14 +1137,22 @@
 </nav>
 
 <div class="resource-rail">
-  <div class="resource-switch">
-    <a class="resource-pill" href="index.html">Стартовая страница</a>
-    <a class="resource-pill primary" href="database.html">База данных</a>
-  </div>
   <a class="site-banner" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">
     <div class="site-banner-title">Узнай больше на mykora.ru</div>
     <div class="site-banner-sub">Перед приёмом проконсультируйтесь со специалистом</div>
   </a>
+  <div class="resource-utility">
+    <div class="resource-switch">
+      <a class="resource-pill" href="index.html">Стартовая страница</a>
+      <a class="resource-pill primary" href="database.html">База данных</a>
+    </div>
+    <div class="social-links">
+      <a class="resource-pill social" href="https://t.me/mykora_official" target="_blank" rel="noopener noreferrer">Telegram</a>
+      <a class="resource-pill social" href="https://max.ru/id9702076543_biz" target="_blank" rel="noopener noreferrer">MAX</a>
+      <a class="resource-pill social" href="https://vk.com/mykoraofficial?act=s&id=234545966#section=short_videos" target="_blank" rel="noopener noreferrer">VK</a>
+      <a class="resource-pill social" href="https://dzen.ru/mykoraofficial" target="_blank" rel="noopener noreferrer">Дзен</a>
+    </div>
+  </div>
 </div>
 
 <div class="flyer-wrapper">

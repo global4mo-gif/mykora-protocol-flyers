@@ -66,6 +66,8 @@ body {
   background: rgba(255,255,255,0.82);
   border: 1px solid rgba(62,58,23,0.08);
   backdrop-filter: blur(12px);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .brand-kicker {
@@ -111,7 +113,7 @@ body {
 
 .site-banner {
   display: block;
-  margin-top: 18px;
+  margin-top: 0;
   text-decoration: none;
   background: var(--vivid-orange);
   border-radius: 0 0 34px 34px;
@@ -129,6 +131,22 @@ body {
 .site-banner-sub {
   color: rgba(255,255,255,0.84);
   font-size: 0.9rem;
+}
+
+.post-banner-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.internal-links,
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .grid {
@@ -196,13 +214,6 @@ body {
   font-weight: 700;
 }
 
-.links {
-  margin-top: 26px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
 .link {
   display: inline-flex;
   align-items: center;
@@ -217,6 +228,7 @@ body {
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; }
   .hero { padding: 24px; }
+  .post-banner-nav { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
@@ -242,6 +254,19 @@ body {
       <div class="site-banner-sub">Перед приёмом проконсультируйтесь со специалистом</div>
     </a>
 
+    <div class="post-banner-nav">
+      <div class="internal-links">
+        <a class="link" href="protocols.html">Протоколы</a>
+        <a class="link" href="database.html">БАЗА ДАННЫХ</a>
+      </div>
+      <div class="social-links">
+        <a class="link" href="https://t.me/mykora_official" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a class="link" href="https://max.ru/id9702076543_biz" target="_blank" rel="noopener noreferrer">MAX</a>
+        <a class="link" href="https://vk.com/mykoraofficial?act=s&id=234545966#section=short_videos" target="_blank" rel="noopener noreferrer">VK</a>
+        <a class="link" href="https://dzen.ru/mykoraofficial" target="_blank" rel="noopener noreferrer">Дзен</a>
+      </div>
+    </div>
+
     <section class="grid">
       <a class="card" href="protocols.html">
         <div>
@@ -261,14 +286,6 @@ body {
         <span class="cta">Перейти в базу знаний</span>
       </a>
     </section>
-
-    <div class="links">
-      <a class="link" href="https://t.me/mykora_official" target="_blank" rel="noopener noreferrer">Telegram</a>
-      <a class="link" href="https://max.ru/id9702076543_biz" target="_blank" rel="noopener noreferrer">MAX</a>
-      <a class="link" href="https://vk.com/mykoraofficial?act=s&id=234545966#section=short_videos" target="_blank" rel="noopener noreferrer">VK</a>
-      <a class="link" href="https://dzen.ru/mykoraofficial" target="_blank" rel="noopener noreferrer">Дзен</a>
-      <a class="link" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">mykora.ru</a>
-    </div>
   </div>
 </body>
 </html>
