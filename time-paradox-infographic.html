@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MYKORA — Парадокс времени</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Libertinus Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Libertinus Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2') format('woff2');
+}
+
+:root {
+  --deep-forest: #3E3A17;
+  --soft-ivory: #F8EFCB;
+  --vivid-orange: #FF7F00;
+  --misty-silver: #C8D2D5;
+  --earthy-olive: #A3A58C;
+  --paper: rgba(255, 255, 255, 0.82);
+  --paper-strong: rgba(255, 255, 255, 0.94);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Libertinus Sans', sans-serif;
+  color: var(--deep-forest);
+  background:
+    linear-gradient(rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(255, 127, 0, 0.10), transparent 26%),
+    linear-gradient(180deg, #fffdf6 0%, #f4ecd8 100%);
+  background-size: 48px 48px, 48px 48px, auto, auto;
+}
+
+.shell {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 18px 64px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.nav-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(62, 58, 23, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--deep-forest);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pill.primary {
+  color: var(--vivid-orange);
+  border-color: rgba(255, 127, 0, 0.22);
+  background: rgba(255, 127, 0, 0.08);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 34px;
+  padding: 38px;
+  background: var(--paper);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+  box-shadow: 0 22px 48px rgba(62, 58, 23, 0.08);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -70px;
+  top: -90px;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  background: rgba(255, 127, 0, 0.14);
+  filter: blur(28px);
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.kicker {
+  color: var(--vivid-orange);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+h1, h2, h3, .stat-value {
+  font-family: 'Unbounded', sans-serif;
+}
+
+h1 {
+  margin: 0 0 16px;
+  max-width: 900px;
+  font-size: clamp(2.4rem, 5.8vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  max-width: 760px;
+  font-size: 1.18rem;
+  line-height: 1.62;
+  color: rgba(62, 58, 23, 0.78);
+}
+
+.hourglass {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at center 40%, rgba(255, 127, 0, 0.12), transparent 34%),
+    rgba(248, 239, 203, 0.58);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+}
+
+.hourglass-shape {
+  position: relative;
+  width: min(100%, 330px);
+  height: 390px;
+}
+
+.hourglass-shape::before,
+.hourglass-shape::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 210px;
+  height: 160px;
+  transform: translateX(-50%);
+  border: 10px solid rgba(62, 58, 23, 0.72);
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.hourglass-shape::before {
+  top: 20px;
+  border-radius: 44px 44px 115px 115px;
+}
+
+.hourglass-shape::after {
+  bottom: 20px;
+  border-radius: 115px 115px 44px 44px;
+}
+
+.hourglass-neck {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 82px;
+  height: 88px;
+  transform: translate(-50%, -50%);
+  background: var(--vivid-orange);
+  clip-path: polygon(0 0, 100% 0, 58% 50%, 100% 100%, 0 100%, 42% 50%);
+}
+
+.time-chip {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: var(--paper-strong);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+  color: var(--deep-forest);
+  font-weight: 700;
+}
+
+.time-chip.one { left: 24px; top: 64px; }
+.time-chip.two { right: 22px; top: 118px; }
+.time-chip.three { left: 34px; bottom: 106px; }
+.time-chip.four { right: 28px; bottom: 56px; }
+
+.section {
+  margin-top: 24px;
+}
+
+.section-title {
+  margin: 0 0 16px;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  line-height: 1.1;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 24px;
+  border-radius: 28px;
+  background: var(--paper);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+  box-shadow: 0 16px 34px rgba(62, 58, 23, 0.06);
+}
+
+.card.hot {
+  background: linear-gradient(180deg, rgba(255, 127, 0, 0.10), rgba(255, 255, 255, 0.86));
+  border-color: rgba(255, 127, 0, 0.18);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 1.18rem;
+  line-height: 1.18;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.56;
+  color: rgba(62, 58, 23, 0.78);
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stat {
+  padding: 22px;
+  border-radius: 26px;
+  background: var(--paper-strong);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+}
+
+.stat-value {
+  color: var(--vivid-orange);
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-weight: 700;
+  color: var(--deep-forest);
+}
+
+.loop {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+
+.loop-step {
+  min-height: 150px;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(248, 239, 203, 0.72);
+  border: 1px solid rgba(62, 58, 23, 0.08);
+}
+
+.loop-num {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--vivid-orange);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.loop-step h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.loop-step p {
+  margin: 0;
+  line-height: 1.45;
+  color: rgba(62, 58, 23, 0.76);
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(62, 58, 23, 0.10);
+  background: var(--paper-strong);
+}
+
+.matrix div {
+  padding: 16px;
+  border-right: 1px solid rgba(62, 58, 23, 0.08);
+  border-bottom: 1px solid rgba(62, 58, 23, 0.08);
+  line-height: 1.45;
+}
+
+.matrix div:nth-child(3n) {
+  border-right: 0;
+}
+
+.matrix .head {
+  font-family: 'Unbounded', sans-serif;
+  background: var(--deep-forest);
+  color: var(--soft-ivory);
+  font-size: 0.92rem;
+}
+
+.matrix .accent {
+  color: var(--vivid-orange);
+  font-weight: 700;
+}
+
+.exit-card {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 22px;
+  padding: 28px;
+  border-radius: 34px;
+  background: var(--deep-forest);
+  color: var(--soft-ivory);
+}
+
+.exit-card h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.8rem, 3.3vw, 3rem);
+  line-height: 1.05;
+}
+
+.exit-card p {
+  margin: 0;
+  color: rgba(248, 239, 203, 0.78);
+  line-height: 1.6;
+}
+
+.exit-list {
+  display: grid;
+  gap: 12px;
+}
+
+.exit-item {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(248, 239, 203, 0.08);
+  border: 1px solid rgba(248, 239, 203, 0.14);
+}
+
+.exit-item strong {
+  color: var(--vivid-orange);
+}
+
+.footer-note {
+  margin-top: 22px;
+  text-align: center;
+  color: rgba(62, 58, 23, 0.58);
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .grid-3,
+  .grid-2,
+  .stat-row,
+  .loop,
+  .exit-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero,
+  .exit-card {
+    padding: 24px;
+  }
+
+  .hourglass {
+    min-height: 360px;
+  }
+
+  .hourglass-shape {
+    transform: scale(0.86);
+  }
+
+  .matrix {
+    grid-template-columns: 1fr;
+  }
+
+  .matrix div,
+  .matrix div:nth-child(3n) {
+    border-right: 0;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="nav">
+      <div class="nav-group">
+        <a class="pill primary" href="database.html">Назад в БАЗУ ДАННЫХ</a>
+        <a class="pill" href="index.html">Стартовая</a>
+      </div>
+      <div class="nav-group">
+        <a class="pill" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">mykora.ru</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Система MYKORA · карта времени</div>
+          <h1>Парадокс времени: почему технологии не освобождают нас от рутины</h1>
+          <p class="lead">
+            Машины моют посуду. Алгоритмы пишут тексты. Смартфон держит календарь. Но человек под нагрузкой всё равно живет так, будто сутки урезали без предупреждения. Проблема не в тайм-менеджменте. Проблема в системе, которая превращает каждую экономию времени в новую норму занятости.
+          </p>
+        </div>
+        <div class="hourglass" aria-hidden="true">
+          <div class="hourglass-shape">
+            <div class="hourglass-neck"></div>
+            <div class="time-chip one">почта</div>
+            <div class="time-chip two">чаты</div>
+            <div class="time-chip three">KPI</div>
+            <div class="time-chip four">ленты</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Главный конфликт: технологии экономят действие, но расширяют ожидания</h2>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-value">15</div>
+          <div class="stat-label">часов в неделю</div>
+          <p>Кейнс ожидал такую рабочую неделю у внуков технологической эпохи.</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">35–42</div>
+          <div class="stat-label">часа в неделю</div>
+          <p>Такой режим всё еще остается нормой в развитых экономиках.</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1865</div>
+          <div class="stat-label">парадокс Джевонса</div>
+          <p>Эффективность снижает цену действия — и мы начинаем делать его больше.</p>
+        </div>
+        <div class="stat">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">экономика внимания</div>
+          <p>Свободные паузы монетизируются платформами быстрее, чем мы успеваем их заметить.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Почему прогресс не возвращает время</h2>
+      <div class="grid-3">
+        <article class="card hot">
+          <div class="kicker">Кейнс против реальности</div>
+          <h3>Производительность выросла. Досуг — нет.</h3>
+          <p>Освободившиеся часы забрал рынок: больше задач, больше отчетности, больше потребления, больше «давай быстрее, раз теперь можно».</p>
+        </article>
+        <article class="card">
+          <div class="kicker">Джевонс</div>
+          <h3>Эффективность увеличивает спрос.</h3>
+          <p>Почта стала мгновенной — писем стало в сотни раз больше. Посудомойка ускорила быт — стандарт чистоты и сервировки вырос.</p>
+        </article>
+        <article class="card">
+          <div class="kicker">Рут Шварц Коэн</div>
+          <h3>«Больше работы для матери».</h3>
+          <p>Домашние машины не отменили труд, а сделали возможным более высокий стандарт, который теперь обязан тянуть один человек.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <article class="card">
+          <div class="kicker">Хартмут Роза</div>
+          <h3>Социальная акселерация</h3>
+          <p>Технологии ускоряют транспорт, коммуникации и производство. Но вместе с этим ускоряются нормы, карьеры, отношения и список «надо успеть». Человек движется быстрее, но внутренне стоит на месте.</p>
+        </article>
+        <article class="card">
+          <div class="kicker">Бён-Чоль Хан</div>
+          <h3>Самоэксплуатация без надзирателя</h3>
+          <p>Современный человек не ждет приказа. Он сам ставит KPI, сам открывает ноутбук вечером, сам чувствует вину за пустой час. Удобно. Особенно для системы.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Петля, которая сама себя кормит</h2>
+      <div class="loop">
+        <div class="loop-step">
+          <div class="loop-num">1</div>
+          <h3>Технология ускоряет действие</h3>
+          <p>Письмо, покупка, уборка, отчет — всё становится быстрее.</p>
+        </div>
+        <div class="loop-step">
+          <div class="loop-num">2</div>
+          <h3>Цена действия падает</h3>
+          <p>Раз легко сделать — значит можно делать чаще.</p>
+        </div>
+        <div class="loop-step">
+          <div class="loop-num">3</div>
+          <h3>Стандарт растет</h3>
+          <p>Больше чистоты, ответов, встреч, метрик и доступности.</p>
+        </div>
+        <div class="loop-step">
+          <div class="loop-num">4</div>
+          <h3>Пауза исчезает</h3>
+          <p>Освободившийся час моментально получает нового владельца.</p>
+        </div>
+        <div class="loop-step">
+          <div class="loop-num">5</div>
+          <h3>Нужна новая технология</h3>
+          <p>Чтобы справиться с тем, что создала предыдущая.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Карта механизмов</h2>
+      <div class="matrix">
+        <div class="head">Механизм</div>
+        <div class="head">Что происходит</div>
+        <div class="head">Что это делает со временем</div>
+        <div><strong>Парадокс Джевонса</strong></div>
+        <div>Эффективность снижает цену ресурса</div>
+        <div><span class="accent">Потребление растет</span>, экономия исчезает</div>
+        <div><strong>Социальная акселерация</strong></div>
+        <div>Возможностей становится больше за единицу времени</div>
+        <div>Человек делает больше, но ощущает дефицит</div>
+        <div><strong>Экономика внимания</strong></div>
+        <div>Платформы оптимизированы на удержание</div>
+        <div>Паузы уходят в ленты, уведомления и переключения</div>
+        <div><strong>Эффект Дидро</strong></div>
+        <div>Новая вещь тянет новую систему вещей</div>
+        <div>Растет технологический долг обслуживания</div>
+        <div><strong>Отчуждение труда</strong></div>
+        <div>Работа забирает субъектность, отдых становится компенсацией</div>
+        <div>Свободное время превращается в пассивное потребление</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="exit-card">
+        <div>
+          <div class="kicker">Выход из ловушки</div>
+          <h2>Вернуться к схолэ, а не к очередному приложению продуктивности</h2>
+          <p>Аристотель называл подлинный досуг не бездельем, а пространством для жизни: мысли, дружбы, искусства, созерцания. Современный человек часто получает свободный час и тут же сдает его экрану. Не потому что слабый. Потому что так спроектирована среда.</p>
+        </div>
+        <div class="exit-list">
+          <div class="exit-item"><strong>Разделяйте экономию и расширение.</strong> Если инструмент экономит время, не превращайте это время в новую норму объема.</div>
+          <div class="exit-item"><strong>Снижайте технологический долг.</strong> Меньше устройств, подписок и уведомлений — меньше обслуживания чужой инфраструктуры.</div>
+          <div class="exit-item"><strong>Ставьте жесткие границы доступности.</strong> Рабочие чаты не должны иметь круглосуточный доступ к нервной системе.</div>
+          <div class="exit-item"><strong>Учитесь ничего не производить.</strong> Без вины. Иначе любое свободное окно снова станет рабочей поверхностью.</div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">MYKORA · База данных · Парадокс времени · Материал носит информационный характер</p>
+  </div>
+</body>
+</html>
