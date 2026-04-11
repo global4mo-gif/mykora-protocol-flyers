@@ -369,6 +369,42 @@ h1 {
   font-weight: 700;
 }
 
+.mobile-mechanism-list {
+  display: none;
+  gap: 14px;
+}
+
+.mechanism-card {
+  padding: 18px;
+  border-radius: 24px;
+  background: var(--paper-strong);
+  border: 1px solid rgba(62, 58, 23, 0.10);
+}
+
+.mechanism-field + .mechanism-field {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(62, 58, 23, 0.08);
+}
+
+.mechanism-label {
+  margin-bottom: 5px;
+  color: var(--vivid-orange);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mechanism-value {
+  color: rgba(62, 58, 23, 0.82);
+  line-height: 1.48;
+}
+
+.mechanism-value strong {
+  color: var(--deep-forest);
+}
+
 .exit-card {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
@@ -437,12 +473,11 @@ h1 {
   }
 
   .matrix {
-    grid-template-columns: 1fr;
+    display: none;
   }
 
-  .matrix div,
-  .matrix div:nth-child(3n) {
-    border-right: 0;
+  .mobile-mechanism-list {
+    display: grid;
   }
 }
 </style>
@@ -594,6 +629,78 @@ h1 {
         <div><strong>Отчуждение труда</strong></div>
         <div>Работа забирает субъектность, отдых становится компенсацией</div>
         <div>Свободное время превращается в пассивное потребление</div>
+      </div>
+      <div class="mobile-mechanism-list">
+        <div class="mechanism-card">
+          <div class="mechanism-field">
+            <div class="mechanism-label">Механизм</div>
+            <div class="mechanism-value"><strong>Парадокс Джевонса</strong></div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что происходит</div>
+            <div class="mechanism-value">Эффективность снижает цену ресурса.</div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что это делает со временем</div>
+            <div class="mechanism-value"><span class="accent">Потребление растет</span>, экономия исчезает.</div>
+          </div>
+        </div>
+        <div class="mechanism-card">
+          <div class="mechanism-field">
+            <div class="mechanism-label">Механизм</div>
+            <div class="mechanism-value"><strong>Социальная акселерация</strong></div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что происходит</div>
+            <div class="mechanism-value">Возможностей становится больше за единицу времени.</div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что это делает со временем</div>
+            <div class="mechanism-value">Человек делает больше, но ощущает дефицит.</div>
+          </div>
+        </div>
+        <div class="mechanism-card">
+          <div class="mechanism-field">
+            <div class="mechanism-label">Механизм</div>
+            <div class="mechanism-value"><strong>Экономика внимания</strong></div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что происходит</div>
+            <div class="mechanism-value">Платформы оптимизированы на удержание.</div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что это делает со временем</div>
+            <div class="mechanism-value">Паузы уходят в ленты, уведомления и переключения.</div>
+          </div>
+        </div>
+        <div class="mechanism-card">
+          <div class="mechanism-field">
+            <div class="mechanism-label">Механизм</div>
+            <div class="mechanism-value"><strong>Эффект Дидро</strong></div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что происходит</div>
+            <div class="mechanism-value">Новая вещь тянет новую систему вещей.</div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что это делает со временем</div>
+            <div class="mechanism-value">Растет технологический долг обслуживания.</div>
+          </div>
+        </div>
+        <div class="mechanism-card">
+          <div class="mechanism-field">
+            <div class="mechanism-label">Механизм</div>
+            <div class="mechanism-value"><strong>Отчуждение труда</strong></div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что происходит</div>
+            <div class="mechanism-value">Работа забирает субъектность, отдых становится компенсацией.</div>
+          </div>
+          <div class="mechanism-field">
+            <div class="mechanism-label">Что это делает со временем</div>
+            <div class="mechanism-value">Свободное время превращается в пассивное потребление.</div>
+          </div>
+        </div>
       </div>
     </section>
 
