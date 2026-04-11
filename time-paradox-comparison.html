@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Парадокс времени | MYKORA</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+'deep-forest': '#3E3A17',
+'soft-ivory': '#F8EFCB',
+'vivid-orange': '#FF7F00',
+'misty-silver': '#C8D2D5',
+'earthy-olive': '#A3A58C'
+},
+fontFamily: {
+'heading': ['Unbounded', 'sans-serif'],
+'body': ['Libertinus Sans', 'sans-serif']
+}
+}
+}
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+@font-face {
+font-family: 'Libertinus Sans';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src:
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2') format('woff2'),
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+font-family: 'Libertinus Sans';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src:
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2') format('woff2'),
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2') format('woff2');
+}
+
+body {
+background:
+linear-gradient(rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+radial-gradient(circle at top left, rgba(255, 127, 0, 0.10), transparent 26%),
+linear-gradient(180deg, #fffdf6 0%, #f4ecd8 100%);
+background-size: 48px 48px, 48px 48px, auto, auto;
+color: #3E3A17;
+}
+
+.chart-container {
+position: relative;
+width: 100%;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+height: 350px;
+max-height: 400px;
+}
+
+@media (max-width: 768px) {
+.chart-container {
+height: 300px;
+}
+}
+</style>
+</head>
+<body class="font-body antialiased">
+
+<nav class="sticky top-0 z-50 bg-deep-forest text-soft-ivory py-4 px-6 shadow-md border-b-4 border-vivid-orange">
+<div class="max-w-6xl mx-auto flex flex-wrap gap-3 justify-between items-center">
+<div class="font-heading text-2xl font-bold tracking-wider">MYKORA</div>
+<div class="flex flex-wrap gap-2 items-center">
+<a class="text-xs font-bold uppercase tracking-widest text-soft-ivory border border-soft-ivory/20 rounded-full px-3 py-2 no-underline" href="database.html">Назад в БАЗУ ДАННЫХ</a>
+<div class="text-sm font-semibold uppercase tracking-widest text-misty-silver">Research & Insights</div>
+</div>
+</div>
+</nav>
+
+<main class="max-w-6xl mx-auto px-4 py-12 space-y-24">
+
+<section class="text-center max-w-3xl mx-auto">
+<h1 class="font-heading text-5xl md:text-6xl font-bold mb-6 uppercase text-deep-forest leading-tight">
+Диктатура скорости
+</h1>
+<p class="text-xl md:text-2xl font-semibold text-vivid-orange mb-6">
+Почему технологии крадут ваше время, а вы им помогаете
+</p>
+<p class="text-lg text-deep-forest/80 leading-relaxed">
+Мы автоматизировали быт, делегировали рутину нейросетям и сократили время транзакций до миллисекунд. Но почему мы чувствуем себя более загнанными, чем люди столетие назад? Это исследование вскрывает механизмы общества выгорания.
+</p>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1 bg-white/85 p-6 rounded-2xl shadow-lg border border-earthy-olive/30">
+<div class="chart-container">
+<canvas id="keynesChart"></canvas>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-6">
+<div class="text-5xl mb-4">&#8987;</div>
+<h2 class="font-heading text-3xl font-bold uppercase">Провал пророчества Кейнса</h2>
+<p class="text-lg leading-relaxed">
+В 1930 году Джон Мейнард Кейнс предсказал: благодаря технологиям к XXI веку мы будем работать не более 15 часов в неделю. Реальность оказалась иной.
+</p>
+<p class="text-lg leading-relaxed">
+Рост производительности не трансформировался в свободное время. Алчность экономической системы направлена на максимизацию прибыли, а не досуга. Каждый освободившийся час немедленно заполняется новыми задачами, увеличивая норму выработки.
+</p>
+</div>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<div class="text-5xl mb-4">&#128200;</div>
+<h2 class="font-heading text-3xl font-bold uppercase">Ловушка эффективности (Парадокс Джевонса)</h2>
+<p class="text-lg leading-relaxed">
+Чем эффективнее технология, тем выше потребление ресурса. Когда отправка письма занимала дни, мы писали одно важное письмо. Сегодня это занимает миллисекунды, и мы тонем в сотнях сообщений.
+</p>
+<p class="text-lg leading-relaxed">
+Технологии уплотняют время. Каждое приложение для «продуктивности» лишь позволяет впихнуть в ваш график еще больше дел. Мы ускоряемся не для того, чтобы отдыхать, а чтобы производить больше информационного шума.
+</p>
+</div>
+<div class="bg-deep-forest text-soft-ivory p-6 rounded-2xl shadow-lg border-b-8 border-vivid-orange">
+<div class="chart-container">
+<canvas id="jevonsChart"></canvas>
+</div>
+</div>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1 bg-white/85 p-6 rounded-2xl shadow-lg border border-earthy-olive/30">
+<div class="chart-container">
+<canvas id="rosaChart"></canvas>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-6">
+<div class="text-5xl mb-4">&#127744;</div>
+<h2 class="font-heading text-3xl font-bold uppercase">Судорожное стояние на месте</h2>
+<p class="text-lg leading-relaxed">
+Социолог Хартмут Роза описывает феномен «социальной акселерации». Технологии ускоряются, но вместе с ними ускоряются социальные изменения и темп жизни.
+</p>
+<p class="text-lg leading-relaxed">
+Мы делаем больше за единицу времени, но список «возможного» растет быстрее списка «сделанного». Возникает чувство отставания: нужно бежать изо всех сил, чтобы просто оставаться на месте. Это убивает способность к «резонансу» — глубокому проживанию момента.
+</p>
+</div>
+</section>
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<div class="text-5xl mb-4">&#129504;</div>
+<h2 class="font-heading text-3xl font-bold uppercase">Общество достижений и кража внимания</h2>
+<p class="text-lg leading-relaxed">
+По Бён-Чоль Хану, мы перешли от принуждения к самоэксплуатации. Лозунг «Я должен» сменился на «Я могу». Мы сами устанавливаем себе KPI и чувствуем вину за отдых.
+</p>
+<p class="text-lg leading-relaxed">
+Наши редкие часы покоя поглощает «Экономика внимания» (по Шошане Зубофф). Свободное время превращается в бессознательный скроллинг, истощающий дофаминовую систему и создающий иллюзию занятости.
+</p>
+</div>
+<div class="bg-misty-silver/20 p-6 rounded-2xl shadow-lg">
+<div class="chart-container">
+<canvas id="attentionChart"></canvas>
+</div>
+</div>
+</section>
+
+<section class="bg-deep-forest text-soft-ivory p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-vivid-orange opacity-10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+<div class="absolute bottom-0 left-0 w-80 h-80 bg-earthy-olive opacity-20 rounded-full blur-3xl -ml-20 -mb-20"></div>
+
+<div class="relative z-10 max-w-4xl mx-auto text-center space-y-10">
+<div class="text-6xl">&#9878;</div>
+<h2 class="font-heading text-4xl md:text-5xl font-bold uppercase">Стратегия MYKORA: Возвращение к «Schole»</h2>
+<p class="text-xl leading-relaxed max-w-3xl mx-auto text-misty-silver">
+Древние греки называли истинный досуг словом <em>skhole</em> — время для созерцания и смыслов. Чтобы вернуть себе это право в эпоху тотального ускорения, недостаточно тайм-менеджмента. Нужен прочный биологический фундамент, способный противостоять информационному перегрузу.
+</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 text-left">
+<div class="bg-soft-ivory text-deep-forest p-8 rounded-2xl shadow-lg border-t-8 border-vivid-orange">
+<div class="text-4xl mb-4">&#127812;</div>
+<h3 class="font-heading text-2xl font-bold mb-3 uppercase">Когнитивный суверенитет</h3>
+<p class="font-semibold text-vivid-orange mb-2">Протокол: Ежовик гребенчатый (500 мг)</p>
+<p class="text-base leading-relaxed">
+Стимуляция фактора роста нервов (NGF). Цель — не работать больше часов, а сохранять кристальную ясность и способность к глубокому фокусу (Deep Work) в океане отвлекающих факторов. Защита нейронов от «мозгового тумана».
+</p>
+</div>
+
+<div class="bg-soft-ivory text-deep-forest p-8 rounded-2xl shadow-lg border-t-8 border-earthy-olive">
+<div class="text-4xl mb-4">&#127769;</div>
+<h3 class="font-heading text-2xl font-bold mb-3 uppercase">Архитектура покоя</h3>
+<p class="font-semibold text-earthy-olive mb-2">Протокол: Магний + Рейши</p>
+<p class="text-base leading-relaxed">
+Биологический «тормоз» для нервной системы. Принудительное переключение из симпатического режима («бей или беги») в парасимпатический. Учит организм ничего не делать без химического чувства тревоги и вины.
+</p>
+</div>
+</div>
+
+<div class="pt-8 border-t border-earthy-olive/30 text-misty-silver">
+<p class="text-sm font-semibold uppercase tracking-widest">
+Свобода начинается с права сказать «нет» собственной эффективности.
+</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="bg-deep-forest text-misty-silver text-center py-8 px-4 text-sm">
+<p class="max-w-3xl mx-auto opacity-70">
+*Материал носит информационный и философско-исследовательский характер. Не является медицинской рекомендацией. Перед началом приема нутрицевтиков проконсультируйтесь со специалистом.
+</p>
+<p class="mt-4 font-heading tracking-widest uppercase opacity-50">&copy; 2026 MYKORA</p>
+</footer>
+
+<script>
+function wrapLabel(label, maxLength = 16) {
+if (typeof label !== 'string' || label.length <= maxLength) return label;
+const words = label.split(' ');
+let lines = [];
+let currentLine = '';
+words.forEach(word => {
+if ((currentLine + word).length > maxLength) {
+if (currentLine.trim() !== '') lines.push(currentLine.trim());
+currentLine = word + ' ';
+} else {
+currentLine += word + ' ';
+}
+});
+if (currentLine.trim() !== '') lines.push(currentLine.trim());
+return lines;
+}
+
+const commonTooltipConfig = {
+tooltip: {
+callbacks: {
+title: function(tooltipItems) {
+const item = tooltipItems[0];
+let label = item.chart.data.labels[item.dataIndex];
+if (Array.isArray(label)) {
+return label.join(' ');
+}
+return label;
+}
+},
+backgroundColor: '#3E3A17',
+titleFont: { family: 'Libertinus Sans', size: 14, weight: 'bold' },
+bodyFont: { family: 'Libertinus Sans', size: 13 },
+padding: 12,
+cornerRadius: 8
+}
+};
+
+const keynesCtx = document.getElementById('keynesChart').getContext('2d');
+const keynesLabels = [
+'Прогноз Дж.М. Кейнса (1930 год)',
+'Реальная рабочая неделя (2026 год)',
+'Средневековый крестьянин (с учетом праздников)'
+].map(l => wrapLabel(l));
+
+new Chart(keynesCtx, {
+type: 'bar',
+data: {
+labels: keynesLabels,
+datasets: [{
+label: 'Часов работы в неделю',
+data: [15, 42, 30],
+backgroundColor: ['#A3A58C', '#FF7F00', '#3E3A17'],
+borderRadius: 6
+}]
+},
+options: {
+maintainAspectRatio: false,
+plugins: {
+legend: { display: false },
+...commonTooltipConfig
+},
+scales: {
+y: {
+beginAtZero: true,
+grid: { color: '#C8D2D5' },
+ticks: { font: { family: 'Libertinus Sans' } }
+},
+x: {
+grid: { display: false },
+ticks: { font: { family: 'Libertinus Sans', weight: 'bold' }, color: '#3E3A17' }
+}
+}
+}
+});
+
+const jevonsCtx = document.getElementById('jevonsChart').getContext('2d');
+new Chart(jevonsCtx, {
+type: 'line',
+data: {
+labels: ['1980', '1990', '2000', '2010', '2020', '2026'],
+datasets: [
+{
+label: 'Скорость транзакций / коммуникаций',
+data: [100, 80, 40, 10, 2, 0.1],
+borderColor: '#C8D2D5',
+backgroundColor: 'rgba(200, 210, 213, 0.2)',
+tension: 0.4,
+fill: true,
+yAxisID: 'y'
+},
+{
+label: 'Объем задач / сообщений',
+data: [10, 50, 200, 1500, 5000, 12000],
+borderColor: '#FF7F00',
+backgroundColor: 'rgba(255, 127, 0, 0.1)',
+borderWidth: 3,
+tension: 0.4,
+fill: false,
+yAxisID: 'y1'
+}
+]
+},
+options: {
+maintainAspectRatio: false,
+plugins: {
+legend: {
+labels: { color: '#F8EFCB', font: { family: 'Libertinus Sans' } }
+},
+...commonTooltipConfig
+},
+scales: {
+x: {
+ticks: { color: '#F8EFCB', font: { family: 'Libertinus Sans' } },
+grid: { color: 'rgba(200, 210, 213, 0.1)' }
+},
+y: {
+type: 'linear',
+display: true,
+position: 'left',
+title: { display: true, text: 'Время на 1 задачу', color: '#C8D2D5' },
+ticks: { color: '#C8D2D5' },
+grid: { color: 'rgba(200, 210, 213, 0.1)' }
+},
+y1: {
+type: 'linear',
+display: true,
+position: 'right',
+title: { display: true, text: 'Объем нагрузки', color: '#FF7F00' },
+ticks: { color: '#FF7F00' },
+grid: { drawOnChartArea: false }
+}
+}
+}
+});
+
+const rosaCtx = document.getElementById('rosaChart').getContext('2d');
+const rosaLabels = [
+'Технологическое ускорение',
+'Социальные изменения',
+'Темп повседневной жизни',
+'Информационное давление',
+'Технологический долг'
+].map(l => wrapLabel(l));
+
+new Chart(rosaCtx, {
+type: 'radar',
+data: {
+labels: rosaLabels,
+datasets: [
+{
+label: 'Показатели 1990 года',
+data: [20, 30, 40, 20, 10],
+backgroundColor: 'rgba(163, 165, 140, 0.2)',
+borderColor: '#A3A58C',
+pointBackgroundColor: '#A3A58C'
+},
+{
+label: 'Показатели 2026 года',
+data: [95, 85, 90, 100, 80],
+backgroundColor: 'rgba(255, 127, 0, 0.2)',
+borderColor: '#FF7F00',
+pointBackgroundColor: '#FF7F00'
+}
+]
+},
+options: {
+maintainAspectRatio: false,
+plugins: {
+legend: { position: 'bottom', labels: { font: { family: 'Libertinus Sans' }, color: '#3E3A17' } },
+...commonTooltipConfig
+},
+scales: {
+r: {
+angleLines: { color: 'rgba(62, 58, 23, 0.1)' },
+grid: { color: 'rgba(62, 58, 23, 0.1)' },
+pointLabels: { font: { family: 'Libertinus Sans', weight: 'bold' }, color: '#3E3A17' },
+ticks: { display: false }
+}
+}
+}
+});
+
+const attentionCtx = document.getElementById('attentionChart').getContext('2d');
+const attentionLabels = [
+'Алгоритмы и соцсети (Кража внимания)',
+'Пассивное восстановление (Сон, отдых от усталости)',
+'Обслуживание инфраструктуры (Эффект Дидро)',
+'Истинный досуг (Schole)'
+].map(l => wrapLabel(l));
+
+new Chart(attentionCtx, {
+type: 'doughnut',
+data: {
+labels: attentionLabels,
+datasets: [{
+data: [55, 25, 15, 5],
+backgroundColor: [
+'#FF7F00',
+'#A3A58C',
+'#3E3A17',
+'#F8EFCB'
+],
+borderColor: '#C8D2D5',
+borderWidth: 2,
+hoverOffset: 10
+}]
+},
+options: {
+maintainAspectRatio: false,
+cutout: '65%',
+plugins: {
+legend: { position: 'right', labels: { font: { family: 'Libertinus Sans' }, color: '#3E3A17' } },
+...commonTooltipConfig
+}
+}
+});
+</script>
+</body>
+</html>
