@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прорывные исследования витамина D: 2025-2026 | MYKORA</title>
+<meta name="description" content="Разбор исследований витамина D 2025-2026: теломеры VITAL, нулевые RCT, обновленные рекомендации и влияние на рынок БАДов в РФ.">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face {
+font-family: 'Libertinus Sans';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src:
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2') format('woff2'),
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+font-family: 'Libertinus Sans';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src:
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2') format('woff2'),
+url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2') format('woff2');
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--deep-forest: #3E3A17;
+--soft-ivory: #F8EFCB;
+--vivid-orange: #FF7F00;
+--misty-silver: #C8D2D5;
+--earthy-olive: #A3A58C;
+--paper: rgba(255, 255, 255, 0.86);
+}
+
+body {
+font-family: 'Libertinus Sans', sans-serif;
+background:
+linear-gradient(rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+radial-gradient(circle at top right, rgba(255, 127, 0, 0.12), transparent 30%),
+linear-gradient(180deg, #fffdf6 0%, #f4ecd8 100%);
+background-size: 48px 48px, 48px 48px, auto, auto;
+color: var(--deep-forest);
+padding: 28px 20px 64px;
+line-height: 1.75;
+}
+
+::selection {
+background: var(--vivid-orange);
+color: #fffdf6;
+}
+
+.container {
+max-width: 1120px;
+margin: 0 auto;
+}
+
+.nav {
+display: flex;
+justify-content: space-between;
+gap: 12px;
+flex-wrap: wrap;
+margin-bottom: 16px;
+}
+
+.nav-link {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 10px 16px;
+border-radius: 999px;
+text-decoration: none;
+font-size: 14px;
+font-family: 'Unbounded', sans-serif;
+font-weight: 600;
+border: 1px solid rgba(62, 58, 23, 0.18);
+color: var(--deep-forest);
+background: rgba(255, 255, 255, 0.7);
+transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.nav-link:hover {
+transform: translateY(-1px);
+box-shadow: 0 8px 18px rgba(62, 58, 23, 0.12);
+}
+
+.nav-link.primary {
+background: var(--vivid-orange);
+border-color: var(--vivid-orange);
+color: #fffdf6;
+}
+
+.hero {
+background: var(--paper);
+border: 1px solid rgba(62, 58, 23, 0.12);
+border-radius: 28px;
+padding: 32px 30px;
+box-shadow: 0 16px 28px rgba(62, 58, 23, 0.08);
+margin-bottom: 18px;
+}
+
+.kicker {
+font-family: 'Unbounded', sans-serif;
+font-size: 12px;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(--vivid-orange);
+margin-bottom: 12px;
+}
+
+h1, h2, h3 {
+font-family: 'Unbounded', sans-serif;
+line-height: 1.25;
+}
+
+h1 {
+font-size: clamp(2rem, 4vw, 3.2rem);
+margin-bottom: 14px;
+}
+
+.lead {
+font-size: 1.18rem;
+color: rgba(62, 58, 23, 0.86);
+max-width: 980px;
+}
+
+.quick-facts {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 14px;
+margin-top: 22px;
+}
+
+.quick-card {
+background: rgba(255, 255, 255, 0.88);
+border: 1px solid rgba(62, 58, 23, 0.14);
+border-radius: 18px;
+padding: 14px;
+}
+
+.quick-card .value {
+font-family: 'Unbounded', sans-serif;
+font-size: 1.5rem;
+color: var(--vivid-orange);
+}
+
+.quick-card p {
+font-size: 0.95rem;
+margin-top: 4px;
+}
+
+.section {
+background: var(--paper);
+border: 1px solid rgba(62, 58, 23, 0.12);
+border-radius: 24px;
+padding: 26px;
+box-shadow: 0 12px 22px rgba(62, 58, 23, 0.06);
+margin-top: 18px;
+}
+
+.section h2 {
+font-size: clamp(1.2rem, 2vw, 1.8rem);
+margin-bottom: 14px;
+}
+
+.section p + p,
+.section ul + p,
+.section table + p {
+margin-top: 12px;
+}
+
+.section ul {
+margin-left: 20px;
+margin-top: 8px;
+}
+
+.section li {
+margin-bottom: 8px;
+}
+
+.accent {
+color: var(--vivid-orange);
+font-weight: 700;
+}
+
+.grid-2 {
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+gap: 18px;
+align-items: start;
+}
+
+.chart-box {
+border: 1px solid rgba(62, 58, 23, 0.14);
+border-radius: 18px;
+padding: 14px 14px 8px;
+background: rgba(255, 255, 255, 0.9);
+}
+
+.chart-title {
+font-family: 'Unbounded', sans-serif;
+font-size: 0.88rem;
+letter-spacing: 0.03em;
+text-transform: uppercase;
+margin-bottom: 10px;
+color: rgba(62, 58, 23, 0.84);
+}
+
+.chart-wrap {
+position: relative;
+height: 300px;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 10px;
+background: rgba(255, 255, 255, 0.92);
+border-radius: 14px;
+overflow: hidden;
+}
+
+th {
+background: var(--vivid-orange);
+color: #fffdf6;
+padding: 12px;
+text-align: left;
+font-family: 'Unbounded', sans-serif;
+font-size: 0.8rem;
+}
+
+td {
+padding: 11px 12px;
+border-bottom: 1px solid rgba(62, 58, 23, 0.12);
+vertical-align: top;
+}
+
+tr:last-child td {
+border-bottom: none;
+}
+
+.callout {
+background: rgba(255, 127, 0, 0.1);
+border-left: 4px solid var(--vivid-orange);
+border-radius: 8px;
+padding: 12px;
+margin-top: 12px;
+}
+
+.source-note {
+color: rgba(62, 58, 23, 0.72);
+font-size: 0.92rem;
+}
+
+.footer-cta {
+margin-top: 20px;
+background: linear-gradient(135deg, #ff8d1a 0%, #ff7f00 100%);
+color: #fffdf6;
+padding: 24px;
+border-radius: 20px;
+}
+
+.footer-cta h3 {
+font-size: 1.3rem;
+margin-bottom: 8px;
+}
+
+.footer-cta p {
+opacity: 0.95;
+}
+
+.footer-meta {
+margin-top: 12px;
+font-size: 0.88rem;
+opacity: 0.82;
+}
+
+@media (max-width: 1024px) {
+.quick-facts {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-2 {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 720px) {
+body {
+padding: 18px 12px 48px;
+}
+
+.hero,
+.section {
+padding: 18px;
+border-radius: 18px;
+}
+
+.quick-facts {
+grid-template-columns: 1fr;
+}
+
+.chart-wrap {
+height: 260px;
+}
+
+table {
+display: block;
+overflow-x: auto;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<nav class="nav">
+<a class="nav-link primary" href="database.html">Назад в БАЗУ ДАННЫХ</a>
+<a class="nav-link" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">mykora.ru</a>
+</nav>
+
+<header class="hero">
+<div class="kicker">MYKORA RESEARCH DOSSIER · 2025-2026</div>
+<h1>Прорывные исследования витамина D: 2025-2026</h1>
+<p class="lead">В 2025-2026 на рынке витамина D одновременно существуют два сигнала: <span class="accent">прорыв по теломерам</span> в VITAL и серия крупных RCT с <span class="accent">нулевыми клиническими исходами</span>. Ниже собрана полная карта: где реально есть эффект, где его нет и как это меняет стратегию бренда и потребителя.</p>
+<div class="quick-facts">
+<div class="quick-card">
+<div class="value">3x</div>
+<p>медленнее укорочение теломер в VITAL D3-группе [3]</p>
+</div>
+<div class="quick-card">
+<div class="value">2000 МЕ</div>
+<p>доза D3 в ключевом anti-aging RCT [3][7]</p>
+</div>
+<div class="quick-card">
+<div class="value">1 747</div>
+<p>участников RCT по COVID без значимых отличий [5]</p>
+</div>
+<div class="quick-card">
+<div class="value">1.5-2.4x</div>
+<p>рост продаж витаминов на WB/Ozon в 2025 [1]</p>
+</div>
+</div>
+</header>
+
+<section class="section">
+<h2>Executive Summary</h2>
+<p>Научное поле вокруг витамина D расколото. Субисследование VITAL (AJCN, август 2025) впервые зафиксировало в долгом RCT замедление биологического старения через теломеры. Параллельно март 2026 принёс мета-анализы и RCT с нулевыми эффектами на смертность, кардиофитнес, COVID и детские функциональные исходы. Гайдлайны Endocrine Society уже сместили парадигму: не массовая профилактика, а работа с группами риска и подтвержденным дефицитом. На рынке БАДов РФ спрос на D3 остаётся высоким и продолжает расти в e-commerce [1][2][3][4][5][6][7].</p>
+</section>
+
+<section class="section">
+<h2>1. VITAL Telomere Study: витамин D и клеточное старение</h2>
+<div class="grid-2">
+<div>
+<p>Наиболее резонансная работа 2025 года - субисследование VITAL, опубликованное в <em>The American Journal of Clinical Nutrition</em> (август 2025) [3]. В подгруппе из 1 054 участников на фоне приёма 2 000 МЕ D3 ежедневно в течение 4 лет укорочение теломер шло примерно в <span class="accent">3 раза медленнее</span> по сравнению с плацебо [3][7]. Абсолютная разница оценена примерно в 140 пар оснований ДНК, что интерпретируют как около 3 сохранённых биологических лет [3].</p>
+<p>Это первое крупное долгосрочное RCT-доказательство anti-aging эффекта по клеточному маркеру. Ограничения: лейкоцитарные теломеры, возраст 50+, доминирование одной этнической группы и технические лимиты qPCR [3].</p>
+<div class="callout">Практический вывод: для коммуникации бренда работает связка <strong>D3 + теломеры + anti-aging</strong>, но только с корректной оговоркой про исследуемую популяцию и биомаркерный характер эффекта.</div>
+</div>
+<div class="chart-box">
+<div class="chart-title">Теломеры: D3 vs плацебо (4 года)</div>
+<div class="chart-wrap"><canvas id="telomereChart"></canvas></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>2. Волна «нулевых» RCT и мета-анализов (март 2026)</h2>
+<div class="grid-2">
+<div>
+<ul>
+<li><strong>Кардиореспираторная форма</strong> (Nutrients, 10.03.2026): 9 RCT, n=733, SMD 0.03 (95% CI -0.12...0.17), p=0.8959 - эффекта нет [5].</li>
+<li><strong>Vit D for COVID-19 Trial</strong> (J. Nutrition, 12.03.2026): n=1 747, OR 0.97 - различий по клиническим исходам и long COVID нет [5].</li>
+<li><strong>Смертность</strong> (Clinical Nutrition, март 2026): HR 0.97-1.02, нулевой эффект при достаточном уровне 25(OH)D [5].</li>
+<li><strong>D-VinCHI (дети)</strong> (J. Nutrition, 24.03.2026): рост сывороточного D без прироста мышечных, когнитивных, иммунных и костных исходов [5].</li>
+</ul>
+<p>Общий вывод этой волны: добавки лучше работают не «для всех», а в дефицитных популяциях [5][8].</p>
+</div>
+<div class="chart-box">
+<div class="chart-title">Эффекты RCT 2026 (центр вокруг нуля)</div>
+<div class="chart-wrap"><canvas id="nullEffectChart"></canvas></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>3. Обновлённые рекомендации 2024-2025</h2>
+<p>Endocrine Society (июль 2024) пересмотрела прежнюю модель массовой профилактики [4][6]. Для здоровых взрослых до 75 лет рутинный скрининг и «автоматический» приём добавок не рекомендован. Фокус смещён на группы риска: 75+, беременные, преддиабет, дети с высоким риском рахита [6][8]. В российском профполе изменения также обсуждаются и систематизируются в обновлениях 2025-2026 [9][10].</p>
+<div class="grid-2">
+<div class="chart-box">
+<div class="chart-title">Кому рекомендован приём по гайдлайнам</div>
+<div class="chart-wrap"><canvas id="guidelineChart"></canvas></div>
+</div>
+<div>
+<div class="callout">Смена парадигмы: от «профилактика для всех» к <strong>таргетированному назначению</strong> по риску и дефициту.</div>
+<p>Порог серьёзного дефицита снижен до 12 нг/мл, достаточный уровень обозначен от 30 нг/мл [4]. Для маркетинга это означает более строгий язык доказательности и отказ от универсальных обещаний.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>4. Новые направления: иммунитет, стволовые клетки, офтальмология</h2>
+<ul>
+<li><strong>Иммунорегуляция</strong>: участие D в пролиферации и дифференцировке Т- и В-клеток; подтверждена связь дефицита с частотой ОРВИ [11].</li>
+<li><strong>Регенерация ЖКТ</strong>: эффект на регенеративный потенциал стволовых клеток кишечника, перспектива при ВЗК [11].</li>
+<li><strong>Офтальмология</strong>: капли с модуляцией VDR-метаболизма уже вошли в клиническую практику [11].</li>
+<li><strong>Противомикробный эффект</strong>: in vitro показано подавление деления <em>Mycobacterium tuberculosis</em> [11].</li>
+</ul>
+<p class="source-note">Эти направления пока не равны широким популяционным рекомендациям, но задают новые терапевтические мишени и продуктовые гипотезы.</p>
+</section>
+
+<section class="section">
+<h2>5. Формы и персонализация: переход от «принимать ли» к «какую форму»</h2>
+<p>Исследование NCT07317830 (ClinicalTrials.gov, декабрь 2025) сравнивает масляные, мицеллярные и липосомальные формы D3 у дефицитных пациентов [12][13]. Это подтверждает рыночный разворот от базового вопроса «нужен ли D3» к более зрелому вопросу о форме, дозе и профиле пациента.</p>
+<p>Параллельно в 2025 усиливается опора на наблюдательные данные из-за слабых результатов RCT в общепопуляционных когортах [13].</p>
+</section>
+
+<section class="section">
+<h2>6. Влияние на рынок БАДов в РФ</h2>
+<div class="grid-2">
+<div>
+<ul>
+<li>Ноябрь 2025: продажи витаминов на WB +50%, на Ozon +140% к ноябрю 2024 [1].</li>
+<li>D3 стабильно в топе рядом с магнием и омега-3 [1][2].</li>
+<li>Осень 2025 - зима 2026: омега-3, магний и витамин D лидируют на маркетплейсах [2].</li>
+<li>По данным DSM Group за 2025, Detrimax -3.6% и минус 4 позиции [14].</li>
+<li>Data Insight: онлайн-сегмент витаминов +45% за 2024 и +25% в 1П 2025 [1].</li>
+</ul>
+</div>
+<div class="chart-box">
+<div class="chart-title">Онлайн-динамика РФ: витамины и БАДы</div>
+<div class="chart-wrap"><canvas id="marketChart"></canvas></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>7. Таблица ключевых исследований 2025-2026</h2>
+<table>
+<thead>
+<tr>
+<th>Исследование</th>
+<th>Дата</th>
+<th>Источник</th>
+<th>Вывод</th>
+<th>Клиническая значимость</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VITAL Telomere sub-study</td>
+<td>Авг 2025</td>
+<td>Am. J. Clinical Nutrition</td>
+<td>D3 2000 МЕ замедляет укорочение теломер в 3 раза [3]</td>
+<td>Прорыв по anti-aging маркеру [3]</td>
+</tr>
+<tr>
+<td>Ganmaa - Vit D for COVID-19</td>
+<td>12 мар 2026</td>
+<td>J. Nutrition</td>
+<td>OR 0.97, эффекта по исходам нет [5]</td>
+<td>Гипотеза «D против COVID» не подтверждена [5]</td>
+</tr>
+<tr>
+<td>Wang et al. - смертность</td>
+<td>Мар 2026</td>
+<td>Clinical Nutrition</td>
+<td>HR 0.97-1.02, статистически нулевой эффект [5]</td>
+<td>У недефицитных пользы не показано [5]</td>
+</tr>
+<tr>
+<td>D-VinCHI (дети)</td>
+<td>24 мар 2026</td>
+<td>J. Nutrition</td>
+<td>Нет эффекта на мышцы/когнитив/иммунитет [5]</td>
+<td>Аргумент против массового детского приема [5]</td>
+</tr>
+<tr>
+<td>Мета-анализ кардиофитнес</td>
+<td>10 мар 2026</td>
+<td>Nutrients</td>
+<td>SMD 0.03, эффект отсутствует [5]</td>
+<td>Опровергает спортивные массовые claims [5]</td>
+</tr>
+<tr>
+<td>Endocrine Society Guidelines</td>
+<td>Июл 2024</td>
+<td>Endocrine Society</td>
+<td>Отказ от массовой профилактики [4][6]</td>
+<td>Новая парадигма назначения [6]</td>
+</tr>
+<tr>
+<td>NCT07317830 formulations</td>
+<td>Дек 2025</td>
+<td>ClinicalTrials.gov</td>
+<td>Сравнение масляной/мицеллярной/липосомальной форм [12]</td>
+<td>Переход к персонализации [12]</td>
+</tr>
+<tr>
+<td>Ghent review</td>
+<td>2023-2024</td>
+<td>Univ. of Ghent</td>
+<td>Плейотропные эффекты: иммунитет, стволовые, ТБ [11]</td>
+<td>Новые исследовательские мишени [11]</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section class="section">
+<h2>8. Выводы для рынка БАДов и бренда MYKORA</h2>
+<ul>
+<li><strong>Позиционирование</strong>: D3 остается маст-хэв категорией, но язык коммуникации смещается к теломерам/anti-aging и иммунорегуляции [3][11].</li>
+<li><strong>Доза</strong>: в anti-aging кейсе ключевая доказанная доза 2 000 МЕ/сутки в RCT-дизайне [3][7].</li>
+<li><strong>Форма</strong>: растущий интерес к липосомальным и мицеллярным решениям, окно для расширения линейки [12].</li>
+<li><strong>ЦА</strong>: усиление фокуса на 50+ и группах риска (75+, беременные, преддиабет) [8].</li>
+<li><strong>Риск-менеджмент</strong>: исключить универсальные заявления про COVID, смертность и детскую когнитивку [5].</li>
+<li><strong>Канал</strong>: e-commerce остается основным драйвером масштаба [1][2].</li>
+</ul>
+<div class="footer-cta">
+<h3>Стратегический итог</h3>
+<p>Витамин D в 2026 году - это уже не «таблетка для всех», а точный инструмент: правильная популяция, правильная форма, корректная доза и аккуратная доказательная коммуникация.</p>
+<div class="footer-meta">Материал подготовлен как аналитический разбор на базе предоставленного корпуса [1]-[14].</div>
+</div>
+</section>
+</div>
+
+<script>
+const axisColor = 'rgba(62, 58, 23, 0.72)';
+const gridColor = 'rgba(62, 58, 23, 0.14)';
+
+const baseOptions = {
+responsive: true,
+maintainAspectRatio: false,
+plugins: {
+legend: {
+labels: {
+color: axisColor,
+font: { family: "'Libertinus Sans', sans-serif", size: 12 }
+}
+},
+tooltip: {
+backgroundColor: '#3E3A17',
+titleColor: '#F8EFCB',
+bodyColor: '#F8EFCB'
+}
+},
+scales: {
+x: {
+ticks: { color: axisColor, font: { family: "'Libertinus Sans', sans-serif" } },
+grid: { color: gridColor }
+},
+y: {
+ticks: { color: axisColor, font: { family: "'Libertinus Sans', sans-serif" } },
+grid: { color: gridColor }
+}
+}
+};
+
+new Chart(document.getElementById('telomereChart'), {
+type: 'line',
+data: {
+labels: ['0 год', '2 год', '4 год'],
+datasets: [
+{
+label: 'Плацебо',
+data: [0, -90, -210],
+borderColor: '#A3A58C',
+backgroundColor: 'rgba(163, 165, 140, 0.2)',
+tension: 0.35
+},
+{
+label: 'Vitamin D3 (2000 МЕ)',
+data: [0, -35, -70],
+borderColor: '#FF7F00',
+backgroundColor: 'rgba(255, 127, 0, 0.22)',
+tension: 0.35
+}
+]
+},
+options: {
+...baseOptions,
+plugins: {
+...baseOptions.plugins,
+title: {
+display: true,
+text: 'Динамика укорочения теломер (условные единицы)',
+color: axisColor,
+font: { family: "'Unbounded', sans-serif", size: 12 }
+}
+}
+}
+});
+
+new Chart(document.getElementById('nullEffectChart'), {
+type: 'bar',
+data: {
+labels: ['Кардиофитнес', 'COVID outcomes', 'Смертность', 'Дети D-VinCHI'],
+datasets: [{
+label: 'Размер эффекта (где 0 = нет эффекта)',
+data: [0.03, -0.03, -0.01, 0.01],
+backgroundColor: ['#ffab4f', '#ffd2a3', '#e2dbc6', '#f9bf84'],
+borderColor: '#FF7F00',
+borderWidth: 1.2,
+borderRadius: 6
+}]
+},
+options: {
+...baseOptions,
+plugins: {
+...baseOptions.plugins,
+legend: { display: false }
+},
+scales: {
+x: {
+ticks: { color: axisColor, font: { family: "'Libertinus Sans', sans-serif", size: 11 } },
+grid: { display: false }
+},
+y: {
+min: -0.08,
+max: 0.08,
+ticks: { color: axisColor },
+grid: { color: gridColor }
+}
+}
+}
+});
+
+new Chart(document.getElementById('guidelineChart'), {
+type: 'radar',
+data: {
+labels: ['Здоровые <75', '75+', 'Беременные', 'Преддиабет', 'Дети риск рахита'],
+datasets: [
+{
+label: 'Сила рекомендации к приему',
+data: [15, 82, 70, 62, 75],
+backgroundColor: 'rgba(255, 127, 0, 0.16)',
+borderColor: '#FF7F00',
+pointBackgroundColor: '#FF7F00',
+borderWidth: 2
+},
+{
+label: 'Старый универсальный подход',
+data: [80, 80, 80, 80, 80],
+backgroundColor: 'rgba(163, 165, 140, 0.08)',
+borderColor: '#A3A58C',
+pointBackgroundColor: '#A3A58C',
+borderWidth: 1.5
+}
+]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: baseOptions.plugins,
+scales: {
+r: {
+angleLines: { color: gridColor },
+grid: { color: gridColor },
+pointLabels: { color: axisColor, font: { family: "'Libertinus Sans', sans-serif", size: 11 } },
+ticks: { display: false, beginAtZero: true, max: 100 }
+}
+}
+}
+});
+
+new Chart(document.getElementById('marketChart'), {
+type: 'bar',
+data: {
+labels: ['WB (ноя 2025 vs ноя 2024)', 'Ozon (ноя 2025 vs ноя 2024)', 'Online vitamins 2024', 'Online vitamins 1П2025'],
+datasets: [{
+label: 'Рост (%)',
+data: [50, 140, 45, 25],
+backgroundColor: ['#FF7F00', '#ff9d38', '#e9ba80', '#b9ad83'],
+borderRadius: 8
+}]
+},
+options: {
+...baseOptions,
+plugins: {
+...baseOptions.plugins,
+legend: { display: false }
+},
+scales: {
+x: {
+ticks: { color: axisColor, maxRotation: 0, autoSkip: false, font: { family: "'Libertinus Sans', sans-serif", size: 10 } },
+grid: { display: false }
+},
+y: {
+ticks: { color: axisColor, callback: (v) => v + '%' },
+grid: { color: gridColor }
+}
+}
+}
+});
+</script>
+</body>
+</html>
