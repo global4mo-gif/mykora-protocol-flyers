@@ -137,6 +137,31 @@ border-radius: 18px;
 margin-bottom: 24px;
 }
 
+.gpt-hero {
+display: grid;
+grid-template-columns: 176px 1fr;
+gap: 18px;
+align-items: center;
+margin: 0 0 24px;
+padding: 16px;
+border-radius: 22px;
+background: rgba(255, 255, 255, 0.72);
+border: 1px solid rgba(62, 58, 23, 0.1);
+}
+
+.gpt-hero img {
+width: 176px;
+height: 176px;
+object-fit: cover;
+border-radius: 18px;
+border: 1px solid rgba(62, 58, 23, 0.12);
+}
+
+.gpt-hero p {
+margin: 0;
+font-size: 1rem;
+}
+
 h2 {
 font-size: clamp(1.35rem, 2.6vw, 2rem);
 color: var(--deep-forest);
@@ -301,6 +326,26 @@ color: var(--vivid-orange);
 line-height: 1.15;
 }
 
+.calc-box {
+background: rgba(255, 127, 0, 0.08);
+border: 1px solid rgba(255, 127, 0, 0.22);
+border-radius: 16px;
+padding: 18px;
+margin-bottom: 18px;
+}
+
+.formula {
+display: inline-flex;
+align-items: center;
+padding: 12px 14px;
+border-radius: 12px;
+background: rgba(255, 255, 255, 0.82);
+border: 1px solid rgba(62, 58, 23, 0.1);
+font-family: 'Unbounded', sans-serif;
+font-size: 0.92rem;
+color: var(--deep-forest);
+}
+
 .cta {
 background: linear-gradient(135deg, var(--vivid-orange), #ff6600);
 color: #ffffff;
@@ -377,5 +422,15 @@ padding: 10px;
 
 .chart-wrap {
 height: 250px;
+}
+
+.gpt-hero {
+grid-template-columns: 1fr;
+}
+
+.gpt-hero img {
+width: 100%;
+height: auto;
+aspect-ratio: 1 / 1;
 }
 }
