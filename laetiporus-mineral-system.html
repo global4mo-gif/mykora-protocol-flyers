@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Летипорус культуральная жидкость + минеральный комплекс: минималистичная система здоровья в одной сумке</title>
+    <meta name="description" content="Летипорус + система БАД: как собрать минеральный комплекс для максимума результата, протокол по целям (спорт, мозг, восстановление), примеры наборов.">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Libertinus Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src:
+                url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2') format('woff2'),
+                url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Libertinus Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src:
+                url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2') format('woff2'),
+                url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2') format('woff2');
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f6f1;
+            color: #2a2620;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid #FF7F00;
+            padding-bottom: 20px;
+        }
+        
+        .meta {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 2.1em;
+            color: #FF7F00;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-family: 'Unbounded', sans-serif;
+        }
+        
+        .lead {
+            font-size: 1.05em;
+            color: #3E3A17;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            background: rgba(255, 127, 0, 0.05);
+            padding: 20px;
+            border-left: 4px solid #FF7F00;
+            border-radius: 4px;
+        }
+        
+        h2 {
+            font-size: 1.7em;
+            color: #FF7F00;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-left: 4px solid #FF7F00;
+            padding-left: 15px;
+            font-family: 'Unbounded', sans-serif;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            color: #3E3A17;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        
+        strong {
+            color: #FF8F00;
+            font-weight: 700;
+        }
+        
+        .highlight {
+            background: rgba(255, 127, 0, 0.12);
+            padding: 3px 7px;
+            border-radius: 3px;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: #ffffff;
+            border: 1px solid #e0ddd5;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        th {
+            background: #FF7F00;
+            color: #ffffff;
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0ddd5;
+        }
+        
+        tr:hover {
+            background: rgba(255, 127, 0, 0.05);
+        }
+        
+        .faq {
+            background: rgba(255, 127, 0, 0.08);
+            padding: 20px;
+            border-left: 4px solid #FF7F00;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .faq-q {
+            font-weight: 700;
+            color: #FF7F00;
+            margin-bottom: 10px;
+        }
+        
+        .faq-a {
+            color: #3E3A17;
+            line-height: 1.8;
+        }
+        
+        .protocol-box {
+            background: rgba(76, 175, 80, 0.06);
+            border-left: 4px solid #388e3c;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #FF7F00, #FF6600);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .cta h3 {
+            color: #ffffff;
+            margin: 0 0 15px 0;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #FF7F00;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        body {
+            font-family: 'Libertinus Sans', sans-serif;
+            background:
+                linear-gradient(rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(62, 58, 23, 0.04) 1px, transparent 1px),
+                radial-gradient(circle at top left, rgba(255, 127, 0, 0.10), transparent 26%),
+                linear-gradient(180deg, #fffdf6 0%, #f4ecd8 100%);
+            background-size: 48px 48px, 48px 48px, auto, auto;
+            color: #3E3A17;
+            padding: 28px 20px 64px;
+        }
+
+        h1, h2, h3, .cta-btn {
+            font-family: 'Unbounded', sans-serif;
+        }
+
+        ::selection { background: #FF7F00; color: #fffdf6; }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            border: 1px solid rgba(62, 58, 23, 0.12);
+            background: rgba(255, 255, 255, 0.78);
+            color: #3E3A17;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav-link.primary {
+            color: #FF7F00;
+            border-color: rgba(255, 127, 0, 0.22);
+            background: rgba(255, 127, 0, 0.08);
+        }
+
+        .header-art {
+            width: 100%;
+            border-radius: 24px;
+            border: 1px solid rgba(62, 58, 23, 0.12);
+            box-shadow: 0 14px 34px rgba(62, 58, 23, 0.11);
+            margin-top: 18px;
+            background: #fff;
+            display: block;
+        }
+
+        .gpt-hero {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(62, 58, 23, 0.1);
+            border-radius: 24px;
+            padding: 14px;
+            margin-bottom: 28px;
+            box-shadow: 0 12px 28px rgba(62, 58, 23, 0.08);
+        }
+
+        .gpt-hero img {
+            width: 100%;
+            border-radius: 18px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.84);
+            border-radius: 24px;
+            padding: 18px;
+            border: 1px solid rgba(62, 58, 23, 0.1);
+            margin: 20px 0 36px;
+            box-shadow: 0 12px 28px rgba(62, 58, 23, 0.07);
+        }
+
+        .chart-title {
+            font-family: 'Unbounded', sans-serif;
+            color: #3E3A17;
+            font-size: 0.98rem;
+            margin-bottom: 10px;
+        }
+
+        .chart-wrap { position: relative; height: 320px; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6em; }
+            h2 { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a class="nav-link primary" href="database.html">Назад в БАЗУ ДАННЫХ</a>
+            <a class="nav-link" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">mykora.ru</a>
+        </nav>
+        <header>
+            <div class="meta">10.04.2026 | MYKORA Kits | Готовые системы</div>
+            <h1>Летипорус культуральная жидкость + минеральный комплекс: готовая система здоровья, которую можно взять в сумку и путешествовать с ней</h1>
+            <img class="header-art" src="assets/laetiporus-system-gpt.png" alt="GPT Image: мобильный набор MYKORA с летипорусом и минералами">
+        </header>
+        
+        <div class="lead">
+            <p>Ты на максималках: тренировки, работа, путешествия. Сумка заполнена. А БАД нужны — но не хочешь таскать 10 баночек. <span class="highlight">Решение: минималистичный набор MYKORA в одной сумке</span>. Летипорус (один флакон), витамин D3, магний, цинк, omega-3 (по одной капсуле, всё помещается в карман)</p>
+            <p>Это не просто набор, это система. Каждый компонент выбран так, чтобы работать с другими. Летипорус усиливает абсорбцию витаминов. Магний помогает спать и восстанавливаться. Omega-3 и D3 работают на иммунитет и мозг.</p>
+            <p>Разбираем, как собрать свой набор по целям (спортсмен, программист, восстановление) и как это работает в реальной жизни.</p>
+        </div>
+
+        <div class="gpt-hero">
+            <img src="assets/laetiporus-system-gpt.png" alt="GPT Image: travel-kit с летипорусом, магнием, D3, омега-3 и цинком">
+            <p><strong>Ключевая идея:</strong> переносной набор должен закрывать базовые задачи в любой географии: энергия, сон, иммунитет, восстановление и стресс-устойчивость.</p>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-title">Покрытие задач здоровья по компонентам набора</div>
+            <div class="chart-wrap"><canvas id="laetiporusSystemChart"></canvas></div>
+        </div>
+        
+        <h2>Стандартный набор MYKORA: 5 компонентов, каждый нужен</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Компонент</th>
+                    <th>Форма</th>
+                    <th>Дозировка</th>
+                    <th>Объём в сумке</th>
+                    <th>Зачем</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Летипорус культуральная жидкость</strong></td>
+                    <td>Флакон 150 мл</td>
+                    <td>5-10 мл в день</td>
+                    <td>Флакон (карман рюкзака)</td>
+                    <td>Мозг, иммунитет, нейрозащита</td>
+                </tr>
+                <tr>
+                    <td><strong>Витамин D3</strong></td>
+                    <td>Капсула или масляная</td>
+                    <td>2000-4000 МЕ в день</td>
+                    <td>30 капсул (коробка 5×5 см)</td>
+                    <td>Иммунитет, синтез белка, настроение</td>
+                </tr>
+                <tr>
+                    <td><strong>Магний цитрат</strong></td>
+                    <td>Капсула</td>
+                    <td>400-500 мг в день (вечер)</td>
+                    <td>30 капсул (коробка 5×5 см)</td>
+                    <td>Сон, расслабление, энергия в клетках</td>
+                </tr>
+                <tr>
+                    <td><strong>Omega-3 (90% EPA+DHA)</strong></td>
+                    <td>Капсула</td>
+                    <td>2-3 г в день (2-3 капсулы)</td>
+                    <td>60 капсул (коробка 5×5 см)</td>
+                    <td>Противовоспалительное, мозг, сердце</td>
+                </tr>
+                <tr>
+                    <td><strong>Цинк пиколинат</strong></td>
+                    <td>Капсула</td>
+                    <td>15-30 мг в день</td>
+                    <td>30 капсул (коробка 5×5 см)</td>
+                    <td>Иммунитет, восстановление, мужское здоровье</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>Итого в сумке:</strong> один флакон + четыре маленькие коробки капсул. Помещается в карман рюкзака. Вес: 500-700 гр.</p>
+        
+        <h2>Три варианта наборов: по целям (спортсмен, программист, восстановление)</h2>
+        
+        <div class="protocol-box">
+            <h3>ВАРИАНТ 1: Спортсмен (восстановление, энергия, мышцы)</h3>
+            
+            <p><strong>Зачем:</strong> интенсивные тренировки требуют быстрого восстановления. Мышцы теряют магний с потом, иммунитет слабеет от нагрузки.</p>
+            
+            <p><strong>Состав набора:</strong></p>
+            <ul>
+                <li><strong>Летипорус</strong> — 10 мл в день (максимум, для иммунитета)</li>
+                <li><strong>Витамин D3</strong> — 4000 МЕ в день (мышцы растят на витамине D)</li>
+                <li><strong>Магний цитрат</strong> — 500 мг в день (расслабление, восстановление мышц)</li>
+                <li><strong>Omega-3</strong> — 3 г в день (противовоспалительное, восстановление после тренировки)</li>
+                <li><strong>Цинк пиколинат</strong> — 25-30 мг в день (восстановление мышц, тестостерон)</li>
+            </ul>
+            
+            <p><strong>Дополнение (опционально):</strong> Рейши вечером (расслабление ЦНС), Кордицепс после тренировки (восстановление ATP)</p>
+        </div>
+        
+        <div class="protocol-box">
+            <h3>ВАРИАНТ 2: Программист (мозг, фокус, восстановление от сидячей работы)</h3>
+            
+            <p><strong>Зачем:</strong> мозг требует максимума питания, сидячая работа вызывает скованность мышц, дефицит движения.</p>
+            
+            <p><strong>Состав набора:</strong></p>
+            <ul>
+                <li><strong>Летипорус</strong> — 5-10 мл в день (NGF для мозга, ясность мышления)</li>
+                <li><strong>Витамин D3</strong> — 2000-3000 МЕ в день (когнитивные функции, настроение)</li>
+                <li><strong>Магний цитрат</strong> — 400 мг в день (расслабляет спину от сидячей работы, лучше спишь)</li>
+                <li><strong>Omega-3</strong> — 2-3 г в день (воспаление мозга, ясность)</li>
+                <li><strong>Цинк пиколинат</strong> — 15-20 мг в день (иммунитет, когда много стресса от работы)</li>
+            </ul>
+            
+            <p><strong>Дополнение:</strong> Ежовик в утреннем чае (дополнительный фокус с летипорусом), Рейши вечером (выключение из рабочего режима)</p>
+        </div>
+        
+        <div class="protocol-box">
+            <h3>ВАРИАНТ 3: Восстановление (после болезни, травмы, усталости)</h3>
+            
+            <p><strong>Зачем:</strong> организм истощён, нужна мягкая, но полная поддержка всех систем.</p>
+            
+            <p><strong>Состав набора:</strong></p>
+            <ul>
+                <li><strong>Летипорус</strong> — 5 мл в день (иммунитет, пребиотик для кишечника, что важно после болезни)</li>
+                <li><strong>Витамин D3</strong> — 3000-4000 МЕ в день (иммунная функция, восстановление костей)</li>
+                <li><strong>Магний цитрат</strong> — 400 мг в день (расслабление, восстановление нервной системы)</li>
+                <li><strong>Omega-3</strong> — 2 г в день (противовоспалительное, питание мозга)</li>
+                <li><strong>Цинк пиколинат</strong> — 20-25 мг в день (заживление, иммунитет)</li>
+            </ul>
+            
+            <p><strong>Дополнение:</strong> Рейши утром и вечером (адаптоген, помогает организму прийти в норму), мед в летипорусе (энергия без стимуляции)</p>
+        </div>
+        
+        <h2>Протокол приёма: как пить систему на максималках</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Время дня</th>
+                    <th>Приём</th>
+                    <th>Компоненты</th>
+                    <th>Зачем</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>7:00 (утро)</strong></td>
+                    <td>Завтрак</td>
+                    <td>Летипорус 5-10 мл с водой</td>
+                    <td>На пустой желудок или с едой, включает мозг</td>
+                </tr>
+                <tr>
+                    <td><strong>8:00</strong></td>
+                    <td>С завтраком</td>
+                    <td>Витамин D3 + Цинк пиколинат (капсулы с едой)</td>
+                    <td>Жирорастворимый витамин нужна еда, цинк лучше с белком</td>
+                </tr>
+                <tr>
+                    <td><strong>12:00 (обед)</strong></td>
+                    <td>С обедом</td>
+                    <td>Omega-3 (2-3 капсулы)</td>
+                    <td>С едой, особенно с белком</td>
+                </tr>
+                <tr>
+                    <td><strong>20:00 (ужин)</strong></td>
+                    <td>С ужином</td>
+                    <td>Магний цитрат (1 капсула)</td>
+                    <td>Вечер, помогает заснуть</td>
+                </tr>
+                <tr>
+                    <td><strong>22:00 (перед сном)</strong></td>
+                    <td>Опционально</td>
+                    <td>Рейши 300-500 мг (если хочешь глубокий сон)</td>
+                    <td>Адаптоген для релаксации</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>Путешествия и мобильность: как таскать набор везде</h2>
+        
+        <p>Один из плюсов MYKORA системы — она помещается в карман. Но есть советы для путешествий:</p>
+        
+        <ul>
+            <li><strong>Перелёты:</strong> летипорус в основном рюкзаке (не в ручной клади, жидкость). Капсулы в ручной клади. Из-за смены часовых поясов добавь Рейши вечером для адаптации</li>
+            
+            <li><strong>Автомобиль/поезд (длительное путешествие):</strong> летипорус в холодильнике отеля, капсулы всегда с собой. Вода везде доступна, магний вечером для расслабления</li>
+            
+            <li><strong>Горы/кемпинг:</strong> летипорус в термоумопаковке (изолирует температуру). Капсулы не требуют холода, переносят любые условия</li>
+            
+            <li><strong>Экстремальный спорт (альпинизм, дайвинг):</strong> добавь цинк и витамин D (иммунитет при стрессе), на высотах летипорус помогает адаптации</li>
+        </ul>
+        
+        <h2>Часто задаваемые вопросы</h2>
+        
+        <div class="faq">
+            <div class="faq-q">❓ Можно ли пить этот набор постоянно или нужны перерывы?</div>
+            <div class="faq-a">Витамин D3, магний, цинк, omega-3 безопасны в долгосроке. Летипорус можно пить постоянно, но оптимально: 2 недели вкл, 1 неделя выкл (чтобы организм не адаптировался). Рейши тоже лучше циклировать: 3-4 недели вкл, 1 неделя выкл</div>
+        </div>
+        
+        <div class="faq">
+            <div class="faq-q">❓ Что если я худею быстро (на дефиците)? Меняется ли набор?</div>
+            <div class="faq-a">Да, нужен цинк повыше (25-30 мг, так как теряется с мочой при дефиците), магний повыше (500 мг, мышцы требуют больше) и летипорус на максимум (иммунитет ослабляется при дефиците). Omega-3 остаётся, витамин D3 остаётся</div>
+        </div>
+        
+        <div class="faq">
+            <div class="faq-q">❓ Я беременна/кормлю. Изменится ли набор?</div>
+            <div class="faq-a">Летипорус безопасен при беременности (естественный, натуральный). Витамин D3 и магний обязательны (ребёнок требует много). Цинк важен (заживление, иммунитет). Omega-3 критичен (развитие мозга ребёнка). Согласуй с врачом дозировку, но состав остаётся</div>
+        </div>
+        
+        <div class="faq">
+            <div class="faq-q">❓ Можно ли смешивать этот набор MYKORA с другими БАД?</div>
+            <div class="faq-a">Летипорус, витамин D3, магний, цинк, omega-3 это базис. Можно добавить: Рейши (вечер), Ежовик (утро с летипорусом), Кордицепс (после тренировки). Избегай: синтетических витаминов (конкурируют), мультивитаминов (слишком много), других грибных экстрактов (без нужды)</div>
+        </div>
+        
+        <h2>Итог: система, которая подходит всем на максималках</h2>
+        
+        <p>Это не просто набор витаминов, это философия: минимум компонентов, максимум результата. Пять добавок, которые работают вместе, лучше, чем 50 баночек, которые конкурируют.</p>
+        
+        <p>Летипорус это центральный компонент, потому что он охватывает иммунитет, мозг, микробиом. Остальные четыре поддерживают его. Вместе они охватывают 80% нужд человека на максималках.</p>
+        
+        <div class="cta">
+            <h3>MYKORA базовый набор</h3>
+            <p>Летипорус культуральная жидкость + витамин D3 + магний цитрат + Omega-3 + цинк пиколинат. Всё в одной сумке, результат через неделю.</p>
+            <a href="#" class="cta-btn">Заказать набор</a>
+        </div>
+    </div>
+    <script>
+        const laetiporusCtx = document.getElementById('laetiporusSystemChart');
+        if (laetiporusCtx) {
+            new Chart(laetiporusCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Летипорус', 'D3', 'Магний', 'Omega-3', 'Цинк'],
+                    datasets: [
+                        {
+                            label: 'Количество закрытых задач (из 5)',
+                            data: [5, 3, 4, 3, 3],
+                            backgroundColor: ['#ff7f00', '#ffb469', '#a3a58c', '#c8d2d5', '#3e3a17'],
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#3E3A17', font: { family: 'Libertinus Sans' } } } },
+                    scales: {
+                        x: { ticks: { color: '#3E3A17', font: { family: 'Libertinus Sans' } }, grid: { display: false } },
+                        y: { beginAtZero: true, max: 5, ticks: { color: '#3E3A17', font: { family: 'Libertinus Sans' } }, grid: { color: 'rgba(62,58,23,0.10)' } }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
