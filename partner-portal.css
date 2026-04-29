@@ -90,10 +90,14 @@ a { color: inherit; }
   height: 42px;
   border-radius: 14px;
   background: var(--vivid-orange);
-  color: #fffdf6;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 12px;
-  font-weight: 800;
+  overflow: hidden;
+}
+
+.brand-dot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand-kicker,
