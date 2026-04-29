@@ -3,289 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MYKORA — Корпоративный ресурс</title>
+<title>MYKORA - партнерский портал</title>
+<meta name="description" content="Партнерский портал MYKORA для агентов, сотрудников и подрядчиков.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-@font-face {
-  font-family: 'Libertinus Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src:
-    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2') format('woff2'),
-    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src:
-    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2') format('woff2'),
-    url('https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2') format('woff2');
-}
-
-:root {
-  --deep-forest: #3E3A17;
-  --soft-ivory: #F8EFCB;
-  --vivid-orange: #FF7F00;
-  --misty-silver: #C8D2D5;
-  --earthy-olive: #A3A58C;
-}
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: 'Libertinus Sans', sans-serif;
-  color: var(--deep-forest);
-  background:
-    linear-gradient(rgba(62, 58, 23, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(62, 58, 23, 0.04) 1px, transparent 1px),
-    radial-gradient(circle at top left, rgba(255, 127, 0, 0.10), transparent 24%),
-    linear-gradient(180deg, #fffdf6 0%, #f4ecd8 100%);
-  background-size: 48px 48px, 48px 48px, auto, auto;
-}
-
-.shell {
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: 30px 18px 64px;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 18px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.82);
-  border: 1px solid rgba(62,58,23,0.08);
-  backdrop-filter: blur(12px);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.brand-kicker {
-  color: var(--vivid-orange);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 8px;
-}
-
-.brand-title,
-.hero h1,
-.card h2,
-.site-banner-title {
-  font-family: 'Unbounded', sans-serif;
-}
-
-.brand-title {
-  font-size: 1.1rem;
-}
-
-.hero {
-  margin-top: 22px;
-  padding: 34px;
-  border-radius: 32px;
-  background: rgba(255,255,255,0.78);
-  border: 1px solid rgba(62,58,23,0.08);
-  box-shadow: 0 18px 40px rgba(62,58,23,0.06);
-}
-
-.hero h1 {
-  margin: 0 0 14px;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 1.03;
-}
-
-.hero p {
-  max-width: 820px;
-  font-size: 1.1rem;
-  line-height: 1.65;
-  color: rgba(62,58,23,0.82);
-}
-
-.site-banner {
-  display: block;
-  margin-top: 0;
-  text-decoration: none;
-  background: var(--vivid-orange);
-  border-radius: 0 0 34px 34px;
-  padding: 26px 22px;
-  text-align: center;
-  box-shadow: 0 16px 30px rgba(255,127,0,0.18);
-}
-
-.site-banner-title {
-  color: #fff;
-  font-size: 1.15rem;
-  margin-bottom: 6px;
-}
-
-.site-banner-sub {
-  color: rgba(255,255,255,0.84);
-  font-size: 0.9rem;
-}
-
-.post-banner-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
-
-.internal-links,
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 24px;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 360px;
-  padding: 28px;
-  border-radius: 30px;
-  text-decoration: none;
-  color: inherit;
-  background: rgba(255,255,255,0.84);
-  border: 1px solid rgba(62,58,23,0.08);
-  box-shadow: 0 18px 40px rgba(62,58,23,0.06);
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  transition: transform 0.2s ease;
-}
-
-.card-chip {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: rgba(255,127,0,0.1);
-  color: var(--vivid-orange);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.card h2 {
-  margin: 18px 0 12px;
-  font-size: 2rem;
-  line-height: 1.05;
-}
-
-.card p {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: rgba(62,58,23,0.8);
-}
-
-.cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  margin-top: 22px;
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: rgba(255,127,0,0.1);
-  color: var(--vivid-orange);
-  font-weight: 700;
-}
-
-.link {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 14px;
-  border-radius: 999px;
-  text-decoration: none;
-  color: var(--deep-forest);
-  background: rgba(255,255,255,0.84);
-  border: 1px solid rgba(62,58,23,0.08);
-}
-
-@media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
-  .hero { padding: 24px; }
-  .post-banner-nav { flex-direction: column; align-items: flex-start; }
-}
-</style>
+<link rel="stylesheet" href="partner-portal.css">
 </head>
 <body>
   <div class="shell">
-    <div class="topbar">
-      <div>
-        <div class="brand-kicker">СИСТЕМА MYKORA</div>
-        <div class="brand-title">Корпоративный ресурс для клиентов</div>
-      </div>
-    </div>
-
-    <section class="hero">
-      <div class="brand-kicker">Знания, протоколы, визуальные карты</div>
-      <h1>Единая точка входа в протоколы MYKORA и базу знаний</h1>
-      <p>
-        Это стартовая страница корпоративного ресурса MYKORA. Отсюда можно перейти либо в рабочие протоколы приема, либо в БАЗУ ДАННЫХ с инфографиками, схемами, исследованиями и маршрутами применения добавок в реальных задачах высокой нагрузки.
-      </p>
-    </section>
-
-    <a class="site-banner" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">
-      <div class="site-banner-title">Узнай больше на mykora.ru</div>
-      <div class="site-banner-sub">Перед приёмом проконсультируйтесь со специалистом</div>
-    </a>
-
-    <div class="post-banner-nav">
-      <div class="internal-links">
-        <a class="link" href="protocols.html">Протоколы</a>
-        <a class="link" href="database.html">БАЗА ДАННЫХ</a>
-      </div>
-      <div class="social-links">
-        <a class="link" href="https://t.me/mykora_official" target="_blank" rel="noopener noreferrer">Telegram</a>
-        <a class="link" href="https://max.ru/id9702076543_biz" target="_blank" rel="noopener noreferrer">MAX</a>
-        <a class="link" href="https://vk.com/mykoraofficial?act=s&id=234545966#section=short_videos" target="_blank" rel="noopener noreferrer">VK</a>
-        <a class="link" href="https://dzen.ru/mykoraofficial" target="_blank" rel="noopener noreferrer">Дзен</a>
-      </div>
-    </div>
-
-    <section class="grid">
-      <a class="card" href="protocols.html">
+    <header class="topbar">
+      <a class="brand-mark" href="index.html" aria-label="MYKORA портал">
+        <div class="brand-dot">MY</div>
         <div>
-          <div class="card-chip">Протоколы</div>
-          <h2>Протоколы приема</h2>
-          <p>Готовые схемы и маршруты применения продуктов MYKORA: базовые наборы, антистресс, ясный разум, иммунитет, восстановление и долгосрочная поддержка.</p>
+          <div class="brand-kicker">Партнерский портал</div>
+          <div class="brand-title">MYKORA для команды и подрядчиков</div>
         </div>
-        <span class="cta">Перейти к протоколам</span>
       </a>
+      <nav class="top-nav" aria-label="Разделы портала">
+        <a class="nav-link active" href="index.html">Обзор</a>
+        <a class="nav-link" href="assortment.html">Ассортимент</a>
+        <a class="nav-link" href="channels.html">Каналы</a>
+        <a class="nav-link" href="selling.html">Продажи</a>
+        <a class="nav-link" href="science.html">Наука</a>
+        <a class="nav-link" href="articles.html">Статьи</a>
+        <a class="nav-link primary" href="https://mykora.ru/" target="_blank" rel="noopener noreferrer">mykora.ru</a>
+      </nav>
+    </header>
 
-      <a class="card" href="database.html">
-        <div>
-          <div class="card-chip">База данных</div>
-          <h2>БАЗА ДАННЫХ</h2>
-          <p>Визуальные карты, инфографики, чек-листы и разборы исследований о БАДах, грибах и нутриентах для энергии, фокуса, восстановления и жизни на высоких оборотах.</p>
+    <main class="page">
+      <section class="hero">
+        <div class="hero-main">
+          <div>
+            <div class="kicker">MYKORA · функциональные БАДы · партнерское знакомство</div>
+            <h1>Бренд для людей, у которых цена ошибки выше среднего</h1>
+            <p class="lead">
+              MYKORA - система нутрицевтической поддержки на основе грибных экстрактов, витаминов и биодоступных форм. Не “баночки для спокойной жизни”, а прикладные протоколы для нагрузки: работа, спорт, восстановление, фокус, перелеты, стресс и долгий ресурс.
+            </p>
+          </div>
+          <div class="page-actions">
+            <a class="btn primary" href="assortment.html">Начать с ассортимента</a>
+            <a class="btn" href="science.html">Научная база</a>
+            <a class="btn" href="articles.html">База статей</a>
+          </div>
         </div>
-        <span class="cta">Перейти в базу знаний</span>
-      </a>
-    </section>
+
+        <aside class="hero-side">
+          <img src="assets/laetiporus-system-gpt.png" alt="Система MYKORA: Летипорус и минеральный комплекс">
+          <div class="side-copy">
+            <div class="kicker">Коротко для первого созвона</div>
+            <h2>MYKORA продается не через страх, а через систему</h2>
+            <p>Объясняем продукт через качество сырья, биодоступность, научный подход, сценарии применения и долгосрочный эффект.</p>
+            <a class="btn primary" href="selling.html">Как продавать</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="portal-grid">
+        <a class="portal-card" href="assortment.html">
+          <div class="card-label">Ассортимент и цены</div>
+          <h3>Полная продуктовая карта</h3>
+          <p>Летипорус, Кордицепс, Ежовик, Рейши, D3+K2, магний, Omega-3, цинк, CoQ10, хром, витамин C и наборы. Цены поставлены по РРЦ из прайса.</p>
+          <span class="btn primary">Открыть раздел</span>
+        </a>
+        <a class="portal-card" href="channels.html">
+          <div class="card-label">Сбыт и присутствие</div>
+          <h3>Сайт, соцсети, маркетплейсы, партнеры</h3>
+          <p>Все точки перехода: официальный сайт, каталог, контент-хаб, Telegram, MAX, VK, Instagram, Дзен, Яндекс.Маркет/Ozon и партнерская модель.</p>
+          <span class="btn primary">Открыть раздел</span>
+        </a>
+        <a class="portal-card" href="selling.html">
+          <div class="card-label">Продажи</div>
+          <h3>Как объяснять и продавать MYKORA</h3>
+          <p>Сценарии нагрузки, маршрутизация клиента, протоколы, корректный язык ценности и переход к покупке по РРЦ или набору.</p>
+          <span class="btn primary">Открыть раздел</span>
+        </a>
+        <a class="portal-card" href="science.html">
+          <div class="card-label">Наука и инновация</div>
+          <h3>Летипорус, НИУ Губкина, профессор</h3>
+          <p>Технологическое ядро бренда, культуральная жидкость, ферментация, сотрудничество с НИУ им. И. М. Губкина и профессор В. А. Винокуров.</p>
+          <span class="btn primary">Открыть раздел</span>
+        </a>
+        <a class="portal-card" href="articles.html">
+          <div class="card-label">База данных</div>
+          <h3>Все статьи, доклады и SEO-материалы</h3>
+          <p>Индекс материалов для агентов, контента и партнерских объяснений: от Летипоруса до GLP-1, гидратации и витамина D.</p>
+          <span class="btn primary">Открыть раздел</span>
+        </a>
+        <a class="portal-card" href="protocols.html">
+          <div class="card-label">Протоколы</div>
+          <h3>Рабочие схемы применения</h3>
+          <p>Отдельный раздел с протоколами приема и лид-формой. Его оставил как самостоятельный рабочий инструмент.</p>
+          <span class="btn primary">Открыть протоколы</span>
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <div class="kicker">MYKORA partner portal</div>
+      <p>Многостраничная рабочая версия для знакомства агентов, сотрудников и подрядчиков. Медицинские обещания не добавлять: MYKORA - БАД и система поддержки, не лекарственное средство.</p>
+    </footer>
   </div>
 </body>
 </html>
