@@ -84,20 +84,21 @@ a { color: inherit; }
 }
 
 .brand-dot {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 42px;
   height: 42px;
   border-radius: 14px;
   background: var(--vivid-orange);
+  background-image: url('assets/mykora-logo-mark-white.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 72% auto;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .brand-dot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: none;
 }
 
 .brand-kicker,
