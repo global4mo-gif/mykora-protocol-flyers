@@ -3,1012 +3,1147 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MYKORA DESIGN.md Preview</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Превью дизайн-кода сайта MYKORA</title>
   <style>
     @font-face {
-      font-family: "Libertinus Sans";
-      font-style: normal;
+      font-family: "Bounded";
+      src: url("assets/design-system/fonts/Bounded-Regular.ttf") format("truetype");
       font-weight: 400;
+      font-style: normal;
       font-display: swap;
-      src:
-        url("https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-400-normal.woff2") format("woff2"),
-        url("https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-400-normal.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Bounded";
+      src: url("assets/design-system/fonts/Bounded-Black.ttf") format("truetype");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
     }
 
     @font-face {
       font-family: "Libertinus Sans";
+      src: url("assets/design-system/fonts/libertinussans-regular.otf") format("opentype");
+      font-weight: 400;
       font-style: normal;
-      font-weight: 700;
       font-display: swap;
-      src:
-        url("https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-cyrillic-700-normal.woff2") format("woff2"),
-        url("https://cdn.jsdelivr.net/fontsource/fonts/libertinus-sans@latest/libertinus-sans-latin-700-normal.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Libertinus Sans";
+      src: url("assets/design-system/fonts/libertinussans-bold.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
     }
 
     :root {
-      --deep-forest: #3E3A17;
-      --soft-ivory: #F8EFCB;
-      --vivid-orange: #FF7F00;
-      --earthy-olive: #A3A58C;
-      --misty-silver: #C8D2D5;
-      --surface: #FFFFFF;
-      --surface-soft: #FFFDF6;
-      --line: #DCD7C2;
-      --text-soft: #6D6854;
-      --success: #3F7B4F;
-      --danger: #B9473B;
-      --shadow-soft: 0 18px 42px rgba(62, 58, 23, 0.07);
-      --shadow-small: 0 14px 30px rgba(62, 58, 23, 0.05);
-      --pattern-url: url("assets/mykora-science-pattern.png");
+      --ink: #111111;
+      --forest: #3c3a21;
+      --forest-soft: #979a86;
+      --orange: #f76e00;
+      --canvas: #f7f7f4;
+      --surface: #ffffff;
+      --surface-muted: #f1f1ee;
+      --border: #d8d8d1;
+      --muted: #77776f;
+      --soft: #979a86;
+      --shell: 1120px;
+      --radius: 14px;
+      --shadow: 0 22px 70px rgba(17, 17, 17, 0.06);
+      --font-display: "Bounded", Inter, system-ui, sans-serif;
+      --font-body: "Libertinus Sans", Inter, system-ui, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html {
       min-width: 320px;
-      background: var(--surface-soft);
-      color: var(--deep-forest);
+      background: #ffffff;
+      color: var(--ink);
       scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: "Libertinus Sans", system-ui, sans-serif;
-      color: var(--deep-forest);
+      color: var(--ink);
       background:
-        linear-gradient(rgba(62, 58, 23, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(62, 58, 23, 0.045) 1px, transparent 1px),
-        radial-gradient(circle at top left, rgba(255, 127, 0, 0.12), transparent 28%),
-        linear-gradient(180deg, #fffdf6 0%, #f8efcb 100%);
-      background-size: 44px 44px, 44px 44px, auto, auto;
+        linear-gradient(180deg, #ffffff 0%, var(--canvas) 42%, #ffffff 100%);
+      font-family: var(--font-body);
     }
 
-    ::selection {
-      background: var(--vivid-orange);
-      color: var(--surface-soft);
-    }
+    ::selection { background: var(--orange); color: #fff; }
 
-    img,
-    object {
-      display: block;
-      max-width: 100%;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    h1, h2, h3, p { margin: 0; }
 
     h1,
     h2,
     h3,
-    .brand-wordmark,
+    .brand,
     .eyebrow,
-    .chip,
-    .button,
-    .metric-value,
-    .token-name,
-    .sample-label,
-    .nav-link {
-      font-family: "Unbounded", system-ui, sans-serif;
-      letter-spacing: 0;
+    .usage-title,
+    .stat-value,
+    .tab-button,
+    .mode-button,
+    .type-label,
+    .type-display,
+    .type-section,
+    .web-button,
+    .science-card h3,
+    .component-card h3 {
+      font-family: var(--font-display);
     }
 
-    h1,
-    h2,
-    h3,
-    p {
-      margin: 0;
-    }
-
-    p {
-      color: var(--text-soft);
-      font-size: 16px;
-      line-height: 1.65;
-    }
-
-    .shell {
-      width: min(100%, 1320px);
-      margin: 0 auto;
-      padding: 18px;
-    }
-
-    .topbar {
+    .appbar {
       position: sticky;
-      top: 12px;
-      z-index: 20;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(216, 216, 209, 0.8);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(14px);
+    }
+
+    .appbar-inner {
+      width: min(100% - 32px, var(--shell));
+      min-height: 62px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 12px;
-      border: 1px solid rgba(62, 58, 23, 0.11);
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.88);
-      box-shadow: 0 14px 32px rgba(62, 58, 23, 0.07);
-      backdrop-filter: blur(14px);
+      margin: 0 auto;
     }
 
     .brand {
       display: inline-flex;
-      min-width: 0;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
     }
 
     .brand-mark {
+      width: 22px;
+      height: 22px;
       display: grid;
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
       place-items: center;
-      border-radius: 14px;
-      background: var(--vivid-orange);
+      border-radius: 6px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12px;
     }
 
-    .brand-mark img {
-      width: 24px;
-      height: auto;
-    }
-
-    .brand-wordmark {
-      overflow: hidden;
-      color: var(--deep-forest);
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav {
+    .toplinks {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-link {
-      display: inline-flex;
-      min-height: 38px;
       align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(62, 58, 23, 0.12);
-      border-radius: 999px;
-      padding: 0 14px;
-      background: rgba(255, 255, 255, 0.74);
-      color: var(--deep-forest);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 13px;
       white-space: nowrap;
+    }
+
+    .toplinks a:hover { color: var(--ink); }
+
+    .page {
+      width: min(100% - 32px, var(--shell));
+      margin: 0 auto;
+      padding: 34px 0 72px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 22px;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      grid-template-columns: 0.88fr 1.12fr;
       gap: 22px;
       align-items: stretch;
-      padding: 22px 0;
     }
 
-    .hero-main,
-    .hero-side,
-    .panel,
-    .asset-panel,
-    .dark-preview,
-    .usage-card {
-      border: 1px solid rgba(62, 58, 23, 0.10);
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.88);
-      box-shadow: var(--shadow-soft);
+    .hero-card,
+    .usage-card,
+    .stat-card,
+    .notice,
+    .preview-shell {
+      border: 1px solid rgba(216, 216, 209, 0.9);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
     }
 
-    .hero-main {
-      min-height: 540px;
+    .hero-card {
       display: grid;
-      align-content: end;
-      gap: 24px;
-      padding: clamp(24px, 4vw, 48px);
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(255, 253, 246, 0.82), rgba(255, 253, 246, 0.90)),
-        var(--pattern-url);
-      background-size: cover;
-      background-position: center;
+      align-content: space-between;
+      gap: 28px;
+      min-height: 460px;
+      padding: clamp(24px, 4vw, 42px);
+    }
+
+    .design-title {
+      display: grid;
+      gap: 14px;
     }
 
     .eyebrow {
-      color: var(--vivid-orange);
+      color: var(--orange);
+      font-family: var(--font-display);
       font-size: 11px;
-      font-weight: 800;
-      line-height: 1;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     h1 {
-      max-width: 820px;
-      color: var(--deep-forest);
-      font-size: clamp(2.35rem, 7vw, 4.75rem);
-      font-weight: 800;
-      line-height: 1.02;
+      max-width: 620px;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 5vw, 4.6rem);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
     }
 
-    .hero-copy {
-      max-width: 650px;
-      color: var(--deep-forest);
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
-      line-height: 1.65;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(62, 58, 23, 0.16);
-      border-radius: 999px;
-      padding: 0 18px;
-      background: rgba(255, 255, 255, 0.80);
-      color: var(--deep-forest);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(62, 58, 23, 0.08);
-    }
-
-    .button.primary {
-      border-color: var(--vivid-orange);
-      background: var(--vivid-orange);
-      color: var(--surface-soft);
-    }
-
-    .button.active {
-      border-color: rgba(255, 127, 0, 0.35);
-      background: rgba(255, 127, 0, 0.10);
-      color: var(--vivid-orange);
-    }
-
-    .hero-side {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 18px;
-      padding: 20px;
-    }
-
-    .logo-stage {
-      display: grid;
-      min-height: 250px;
-      place-items: center;
-      border-radius: 24px;
-      background: var(--deep-forest);
-      padding: 28px;
-    }
-
-    .logo-stage img {
-      width: min(260px, 72%);
-      height: auto;
-    }
-
-    .hero-note {
-      display: grid;
-      gap: 16px;
-      align-content: start;
-      padding: 4px;
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip {
-      display: inline-flex;
-      min-height: 32px;
-      align-items: center;
-      border: 1px solid rgba(62, 58, 23, 0.13);
-      border-radius: 999px;
-      padding: 0 11px;
-      background: var(--surface-soft);
-      color: var(--deep-forest);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-    }
-
-    .chip.orange {
-      border-color: rgba(255, 127, 0, 0.35);
-      background: rgba(255, 127, 0, 0.10);
-      color: var(--vivid-orange);
-    }
-
-    .section {
-      display: grid;
-      gap: 18px;
-      padding: 28px 0;
-    }
-
-    .section-head {
-      display: grid;
-      max-width: 820px;
-      gap: 8px;
-    }
-
-    h2 {
-      color: var(--deep-forest);
-      font-size: clamp(1.6rem, 4vw, 2.65rem);
-      font-weight: 800;
-      line-height: 1.08;
-    }
-
-    h3 {
-      color: var(--deep-forest);
-      font-size: 20px;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .grid.colors {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .grid.two {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .grid.three {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .panel {
-      padding: 22px;
-    }
-
-    .color-card {
-      min-height: 170px;
-      display: grid;
-      align-content: space-between;
-      gap: 18px;
-      border: 1px solid rgba(62, 58, 23, 0.10);
-      border-radius: 24px;
-      padding: 18px;
-      box-shadow: var(--shadow-small);
-    }
-
-    .color-card.dark {
-      color: var(--surface-soft);
-    }
-
-    .token-name {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-    }
-
-    .token-value {
-      font-family: "Libertinus Sans", system-ui, sans-serif;
-      font-size: 15px;
-      line-height: 1.4;
-      opacity: 0.78;
-    }
-
-    .type-scale {
-      display: grid;
-      gap: 12px;
-    }
-
-    .type-row {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 18px;
-      align-items: baseline;
-      border-bottom: 1px solid rgba(62, 58, 23, 0.10);
-      padding: 16px 0;
-    }
-
-    .type-row:last-child {
-      border-bottom: 0;
-    }
-
-    .sample-label {
-      color: var(--vivid-orange);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .display-sample {
-      font-family: "Unbounded", system-ui, sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.02;
-    }
-
-    .h1-sample {
-      font-family: "Unbounded", system-ui, sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.04;
-    }
-
-    .h2-sample {
-      font-family: "Unbounded", system-ui, sans-serif;
-      font-size: clamp(1.45rem, 4vw, 2.625rem);
-      font-weight: 700;
-      line-height: 1.08;
-    }
-
-    .body-sample {
-      max-width: 720px;
-      font-size: 20px;
-      line-height: 1.55;
-    }
-
-    .asset-panel {
-      display: grid;
-      gap: 16px;
-      align-content: start;
-      padding: 22px;
-      overflow: hidden;
-    }
-
-    .asset-frame {
-      display: grid;
-      min-height: 190px;
-      place-items: center;
-      border: 1px solid rgba(62, 58, 23, 0.10);
-      border-radius: 22px;
-      background: var(--surface-soft);
-      padding: 18px;
-      overflow: hidden;
-    }
-
-    .asset-frame.dark {
-      background: var(--deep-forest);
-    }
-
-    .asset-frame.pattern {
-      min-height: 240px;
-      background:
-        linear-gradient(rgba(255, 253, 246, 0.52), rgba(255, 253, 246, 0.68)),
-        var(--pattern-url);
-      background-size: cover;
-      background-position: center;
-    }
-
-    .asset-frame.logo img {
-      max-height: 120px;
-      object-fit: contain;
-    }
-
-    .asset-frame.signature object {
-      width: 100%;
-      min-height: 180px;
-      border: 0;
-      border-radius: 14px;
-      background: white;
-    }
-
-    .path {
-      overflow-wrap: anywhere;
-      color: var(--text-soft);
-      font-size: 13px;
+    .subtitle {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 18px;
       line-height: 1.45;
     }
 
-    .component-row {
+    .tag-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .lead-block {
-      border-left: 4px solid var(--vivid-orange);
-      border-radius: 18px;
-      background: rgba(255, 127, 0, 0.06);
-      padding: 22px;
-    }
-
-    .metric-strip {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .metric {
-      display: grid;
       gap: 8px;
-      border: 1px solid rgba(62, 58, 23, 0.10);
-      border-radius: 22px;
-      background: var(--surface);
-      padding: 18px;
     }
 
-    .metric-value {
-      color: var(--vivid-orange);
-      font-size: 32px;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .chart-card {
-      display: grid;
-      gap: 18px;
-      border: 1px solid rgba(62, 58, 23, 0.10);
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.92);
-      padding: 20px;
-      box-shadow: var(--shadow-small);
-    }
-
-    .bars {
-      display: grid;
-      gap: 12px;
-    }
-
-    .bar {
-      display: grid;
-      grid-template-columns: 100px 1fr 44px;
-      gap: 12px;
+    .tag {
+      display: inline-flex;
+      min-height: 32px;
       align-items: center;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .bar-track {
-      height: 12px;
-      overflow: hidden;
+      border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(62, 58, 23, 0.09);
+      background: #fff;
+      color: var(--ink);
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 500;
     }
 
-    .bar-fill {
-      height: 100%;
-      border-radius: inherit;
-      background: var(--vivid-orange);
-    }
-
-    .bar:nth-child(2) .bar-fill {
-      background: var(--earthy-olive);
-    }
-
-    .bar:nth-child(3) .bar-fill {
-      background: var(--deep-forest);
-    }
-
-    .dark-preview {
-      display: grid;
-      gap: 20px;
-      background: var(--deep-forest);
-      color: var(--surface-soft);
-      padding: 28px;
-    }
-
-    .dark-preview h2,
-    .dark-preview h3,
-    .dark-preview p {
-      color: var(--surface-soft);
-    }
-
-    .dark-preview p {
-      opacity: 0.78;
-    }
-
-    .dark-card {
-      display: grid;
-      gap: 10px;
-      border: 1px solid rgba(248, 239, 203, 0.18);
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.06);
-      padding: 18px;
+    .tag::before {
+      content: "+";
+      color: var(--orange);
+      margin-right: 8px;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1;
     }
 
     .usage-card {
       display: grid;
-      gap: 16px;
-      padding: 22px;
+      gap: 18px;
+      padding: 24px;
     }
 
-    .code {
-      overflow-x: auto;
-      border: 1px solid rgba(62, 58, 23, 0.10);
-      border-radius: 18px;
-      background: var(--deep-forest);
-      color: var(--surface-soft);
-      padding: 18px;
+    .usage-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .command {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--forest);
+      color: #fff;
+      padding: 14px 16px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 13px;
-      line-height: 1.6;
-      white-space: pre;
+      font-size: 14px;
+      overflow-x: auto;
     }
 
-    .footer {
+    .save-button,
+    .tab-button,
+    .mode-button {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .save-button {
+      min-height: 36px;
+      padding: 0 14px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .download-button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 14px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .download-button.primary {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .stat-card {
+      display: grid;
+      gap: 8px;
+      padding: 18px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .notice {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin: 24px 0 38px;
+      padding: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .notice-symbol {
+      color: var(--orange);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    .tabs,
+    .modes {
+      display: inline-flex;
+      gap: 6px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 4px;
+    }
+
+    .tab-button,
+    .mode-button {
+      min-height: 32px;
+      border: 0;
+      border-radius: 7px;
+      padding: 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tab-button.active,
+    .mode-button.active {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .preview-shell {
+      overflow: hidden;
+    }
+
+    .preview-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      border-top: 1px solid rgba(62, 58, 23, 0.12);
-      margin-top: 28px;
-      padding: 24px 0 12px;
-      color: var(--text-soft);
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      background: #fff;
+    }
+
+    .preview-stage {
+      padding: 18px;
+      background: var(--surface-muted);
+    }
+
+    .preview-stage.dark {
+      background: #16170f;
+      color: #fff;
+    }
+
+    .preview-panel {
+      display: grid;
+      gap: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #fff;
+      padding: 20px;
+    }
+
+    .preview-stage.dark .preview-panel {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: #232516;
+    }
+
+    .tokens {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    .swatch {
+      min-height: 112px;
+      display: grid;
+      align-content: space-between;
+      border: 1px solid rgba(216, 216, 209, 0.8);
+      border-radius: 10px;
+      padding: 12px;
+      color: var(--ink);
+    }
+
+    .swatch.dark { color: #fff; }
+
+    .swatch-name {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .swatch-value {
+      font-size: 12px;
+      opacity: 0.72;
+    }
+
+    .type-card {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      align-items: baseline;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .preview-stage.dark .type-card {
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .type-label {
+      color: var(--orange);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .type-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .type-section {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .asset-card {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+
+    .preview-stage.dark .asset-card {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .asset-frame {
+      display: grid;
+      min-height: 124px;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--surface-muted);
+      padding: 14px;
+      overflow: hidden;
+    }
+
+    .asset-frame.dark {
+      background: #0b0b0b;
+    }
+
+    .asset-frame img {
+      max-width: 100%;
+      max-height: 82px;
+      object-fit: contain;
+    }
+
+    .asset-frame.mark img {
+      max-height: 96px;
+    }
+
+    .asset-title {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .preview-stage.dark .asset-title {
+      color: #fff;
+    }
+
+    .asset-path {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 14px;
+    }
+
+    .component-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 16px;
+    }
+
+    .preview-stage.dark .component-card {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .web-button {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 18px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .web-button.primary {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .web-button.dark {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: transparent;
+      color: #fff;
+    }
+
+    .product-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .product-card {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .product-card.active {
+      border: 4px solid var(--orange);
+      background: var(--orange);
+      color: #fff;
+      padding: 7px;
+    }
+
+    .preview-stage.dark .product-card {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .well {
+      display: grid;
+      min-height: 132px;
+      place-items: center;
+      border-radius: 6px;
+      background: var(--surface-muted);
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 132px;
+      object-fit: contain;
+      object-position: center;
+      mix-blend-mode: multiply;
+    }
+
+    .product-image.wide {
+      height: 132px;
+      object-fit: cover;
+      border-radius: 6px;
+      mix-blend-mode: normal;
+    }
+
+    .product-image.capsules {
+      height: 132px;
+      object-fit: cover;
+      object-position: center 42%;
+      border-radius: 6px;
+      mix-blend-mode: normal;
+    }
+
+    .bottle,
+    .jar {
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.26), transparent 28%),
+        linear-gradient(180deg, #bd6a31 0 16%, #252719 16% 100%);
+      box-shadow: 0 14px 28px rgba(17, 17, 17, 0.16);
+    }
+
+    .bottle {
+      width: 36px;
+      height: 124px;
+      border-radius: 18px;
+    }
+
+    .jar {
+      width: 72px;
+      height: 110px;
+      border-radius: 16px 16px 22px 22px;
+    }
+
+    .science-card {
+      display: grid;
+      gap: 16px;
+      border-radius: 10px;
+      background: var(--forest);
+      color: #fff;
+      padding: 18px;
+    }
+
+    .science-card h3,
+    .component-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.08;
+      text-transform: uppercase;
+    }
+
+    .science-card span { color: var(--orange); }
+
+    .lab {
+      min-height: 128px;
+      border-radius: 6px;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent),
+        repeating-linear-gradient(90deg, #777 0 12px, #aaa 12px 18px, #555 18px 32px);
+      filter: grayscale(1);
+      opacity: 0.82;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .faq-row {
+      display: flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid rgba(216, 216, 209, 0.58);
+      background: #fff;
+      padding: 12px 14px;
       font-size: 14px;
     }
 
-    @media (max-width: 980px) {
+    .preview-stage.dark .faq-row {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .faq-row span {
+      color: var(--orange);
+      font-size: 28px;
+      font-weight: 300;
+    }
+
+    .md-panel {
+      display: none;
+      max-height: 680px;
+      overflow: auto;
+      border-radius: 14px;
+      background: #111;
+      color: #f8f8f4;
+      padding: 20px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    body.show-md .live-panel { display: none; }
+    body.show-md .md-panel { display: block; }
+
+    .footer {
+      margin-top: 44px;
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 940px) {
       .hero,
-      .grid.two,
-      .grid.three {
+      .component-grid,
+      .summary-grid {
         grid-template-columns: 1fr;
       }
 
-      .grid.colors {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .tokens {
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      .hero-main {
-        min-height: 460px;
+      .asset-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 640px) {
-      .shell {
-        padding: 12px;
-      }
-
-      .topbar {
+    @media (max-width: 680px) {
+      .appbar-inner,
+      .section-head,
+      .preview-toolbar {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .nav {
+      .toplinks {
         width: 100%;
+        overflow-x: auto;
       }
 
-      .hero {
-        padding-top: 14px;
-      }
-
-      .hero-main,
-      .panel,
-      .asset-panel,
-      .dark-preview,
-      .usage-card {
-        border-radius: 22px;
-      }
-
-      .hero-main {
-        min-height: 420px;
-        padding: 24px;
-      }
-
-      .grid.colors,
-      .metric-strip {
+      .tokens,
+      .product-strip,
+      .asset-grid {
         grid-template-columns: 1fr;
       }
 
-      .type-row {
+      .type-card {
         grid-template-columns: 1fr;
-        gap: 8px;
       }
 
-      .bar {
-        grid-template-columns: 76px 1fr 38px;
-      }
-
-      .footer {
-        align-items: flex-start;
-        flex-direction: column;
+      .hero-card {
+        min-height: auto;
       }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header class="topbar">
-      <a class="brand" href="design.md" aria-label="MYKORA DESIGN.md">
-        <span class="brand-mark">
-          <img src="assets/mykora-logo-mark-white.png" alt="">
-        </span>
-        <span class="brand-wordmark">MYKORÁ</span>
+  <header class="appbar">
+    <div class="appbar-inner">
+      <a class="brand" href="web_mykora.md">
+        <span class="brand-mark">d</span>
+        <span>дизайн .md</span>
       </a>
-      <nav class="nav" aria-label="Preview sections">
-        <a class="nav-link" href="#colors">Colors</a>
-        <a class="nav-link" href="#type">Type</a>
-        <a class="nav-link" href="#assets">Assets</a>
-        <a class="nav-link" href="#components">Components</a>
-        <a class="nav-link" href="#usage">Usage</a>
+      <nav class="toplinks">
+        <a href="web_mykora.md">web_mykora.md</a>
+        <a href="assets/design-system/brand-style-part-1.pdf" download>Брендбук 1</a>
+        <a href="assets/design-system/brand-style-part-2.pdf" download>Брендбук 2</a>
+        <a href="assets/design-system/mykora-brand-assets.zip" download>Скачать ассеты</a>
+        <a href="index_legacy_2026-05-02.html">Старая версия</a>
+        <a href="#preview">Превью</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero-main">
-          <div class="eyebrow">MYKORA DESIGN.md Preview</div>
-          <h1 id="page-title">Warm science system for wellness interfaces.</h1>
-          <p class="hero-copy">Визуальный каталог для агентной работы: логотипы, паттерн, подпись, цвета, типографика, UI-компоненты и правила сборки страниц в стиле MYKORA.</p>
-          <div class="actions">
-            <a class="button primary" href="design.md">Open DESIGN.md</a>
-            <a class="button" href="#assets">Brand Assets</a>
-            <a class="button active" href="#components">Preview Kit</a>
+  <main class="page">
+    <a class="back" href="web_mykora.md">← Открыть web_mykora.md</a>
+
+    <section class="hero" aria-labelledby="title">
+      <article class="hero-card">
+        <div class="design-title">
+          <div class="eyebrow">Дизайн-код сайта</div>
+          <h1 id="title">Система стиля сайта MYKORA</h1>
+          <p class="subtitle">Чистая коммерческая эстетика, научное позиционирование, крупная продуктовая фотография, тонкие карточки, оранжевые действия и темно-оливковые блоки доказательности.</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Чистый сайт</span>
+          <span class="tag">Научная база</span>
+          <span class="tag">Каталог продуктов</span>
+        </div>
+      </article>
+
+      <aside class="usage-card">
+        <div>
+          <div class="usage-title">Использование</div>
+          <p style="margin-top:8px">Положите файл дизайн-кода в корень проекта и используйте его как инструкцию для интерфейсов публичного сайта MYKORA.</p>
+        </div>
+        <div class="command">
+          <span>cp web_mykora.md ./DESIGN.md</span>
+          <button class="save-button" type="button" onclick="navigator.clipboard?.writeText('cp web_mykora.md ./DESIGN.md')">Скопировать</button>
+        </div>
+        <div class="download-grid">
+          <a class="download-button primary" href="assets/design-system/brand-style-part-1.pdf" download>Скачать брендбук PDF 1</a>
+          <a class="download-button primary" href="assets/design-system/brand-style-part-2.pdf" download>Скачать брендбук PDF 2</a>
+          <a class="download-button" href="assets/design-system/mykora-brand-assets.zip" download>Скачать все ассеты ZIP</a>
+        </div>
+        <div class="summary-grid" style="margin:0">
+          <div class="stat-card">
+            <div class="stat-label">Токены</div>
+            <div class="stat-value">Сайт</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Режим</div>
+            <div class="stat-value">Светлый</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Источник</div>
+            <div class="stat-value">Сайт</div>
           </div>
         </div>
-        <aside class="hero-side" aria-label="Brand lockup">
-          <div class="logo-stage">
-            <img src="assets/mykora-logo-no-descriptor-white.png" alt="MYKORA logo without descriptor">
+      </aside>
+    </section>
+
+    <section class="summary-grid" aria-label="Краткое описание дизайна">
+      <article class="stat-card">
+        <div class="stat-label">Основная эстетика</div>
+        <div class="stat-value">Чистая коммерция</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Главный акцент</div>
+        <div class="stat-value" style="color:var(--orange)">#F76E00</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Лучше всего для</div>
+        <div class="stat-value">Публичного сайта</div>
+      </article>
+    </section>
+
+    <aside class="notice">
+      <div class="notice-symbol">✦</div>
+      <div>Это рабочее превью дизайн-кода сайта MYKORA: оно собрано по текущему сайту и брендбуку. В отличие от более теплого редакционного <code>design.md</code>, здесь базовая подложка чистая: белый и мягкий светло-серый, без теплого айвори как основного фона.</div>
+    </aside>
+
+    <section id="preview" aria-labelledby="preview-title">
+      <div class="section-head">
+        <h2 id="preview-title">Превью</h2>
+        <div class="tabs" aria-label="Вкладки превью">
+          <button class="tab-button active" type="button" data-tab="live">Живое превью</button>
+          <button class="tab-button" type="button" data-tab="md">Файл .md</button>
+        </div>
+      </div>
+
+      <div class="preview-shell">
+        <div class="preview-toolbar">
+          <div class="brand" style="letter-spacing:0">
+            <span class="brand-mark" style="background:var(--orange)">M</span>
+            <span>стиль сайта MYKORA</span>
           </div>
-          <div class="hero-note">
-            <div class="chip-row">
-              <span class="chip orange">Deep Forest</span>
-              <span class="chip">Soft Ivory</span>
-              <span class="chip">Vivid Orange</span>
-              <span class="chip">Editorial Science</span>
+          <div class="modes" aria-label="Цветовой режим">
+            <button class="mode-button active" type="button" data-mode="light">Светлый</button>
+            <button class="mode-button" type="button" data-mode="dark">Темный</button>
+          </div>
+        </div>
+
+        <div class="preview-stage" id="stage">
+          <div class="live-panel preview-panel">
+            <div class="tokens">
+              <div class="swatch dark" style="background:#111111"><div class="swatch-name">Черный текст</div><div class="swatch-value">#111111</div></div>
+              <div class="swatch dark" style="background:#3c3a21"><div class="swatch-name">Глубокий лес</div><div class="swatch-value">#3C3A21</div></div>
+              <div class="swatch dark" style="background:#f76e00"><div class="swatch-name">Яркий оранжевый</div><div class="swatch-value">#F76E00</div></div>
+              <div class="swatch" style="background:#f7f7f4"><div class="swatch-name">Чистая подложка</div><div class="swatch-value">#F7F7F4</div></div>
+              <div class="swatch" style="background:#ffffff"><div class="swatch-name">Поверхность</div><div class="swatch-value">#FFFFFF</div></div>
+              <div class="swatch" style="background:#c8cfd0"><div class="swatch-name">Серебристый</div><div class="swatch-value">#C8CFD0</div></div>
             </div>
-            <p>Основной характер: спокойная научная редакция, теплый фон, темно-оливковая типографика и один сильный оранжевый акцент.</p>
-          </div>
-        </aside>
-      </section>
 
-      <section class="section" id="colors">
-        <div class="section-head">
-          <div class="eyebrow">01 Color Palette</div>
-          <h2>Role-based color system</h2>
-          <p>Палитра фиксирует роли: глубокий оливковый для голоса бренда, теплый ivory для атмосферы, оранжевый только для действий и ключевых маркеров.</p>
-        </div>
-        <div class="grid colors">
-          <article class="color-card dark" style="background:#3E3A17">
-            <div class="token-name">Deep Forest</div>
-            <div class="token-value">#3E3A17<br>Headings, text, dark bands</div>
-          </article>
-          <article class="color-card" style="background:#F8EFCB">
-            <div class="token-name">Soft Ivory</div>
-            <div class="token-value">#F8EFCB<br>Canvas, warm atmosphere</div>
-          </article>
-          <article class="color-card dark" style="background:#FF7F00">
-            <div class="token-name">Vivid Orange</div>
-            <div class="token-value">#FF7F00<br>CTA, active states, evidence marks</div>
-          </article>
-          <article class="color-card" style="background:#A3A58C">
-            <div class="token-name">Earthy Olive</div>
-            <div class="token-value">#A3A58C<br>Secondary accents, chips, charts</div>
-          </article>
-          <article class="color-card" style="background:#FFFDF6">
-            <div class="token-name">Surface Soft</div>
-            <div class="token-value">#FFFDF6<br>Soft reading surfaces</div>
-          </article>
-          <article class="color-card" style="background:#FFFFFF">
-            <div class="token-name">Surface</div>
-            <div class="token-value">#FFFFFF<br>Cards, tables, modules</div>
-          </article>
-          <article class="color-card" style="background:#DCD7C2">
-            <div class="token-name">Line</div>
-            <div class="token-value">#DCD7C2<br>Borders and dividers</div>
-          </article>
-          <article class="color-card dark" style="background:#6D6854">
-            <div class="token-name">Text Soft</div>
-            <div class="token-value">#6D6854<br>Descriptions, captions</div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="type">
-        <div class="section-head">
-          <div class="eyebrow">02 Typography</div>
-          <h2>Unbounded + Libertinus Sans</h2>
-          <p>Unbounded отвечает за систему, навигацию и уверенные заголовки. Libertinus Sans оставляет длинные объяснения спокойными и читаемыми.</p>
-        </div>
-        <div class="panel type-scale">
-          <div class="type-row">
-            <div class="sample-label">Display / 64</div>
-            <div class="display-sample">Biological sovereignty</div>
-          </div>
-          <div class="type-row">
-            <div class="sample-label">H1 / 56</div>
-            <div class="h1-sample">Warm laboratory notebook</div>
-          </div>
-          <div class="type-row">
-            <div class="sample-label">H2 / 42</div>
-            <div class="h2-sample">Science cards and protocol logic</div>
-          </div>
-          <div class="type-row">
-            <div class="sample-label">Body / 20</div>
-            <p class="body-sample">MYKORA interfaces explain complex wellness topics through practical panels, soft contrast, and clear evidence markers.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="assets">
-        <div class="section-head">
-          <div class="eyebrow">03 Brand Assets</div>
-          <h2>Logo library, scientific pattern, and signature</h2>
-          <p>Эти ассеты подключены в `design.md` как рабочие источники для визуального контента и интерфейсов.</p>
-        </div>
-        <div class="grid two">
-          <article class="asset-panel">
-            <h3>Logo without descriptor</h3>
-            <div class="asset-frame dark logo">
-              <img src="assets/mykora-logo-no-descriptor-white.png" alt="MYKORA logo without descriptor, white version">
+            <div class="component-grid">
+              <article class="component-card">
+                <h3>Миссия бренда</h3>
+                <p style="margin-top:10px">Живые формулы будущего. Биохакинг нового поколения. Метаморфоза от усталости и хаоса к силе, ясности и новому уровню жизни.</p>
+                <div class="button-row">
+                  <span class="tag">Научная честность</span>
+                  <span class="tag">Сила природы</span>
+                  <span class="tag">Бунт против пустоты</span>
+                </div>
+              </article>
+              <article class="component-card">
+                <h3>Правила логотипа</h3>
+                <p style="margin-top:10px">Знак напоминает клетки или мицелий: органическая природа плюс научная точность. Вертикальные версии используем для упаковки, этикеток, мобильных экранов, визиток и компактных соцсетей.</p>
+              </article>
             </div>
-            <p>Основной вариант для шапок, обложек, продуктовых страниц и брендовых экранов.</p>
-            <div class="path">assets/mykora-logo-no-descriptor-white.png</div>
-          </article>
 
-          <article class="asset-panel">
-            <h3>Name only wordmark</h3>
-            <div class="asset-frame logo">
-              <img src="assets/mykora-wordmark-black.png" alt="MYKORA wordmark only, black version">
+            <div class="type-card">
+              <div class="type-label">Крупный набор</div>
+              <div class="type-display">MYKORÁ</div>
             </div>
-            <p>Частый вариант для соцсетей, каруселей и инфографики, когда знак используется отдельно.</p>
-            <div class="path">assets/mykora-wordmark-black.png</div>
-          </article>
 
-          <article class="asset-panel">
-            <h3>Scientific pattern</h3>
-            <div class="asset-frame pattern">
-              <div class="lead-block">
-                <p>Паттерн используется как тонкий научный фон под карточками, графиками и editorial science страницами.</p>
+            <div class="type-card">
+              <div class="type-label">Заголовок раздела</div>
+              <div class="type-section">MYKORA — это система</div>
+            </div>
+
+            <div class="type-card">
+              <div class="type-label">Шрифты</div>
+              <div>
+                <div class="type-section" style="font-size:clamp(1.25rem,3vw,2.2rem)">Bounded — главный</div>
+                <p style="margin-top:8px">Libertinus Sans — второстепенный для описаний, подписй, FAQ и длинного текста.</p>
               </div>
             </div>
-            <div class="path">assets/mykora-science-pattern.png</div>
-          </article>
 
-          <article class="asset-panel">
-            <h3>Signature element</h3>
-            <div class="asset-frame signature">
-              <object data="assets/mykora-signature.pdf" type="application/pdf">
-                <p class="path">Signature PDF: assets/mykora-signature.pdf</p>
-              </object>
-            </div>
-            <p>Подпись для соцсетей, визуальных объяснений, каруселей, обложек и инфографики.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="components">
-        <div class="section-head">
-          <div class="eyebrow">04 Components</div>
-          <h2>Buttons, cards, metrics, chart modules</h2>
-          <p>Основные примитивы MYKORA держатся на мягких белых поверхностях, большом радиусе, тонких границах и оранжевом активном состоянии.</p>
-        </div>
-        <div class="grid two">
-          <article class="panel">
-            <h3>Actions and chips</h3>
-            <div style="height:16px"></div>
-            <div class="component-row">
-              <a class="button primary" href="#">Primary CTA</a>
-              <a class="button" href="#">Secondary</a>
-              <a class="button active" href="#">Selected</a>
-              <span class="chip orange">Science</span>
-              <span class="chip">Protocol</span>
-            </div>
-          </article>
-
-          <article class="panel">
-            <h3>Lead block</h3>
-            <div style="height:16px"></div>
-            <div class="lead-block">
-              <p>Ключевой вывод выделяется теплым оранжевым tint и левой evidence-линейкой. Так блок выглядит заметно, но не кричит.</p>
-            </div>
-          </article>
-
-          <article class="panel">
-            <h3>Metrics</h3>
-            <div style="height:16px"></div>
-            <div class="metric-strip">
-              <div class="metric">
-                <div class="metric-value">5</div>
-                <p>core supplements</p>
-              </div>
-              <div class="metric">
-                <div class="metric-value">4</div>
-                <p>protocol phases</p>
-              </div>
-              <div class="metric">
-                <div class="metric-value">1</div>
-                <p>orange accent</p>
+            <div class="component-card">
+              <h3>Скачать материалы</h3>
+              <p style="margin-top:10px">Брендбук доступен в двух PDF-частях для GitHub Pages, а архив содержит логотипы, фирменные надписи, шрифты, паттерн и подпись.</p>
+              <div class="download-grid" style="margin-top:14px">
+                <a class="download-button primary" href="assets/design-system/brand-style-part-1.pdf" download>Скачать брендбук PDF 1</a>
+                <a class="download-button primary" href="assets/design-system/brand-style-part-2.pdf" download>Скачать брендбук PDF 2</a>
+                <a class="download-button" href="assets/design-system/mykora-brand-assets.zip" download>Скачать фирменный стиль ZIP</a>
               </div>
             </div>
-          </article>
 
-          <article class="chart-card">
-            <h3>Chart card</h3>
-            <div class="bars" aria-label="Preview chart">
-              <div class="bar">
-                <span>Clarity</span>
-                <span class="bar-track"><span class="bar-fill" style="width: 86%"></span></span>
-                <span>86</span>
-              </div>
-              <div class="bar">
-                <span>Calm</span>
-                <span class="bar-track"><span class="bar-fill" style="width: 72%"></span></span>
-                <span>72</span>
-              </div>
-              <div class="bar">
-                <span>Trust</span>
-                <span class="bar-track"><span class="bar-fill" style="width: 94%"></span></span>
-                <span>94</span>
-              </div>
+            <div class="asset-grid">
+              <article class="asset-card">
+                <div class="asset-frame dark mark">
+                  <img src="assets/design-system/logo/mark-white.jpg" alt="MYKORA white logo sign">
+                </div>
+                <div class="asset-title">Лого / знак белый</div>
+                <div class="asset-path">Знак / Белая версия</div>
+              </article>
+              <article class="asset-card">
+                <div class="asset-frame mark">
+                  <img src="assets/design-system/logo/mark-black.png" alt="MYKORA black logo sign">
+                </div>
+                <div class="asset-title">Лого / знак черный</div>
+                <div class="asset-path">Знак / Черная версия</div>
+              </article>
+              <article class="asset-card">
+                <div class="asset-frame dark">
+                  <img src="assets/design-system/logo/wordmark-white.svg" alt="MYKORA white wordmark">
+                </div>
+                <div class="asset-title">Название белое</div>
+                <div class="asset-path">Название без знака / Белая версия</div>
+              </article>
+              <article class="asset-card">
+                <div class="asset-frame">
+                  <img src="assets/design-system/logo/wordmark-black.png" alt="MYKORA black wordmark">
+                </div>
+                <div class="asset-title">Название черное</div>
+                <div class="asset-path">Название без знака / Черная версия</div>
+              </article>
             </div>
-          </article>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="dark-preview">
-          <div class="eyebrow">05 Dark Brand Surface</div>
-          <h2>Deep forest bands for strong brand moments</h2>
-          <p>Темные поверхности нужны для CTA, протокольных навигаций, обложек и акцентных блоков. Оранжевый остается главным действием.</p>
-          <div class="grid three">
-            <div class="dark-card">
-              <h3>Full logo</h3>
-              <p>Использовать на первом касании, в презентациях и внешних материалах.</p>
+            <div class="component-grid">
+              <article class="component-card">
+                <h3>Кнопки и метки</h3>
+                <div class="button-row">
+                  <a class="web-button primary" href="#">Лист ожидания</a>
+                  <a class="web-button" href="#">Узнать больше</a>
+                  <span class="tag">Высокая биодоступность</span>
+                </div>
+
+                <div class="faq-list">
+                  <div class="faq-row">Что такое БАДы MYKORA?<span>+</span></div>
+                  <div class="faq-row">Можно ли принимать ежедневно?<span>+</span></div>
+                </div>
+              </article>
+
+              <article class="science-card">
+                <h3>Развиваемся в сотрудничестве с <span>научным университетом</span></h3>
+                <p style="color:rgba(255,255,255,.72)">Темно-оливковые панели используются для научного доказательства, производства, сертификатов и экспертности.</p>
+                <div class="lab"></div>
+                <div class="button-row">
+                  <a class="web-button primary" href="#">Перейти в каталог</a>
+                  <a class="web-button dark" href="#">Научная база</a>
+                </div>
+              </article>
             </div>
-            <div class="dark-card">
-              <h3>Pattern layer</h3>
-              <p>Подходит для научных статей и research-style explainers.</p>
-            </div>
-            <div class="dark-card">
-              <h3>Signature</h3>
-              <p>Добавляет editorial personality в соцсетях и каруселях.</p>
+
+            <div class="product-strip">
+              <article class="product-card active">
+                <div class="well">
+                  <img class="product-image" src="assets/design-system/products/letiporus-bottle.jpg" alt="Биоконцентрат Летипоруса MYKORA">
+                </div>
+                <strong>Биоконцентрат Летипоруса</strong>
+                <small>Энергия. Сон. Пищеварение</small>
+              </article>
+              <article class="product-card">
+                <div class="well">
+                  <img class="product-image capsules" src="assets/design-system/products/vitamin-capsules.jpg" alt="Капсулы с витаминами MYKORA">
+                </div>
+                <strong>Капсулы с витаминами</strong>
+                <small style="color:var(--muted)">Купить на Ozon</small>
+              </article>
+              <article class="product-card">
+                <div class="well">
+                  <img class="product-image wide" src="assets/design-system/products/functional-sets-box.jpg" alt="Функциональные наборы MYKORA">
+                </div>
+                <strong>Функциональные наборы</strong>
+                <small style="color:var(--muted)">Узнать больше</small>
+              </article>
             </div>
           </div>
-          <div class="actions">
-            <a class="button primary" href="#">Primary action</a>
-            <a class="button" href="#" style="background:transparent;color:#FFFDF6;border-color:rgba(248,239,203,0.34)">Learn more</a>
-          </div>
-        </div>
-      </section>
 
-      <section class="section" id="usage">
-        <div class="section-head">
-          <div class="eyebrow">06 Usage</div>
-          <h2>Agent-ready prompt</h2>
-          <p>Короткая команда для агента, когда нужно быстро собрать новый интерфейс или визуал в этом стиле.</p>
+          <pre class="md-panel">---
+название: Дизайн-код сайта MYKORA
+описание: Чистая коммерческая эстетика, научное позиционирование, продуктовая фотография и сдержанный премиальный интерфейс.
+цвета:
+  черный_текст: "#111111"
+  глубокий_лес: "#3C3A21"
+  яркий_оранжевый: "#F76E00"
+  чистая_подложка: "#F7F7F4"
+  поверхность: "#FFFFFF"
+  граница_карточек: "#D8D8D1"
+типографика:
+  главный_шрифт: Bounded
+  второстепенный_шрифт: Libertinus Sans
+материалы:
+  знак_белый: Знак / Белая версия
+  знак_черный: Знак / Черная версия
+  название_белое: Название без знака / Белая версия
+  название_черное: Название без знака / Черная версия
+  биоконцентрат_летипоруса: 25ml Red Frosted Sport Nutrition Bottle Mockup.jpg
+  капсулы_с_витаминами: Ozon/photo_2026-04-15_15-02-35.jpg
+  функциональные_наборы: Paper Box Mockup.jpg
+брендбук:
+  миссия: Живые формулы будущего
+  категория: Биохакинг нового поколения
+  ценности: Научная честность, Сила природы, Инновация, Бунт против пустоты, Доступная премиальность, Метаморфоза человека
+компоненты:
+  навигация: тонкая белая верхняя панель
+  карточка_каталога: белая карточка, светло-серая зона изображения, оранжевая кнопка
+  научный_блок: темно-оливковая поверхность, белый текст, оранжевый акцент
+  faq_строка: белая строка с оранжевым плюсом
+---</pre>
         </div>
-        <article class="usage-card">
-          <h3>Prompt</h3>
-          <div class="code">Build this in the MYKORA design system: warm ivory grid or scientific pattern background, deep olive text (#3E3A17), vivid orange as the only strong action accent (#FF7F00), white rounded panels, Unbounded for headings and UI labels, Libertinus Sans for body copy, use logo variants from the MYKORA logo library, use the signature asset for social visuals, keep the tone scientific, warm, practical, and trustworthy.</div>
-        </article>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <footer class="footer">
-      <span>MYKORA DESIGN.md Preview</span>
-      <span>Static preview page · open locally</span>
+      Превью дизайн-кода сайта MYKORA. Полный файл: <a href="web_mykora.md">web_mykora.md</a>.
     </footer>
-  </div>
+  </main>
+
+  <script>
+    const tabButtons = document.querySelectorAll("[data-tab]");
+    const modeButtons = document.querySelectorAll("[data-mode]");
+    const stage = document.getElementById("stage");
+
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        tabButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        document.body.classList.toggle("show-md", button.dataset.tab === "md");
+      });
+    });
+
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        modeButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        stage.classList.toggle("dark", button.dataset.mode === "dark");
+      });
+    });
+  </script>
 </body>
 </html>
